@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+img {
+  display: block;
+}
+
+.header {
+  background: url(../../assets/images/bg_header.gif);
+}
+
+.header a {
+  display: block;
+  width: 92px;
+  margin: 0 auto;
+}
+
+.section1 .category_list {
+  margin-top: 30px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.section1 .category_list a {
+  display: block;
+  position: relative;
+  padding: 25px;
+  box-shadow: 1px 1px 10px #ccc;
+  border-radius: 15px;
+}
+
+.section1 .category_list a h2 {
+  padding-bottom: 5px;
+}
+
+.section1 .category_list .left,
+.section1 .category_list .right {
+  margin-top: 5px;
+}
+
+.section1 .category_list .left {
+  margin-right: 20px;
+}
+
+.section1 .category_list .go {
+  margin-top: 10px;
+}
+
+.section1 .category_list p span {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0 15px 5px;
+  font-size: 20px;
+  transition: .3s;
+}
+
+.section1 .category_list a:hover .go span {
+  background-color: violet;
+  color: #fff;
+}
+
+.section1 .category_list .icecream {
+  margin-left: 143px;
+  margin-bottom: 30px;
+}
+
+.section1 .category_list .icecream img {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  transform: rotate(50deg);
+}
+
+.section1 .category_list .icecream .co {
+  top: 170px;
+  right: 180px;
+  z-index: -1;
+}
+
+.section1 .category_list .coffee {
+  background: url(../../assets/images/coffee.png) no-repeat;
+  background-size: 350px;
+  background-position: -55% 270%;
+  margin-right: 15px;
+}
+
+.section1 .category_list .beverage {
+  background: url(../../assets/images/img1.png) no-repeat;
+  background-position: 50% 150%;
+  margin-bottom: 15px;
+}
+
+.section1 .category_list .dessert {
+  background: url(../../assets/images/dessert.png) no-repeat;
+  background-size: 170px;
+  background-position: 90% 120%;
+}
+
+.section1 .category_list .drink {
+  background: url(../../assets/images/cake.png) no-repeat;
+  background-position: 40px 250%;
+  background-size: contain;
+}
