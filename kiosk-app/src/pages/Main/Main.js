@@ -8,7 +8,7 @@ export default function Main() {
     <>
       <IntroHeader/>
       <section className='section1'>
-          <Content/>
+          <Content/>1
       </section>
     </>
   )
