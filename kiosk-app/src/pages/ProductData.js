@@ -54,4 +54,18 @@ const icecream = [{
 
 ]
 
-export default icecream;
+const drink = [{
+  
+    id: 'drink01',
+    image: process.env.PUBLIC_URL + '/assets/images/drink/drink01.png',
+    title: '피치 블라스트',
+    tag: '#복숭아맛 #블라스트',
+    desc: '상큼하고 달콤한 복숭아 맛 블라스트',
+    price: 3500
+  
+}]
+
+export {
+  icecream,
+  drink
+};

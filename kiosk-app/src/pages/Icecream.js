@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import data from './IcecreamData';
+import {icecream} from './ProductData';
 
 const Button = styled.button`
   width: 50%;
@@ -20,11 +20,13 @@ const Button = styled.button`
 const Product = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-top: 25px;
 `
 
 
+
 export default function Icecream() {
-  const [icecreams] = useState(data);
+  const [icecreams] = useState(icecream);
 
   return (
     <>

@@ -17,9 +17,12 @@ export default function Detail(props) {
       <p>{icecreams[id].desc}</p>
       
       <div className='imgs'>
-        <img src={icecreams[id].image} alt='img'/>
+        <img className='product_img' src={icecreams[id].image} alt='img'/>
       </div>
-      
+
+      <div className='cart'>
+        <a href='#!'>찜하기</a>
+      </div>
     </div>
    </>
   )

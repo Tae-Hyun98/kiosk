@@ -9,11 +9,11 @@ import Cake from './pages/Cake';
 import SubPage from './pages/SubPage';
 import Detail from './pages/Detail';
 import { useState } from 'react';
-import data from './pages/IcecreamData';
+import {icecream, drink} from './pages/ProductData';
 
 
 function App() {
-    const [icecreams] = useState(data);
+    const [icecreams] = useState(icecream);
   return (
     <div className="wrap">
 

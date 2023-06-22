@@ -1,18 +1,42 @@
 .detail_box {
   position: relative;
   text-align: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid violet;
 }
 
-.detail_box img{
+.detail_box img {
   margin: 0 auto;
 }
 
 .detail_box .imgs {
   background: url(../assets/images/bg_icecream_corn_3.png) no-repeat;
-  background-position: 50% 107%;
+  background-position: 50% 110%;
+  background-size: 110px auto;
 }
 
-.detail_box h1{
+.detail_box .imgs .product_img {
+  margin-top: -30px;
+}
+
+.detail_box h1 {
   padding: 15px 0;
 }
-.detail_box p{}
+
+.detail_box .cart {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -23px;
+}
+
+.detail_box .cart a {
+  color: #fff;
+  background-color: violet;
+  display: inline-block;
+  line-height: 50px;
+  width: 178px;
+  height: 50px;
+  border-radius: 30px;
+}
