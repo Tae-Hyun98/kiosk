@@ -37,7 +37,7 @@ export default function Drink() {
   drinks.map((drink, index)=> {
     return(
         <div key={index} className='product_box'>
-          <Link to={`/subpage/detail/${index}`}>
+          <Link to={`/subpage/detaildrink/${index}`}>
             <div>
               <img className={drink.id} src={drink.image} alt='product_img'/>
             </div>
