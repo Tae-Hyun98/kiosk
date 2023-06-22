@@ -40,19 +40,24 @@ img {
 nav ul {
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  margin: 15px 0;
+}
+
+nav ul li {
+  width: 20%;
 }
 
 nav ul li a {
   display: block;
-  padding: 10px 40px;
-  border: 1px solid black;
-  font-size: 22px;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid #777;
+  font-size: 20px;
   border-radius: 30px;
   margin-right: 15px;
 }
 
-nav ul li:last-child a{
+nav ul li:last-child a {
   margin-right: 0;
 }
 

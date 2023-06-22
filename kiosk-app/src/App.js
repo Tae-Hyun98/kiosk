@@ -7,8 +7,13 @@ import Drink from './pages/Drink';
 import Dessert from './pages/Dessert';
 import Cake from './pages/Cake';
 import SubPage from './pages/SubPage';
+import Detail from './pages/Detail';
+import { useState } from 'react';
+import data from './pages/IcecreamData';
+
 
 function App() {
+    const [icecreams] = useState(data);
   return (
     <div className="wrap">
 
@@ -16,13 +21,14 @@ function App() {
         <Route path='/' element={<Main/>}/>
         
         <Route path='subpage' element={<SubPage/>}>
+          <Route path='detail/:id' element={<Detail icecreams={icecreams}/>}/>
           <Route path='icecream' element={<Icecream/>}/>
           <Route path='coffee' element={<Coffee/>}/>
           <Route path='drink' element={<Drink/>}/>
           <Route path='cake' element={<Cake/>}/>
           <Route path='dessert' element={<Dessert/>}/>
         </Route>
-        
+
       </Routes>
 
     </div>

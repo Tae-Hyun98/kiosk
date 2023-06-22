@@ -1,0 +1,37 @@
+.product_box {
+  width: calc(25% - 15px);
+  margin: 0 7.5px 20px 7.5px;
+  border: 1px solid #ccc;
+}
+
+.product_box:last-child {
+  margin-right: 0;
+}
+
+.product_box a {
+  display: block;
+}
+
+.product_box a .img_box {
+  background: url(../assets/images/bg_icecream_corn_3.png) no-repeat;
+  background-position: 50% 100%;
+}
+
+.product_box a img {
+  width: 100%;
+}
+
+.product_box a h3,
+.product_box a p {
+  text-align: center;
+}
+
+.product_box a .tit {
+  font-size: 22px;
+  padding: 15px 0;
+}
+
+.product_box a .tag {
+  color: #777;
+  padding-bottom: 20px;
+}

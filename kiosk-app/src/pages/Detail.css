@@ -1,0 +1,18 @@
+.detail_box {
+  position: relative;
+  text-align: center;
+}
+
+.detail_box img{
+  margin: 0 auto;
+}
+
+.detail_box .imgs {
+  background: url(../assets/images/bg_icecream_corn_3.png) no-repeat;
+  background-position: 50% 107%;
+}
+
+.detail_box h1{
+  padding: 15px 0;
+}
+.detail_box p{}
