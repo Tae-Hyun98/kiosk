@@ -1,12 +1,11 @@
 import React from 'react'
-import Header from '../components/Header'
+import IcecreamData from './IcecreamData'
 
 
 export default function Icecream() {
   return (
     <>
-      <Header/>
-      아이스크림페이지입니다.
+      아이스크림
     </>
   )
 }
