@@ -38,9 +38,12 @@ img {
 }
 .header .cart {
   position: absolute;
-  right: 0;
-  top: 30px;
+  width: 55px;
+  right: 10px;
+  top: 15px;
 }
+
+.header .cart img{width: 100%;}
 
 nav ul {
   display: flex;

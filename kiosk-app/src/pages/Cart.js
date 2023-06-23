@@ -33,7 +33,7 @@ export default function Cart() {
         <Container>
           <div className='cart_wrap'>
           <h1 style={{textAlign:'center'}}>장바구니입니다.</h1>
-          <div className='cart'>
+          <div className='cart_pro'>
             <ul className='cart_tit'>
               <li>상품</li>
               <li>이름</li>
@@ -51,8 +51,8 @@ export default function Cart() {
                 <p className='image_box'>
                   <img src={item.image} alt='img'/>
                 </p>
-                <p>{item.title}</p>
-                <p>{item.price}원</p>
+                <p style={{fontWeight:'bold'}}>{item.title}</p>
+                <p>{(item.price*item.count).toLocaleString()}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
                     dispatch(miusCount(item.id))

@@ -14,8 +14,13 @@ export default function Header() {
       <header className='header'>
         <Inner>
           <button className='back' onClick={() => {navigate(-1)}}>뒤로가기</button>
-          <Link to='/' className='logo'><img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt='img'/></Link>
-          <Link to='/cart' className='cart'>장바구니⛱⛱☔</Link>
+          <Link to='/' className='logo'>
+            <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt='img'/>
+          </Link>
+
+          <Link to='/cart' className='cart'>
+            <img src={process.env.PUBLIC_URL + '/assets/images/cart_img.png'} alt='img'/>
+          </Link>
         </Inner>
       </header>
     </>
