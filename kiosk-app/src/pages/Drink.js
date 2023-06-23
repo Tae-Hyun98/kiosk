@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {drink} from './ProductData';
+import { addItem } from './store';
+import { useDispatch } from 'react-redux';
 import './common.css'
 
 
@@ -28,7 +30,7 @@ const Product = styled.div`
 
 export default function Drink() {
   const [drinks] = useState(drink);
-
+  const dispatch = useDispatch();
   return (
     <>
        <Product>
@@ -45,7 +47,7 @@ export default function Drink() {
             <p className='tag'>{drink.tag}</p>
           </Link>
 
-          <Button>찜하기</Button>
+          <Button onClick={()=>{dispatch(addItem({id:drink.id, image:drink.image, title:drink.title, count:1, price:drink.price}))}}>찜하기</Button>
           <Button>구매하기</Button>
         </div>
     )

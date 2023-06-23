@@ -32,10 +32,12 @@ img {
 }
 
 .header .back {
+  position: absolute;
   left: 0;
   top: 30px;
 }
 .header .cart {
+  position: absolute;
   right: 0;
   top: 30px;
 }

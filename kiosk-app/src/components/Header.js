@@ -3,8 +3,6 @@ import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 
 const Inner = styled.div`
-  display: flex;
-  align-items: center;
   width: 1200px;
   margin: 0 auto;
 `

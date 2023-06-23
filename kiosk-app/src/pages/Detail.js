@@ -2,11 +2,25 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import './Detail.css';
 
+
+
 export default function Detail(props) {
 
   const {icecreams} = props;
   const {id} = useParams();
 
+  const check = document.querySelectorAll('.select input');
+    check.forEach((item,idx)=>{
+      item.addEventListener('click',()=>{
+        if(item.checked){
+          let a = parseInt(check[idx].value)
+          console.log(a)
+          return a
+        }
+      })
+      
+    })
+   
   return (
     <>
     <div className='detail_box'>
@@ -29,8 +43,8 @@ export default function Detail(props) {
       <div className='option1'>
         <h2>CONE & CUP</h2>
         <div className='select'>
-          <input type='radio' id='select1'></input>
-          <label id='select1'>
+          <input type='radio' id='select1' name='sele' value='3500'/>
+          <label htmlFor='select1'>
             <img src={process.env.PUBLIC_URL + '/assets/images/single.gif'} alt='icon'/>
 
           <div>
@@ -41,8 +55,8 @@ export default function Detail(props) {
 
           </label>
 
-          <input type='radio' id='select2'></input>
-          <label id='select2'>
+          <input type='radio' id='select2' name='sele' value='3800'/>
+          <label htmlFor='select2'>
             <img src={process.env.PUBLIC_URL + '/assets/images/singleking.gif'} alt='icon'/>
 
             <div>
@@ -52,8 +66,8 @@ export default function Detail(props) {
             </div>
           </label>
 
-          <input type='radio' id='select3'></input>
-          <label id='select3'>
+          <input type='radio' name='sele' id='select3' value='4800'/>
+          <label htmlFor='select3'>
             <img src={process.env.PUBLIC_URL + '/assets/images/doubleju.gif'} alt='icon'/>
             <div>
             <h3 className='option_tit'>더블주니어</h3>
@@ -62,8 +76,8 @@ export default function Detail(props) {
             </div>
           </label>
 
-          <input type='radio' id='select4'></input>
-          <label id='select4' defaultValue='6700'>
+          <input type='radio' name='sele' id='select4' value='5000'></input>
+          <label htmlFor='select4'>
             <img src={process.env.PUBLIC_URL + '/assets/images/doublere.gif'} alt='icon'/>
             <div>
             <h3 className='option_tit'>더블레귤러</h3>
@@ -75,6 +89,13 @@ export default function Detail(props) {
         </div>
       </div>
     </div>
+
+    <div className='total'>
+      총금액 : <span></span>원
+    </div>
    </>
   )
+
+  
 }
+

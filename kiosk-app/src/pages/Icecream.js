@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {icecream} from './ProductData';
+import { addItem } from './store';
+import { useDispatch } from 'react-redux';
 
 const Button = styled.button`
   width: 50%;
@@ -27,6 +29,7 @@ const Product = styled.div`
 
 export default function Icecream() {
   const [icecreams] = useState(icecream);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -45,7 +48,7 @@ export default function Icecream() {
                 <p className='price'>{icecream.price}원</p>
               </Link>
 
-              <Button>찜하기</Button>
+              <Button onClick={()=>{dispatch(addItem({id:icecream.id, image:icecream.image, title:icecream.title, count:1, price:icecream.price}))}}>찜하기</Button>
               <Button>구매하기</Button>
             </div>
         )
