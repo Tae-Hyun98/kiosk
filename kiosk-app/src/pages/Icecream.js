@@ -42,6 +42,7 @@ export default function Icecream() {
                 </div>
                 <h3 className='tit'>{icecream.title}</h3>
                 <p className='tag'>{icecream.tag}</p>
+                <p className='price'>{icecream.price}원</p>
               </Link>
 
               <Button>찜하기</Button>

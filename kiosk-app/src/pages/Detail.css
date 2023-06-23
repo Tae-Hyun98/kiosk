@@ -40,3 +40,37 @@
   height: 50px;
   border-radius: 30px;
 }
+
+.option_box  h2{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.option_box .option1 {}
+
+.option_box .option1 .select {
+  display: flex;
+  justify-content: center;
+}
+
+.option_box .option1 .select input {
+  display: none;
+}
+
+.option_box .option1 .select label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-top: 15px;
+}
+.option_box .option1 .select label img{
+  width: 50px;
+  padding-right: 15px;
+}
+.option_box .option1 .select label .option_desc,
+.option_box .option1 .select label .option_price{
+}
