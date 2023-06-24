@@ -21,9 +21,9 @@ export default function Detail(props) {
   const onChangeOp = (e) =>{setPrice(e.target.value)}
   const [sum, setSum]=useState(0)
   const onChangeSum=(e)=>{total+=setSum(e.target.value)}
- 
-  
-   
+
+
+
   return (
     <>
     <div className='detail_box'>
