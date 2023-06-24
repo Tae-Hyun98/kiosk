@@ -36,6 +36,7 @@ img {
   left: 0;
   top: 30px;
 }
+
 .header .cart {
   position: absolute;
   width: 55px;
@@ -43,7 +44,22 @@ img {
   top: 15px;
 }
 
-.header .cart img{width: 100%;}
+.header .cart .cart_count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: violet;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+}
+
+.header .cart img {
+  width: 100%;
+}
 
 nav ul {
   display: flex;

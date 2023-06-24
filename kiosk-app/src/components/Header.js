@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
 
 const Inner = styled.div`
   width: 1200px;
@@ -8,6 +9,7 @@ const Inner = styled.div`
 `
 export default function Header() {
   let navigate = useNavigate();
+  const state = useSelector((state)=>state)
   
   return (
     <>
@@ -20,6 +22,8 @@ export default function Header() {
 
           <Link to='/cart' className='cart'>
             <img src={process.env.PUBLIC_URL + '/assets/images/cart_img.png'} alt='img'/>
+            <span className='cart_count'>{state.cart.length}</span>
+
           </Link>
         </Inner>
       </header>
