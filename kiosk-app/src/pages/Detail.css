@@ -46,11 +46,9 @@
   text-align: center;
 }
 
-.option_box .option1 {}
+.option_box .option1>div {display: flex;}
 
 .option_box .option1 .select {
-  display: flex;
-  justify-content: center;
 }
 
 .option_box .option1 .select input {
