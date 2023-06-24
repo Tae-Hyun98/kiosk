@@ -28,13 +28,12 @@ function App() {
           <Route path='drink' element={<Drink/>}/>
           <Route path='cake' element={<Cake/>}/>
           <Route path='dessert' element={<Dessert/>}/>
-
-          <Route path='detail/:id' element={<Detail icecreams={icecreams}/>}/>
-          <Route path='detaildrink/:id' element={<DetailDrink icecreams={drink}/>}/>
         </Route>
 
-          <Route path='cart' element={<Cart/>}/>
-       
+        <Route path='detail/:id' element={<Detail icecreams={icecreams}/>}/>
+        <Route path='detaildrink/:id' element={<DetailDrink icecreams={drink}/>}/>
+
+        <Route path='cart' element={<Cart/>}/>
 
       </Routes>
 

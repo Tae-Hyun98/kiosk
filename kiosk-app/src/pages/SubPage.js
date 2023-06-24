@@ -3,7 +3,11 @@ import Header from '../components/Header'
 import Nav from '../components/Nav';
 import {Outlet} from 'react-router-dom';
 import styled from 'styled-components';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import Pagination from 'swiper';
+import 'swiper/css';
 import './common.css';
+
 
 const Container = styled.div`
   width: 1200px;
@@ -17,7 +21,18 @@ export default function SubPage() {
       <Header/>
           <Container>
             <Nav/>
-            <Outlet/>
+            <Swiper
+              spaceBetween={0}
+              slidesPerView={1}
+            >
+              <SwiperSlide>
+                <Outlet/>
+              </SwiperSlide>
+              
+              <SwiperSlide>
+                <Outlet/>
+              </SwiperSlide>
+            </Swiper>
           </Container>
   
     </>
