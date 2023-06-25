@@ -5,7 +5,7 @@ import './Detail.css';
 
 
 
-export default function Detail(props) {
+export default function DetailIcecream(props) {
 
   const {icecreams} = props;
   const {id} = useParams();
@@ -27,7 +27,6 @@ export default function Detail(props) {
 
   return (
     <>
-    <Header/>
     <div className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>

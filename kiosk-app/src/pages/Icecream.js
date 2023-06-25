@@ -39,7 +39,7 @@ export default function Icecream() {
       icecreams.map((icecream, index)=> {
         return(
             <div key={index} className='product_box'>
-              <Link to={`/detail/${index}`}>
+              <Link to={`/detailpage/detailicecream/${index}`}>
                 <div className='img_box'>
                   <img className={icecream.id} src={icecream.image} alt='product_img'/>
                 </div>
