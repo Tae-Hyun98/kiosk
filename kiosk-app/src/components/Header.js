@@ -10,7 +10,7 @@ const Inner = styled.div`
 export default function Header() {
   let navigate = useNavigate();
   const state = useSelector((state)=>state)
-  
+
   return (
     <>
       <header className='header'>

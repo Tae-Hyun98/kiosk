@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
 import './Detail.css';
 
 
@@ -27,6 +26,7 @@ export default function DetailIcecream(props) {
 
   return (
     <>
+    
     <div className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
