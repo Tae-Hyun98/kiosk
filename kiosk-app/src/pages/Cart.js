@@ -24,9 +24,17 @@ export default function Cart() {
   const state = useSelector((state)=>state)
   const dispatch = useDispatch();
   let total=0;
+  let counter=0;
   state.cart.map((item)=>{
-    return total+=(item.price*item.count)
+    return (
+      total+=(item.price*item.count),
+      counter+=item.count
+    )
   })
+
+
+
+
   return (
     <>
       <Header/>
@@ -72,6 +80,7 @@ export default function Cart() {
             </div>
 
             <div className='total'>
+              <h3>총 수량 : {counter}개</h3>
               <h1>총 금액 : {total.toLocaleString()+'원'}</h1>
             </div>
           </div>

@@ -21,11 +21,7 @@ const Button = styled.button`
     color: #fff;
   }
 `
-const Product = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 25px;
-`
+
 
 
 export default function Drink() {
@@ -33,13 +29,12 @@ export default function Drink() {
   const dispatch = useDispatch();
   return (
     <>
-       <Product>
 
 {
   drinks.map((drink, index)=> {
     return(
         <div key={index} className='product_box'>
-          <Link to={`/detailpage/detaildrink/${index}`}>
+          <Link to={`/detaildrink/${index}`}>
             <div>
               <img className={drink.id} src={drink.image} alt='product_img'/>
             </div>
@@ -53,7 +48,6 @@ export default function Drink() {
     )
   })
 }
-    </Product>
     </>
   )
 }

@@ -19,13 +19,6 @@ const Button = styled.button`
     color: #fff;
   }
 `
-const Product = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 25px;
-`
-
-
 
 export default function Icecream() {
   const [icecreams] = useState(icecream);
@@ -33,7 +26,6 @@ export default function Icecream() {
 
   return (
     <>
-      <Product>
 
     {
       icecreams.map((icecream, index)=> {
@@ -49,12 +41,12 @@ export default function Icecream() {
               </Link>
 
               <Button onClick={()=>{dispatch(addItem({id:icecream.id, image:icecream.image, title:icecream.title, count:1, price:icecream.price}))}}>찜하기</Button>
+              
               <Button>구매하기</Button>
             </div>
         )
       })
     }
-        </Product>
     </>
   )
 }

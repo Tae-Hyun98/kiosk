@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Nav from '../components/Nav';
 import {Outlet} from 'react-router-dom';
 import styled from 'styled-components';
-import 'swiper/css';
 import './common.css';
 
 
@@ -11,7 +10,11 @@ const Container = styled.div`
   width: 1200px;
   margin: 0 auto;
 `
-
+const Product = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+`
 
 export default function SubPage() {
   return (
@@ -19,7 +22,13 @@ export default function SubPage() {
       <Header/>
           <Container>
             <Nav/>
+
+              <Product>
+
                 <Outlet/>
+
+              </Product>
+              
           </Container>
   
     </>
