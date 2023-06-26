@@ -8,6 +8,19 @@ const cart = createSlice({
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id
       })
+
+      if(index >-1){
+        state[index].count++
+      }else{
+        state.push(action.payload)
+      }
+    },
+
+    optionItem(state, action){
+      const index = state.findIndex((findId)=>{
+        return findId.option===action.payload.option
+      })
+
       if(index >-1){
         state[index].count++
       }else{
@@ -39,7 +52,7 @@ const cart = createSlice({
     }
   }
 })
-export const {addItem, deleteItem, plusCount, miusCount} = cart.actions
+export const {addItem, deleteItem, plusCount, miusCount, optionItem} = cart.actions
 
 export default configureStore({
   reducer:{

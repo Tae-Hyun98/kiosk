@@ -2,8 +2,17 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { addItem } from './store';
+import { addItem, optionItem } from './store';
 import './Detail.css';
+
+
+const DetailContent = styled.div`
+  position: relative;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid violet;
+`
 
 const Option = styled.div`
   display: flex;
@@ -15,11 +24,33 @@ const Label = styled.label`
   justify-content: center;
   align-items: center;
   width: 200px;
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   cursor: pointer;
   padding: 10px 0;
   margin-top: 15px;
+  margin-right:2px;
+  &:last-child{margin-right:0px}
 `
+
+const Button = styled.button`
+  color: black;
+  background-color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 50px;
+  width: 178px;
+  height: 50px;
+  border-radius: 30px;
+  border: 2px solid violet;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover{
+    background-color: violet;
+    color:#fff
+  }
+`
+
 
 
 
@@ -42,8 +73,8 @@ export default function DetailIcecream(props) {
     {id:'4', label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
   ]
 
-  const [opprice, setPrice] = useState(3500)
-  const [name, setName] = useState('싱글레귤러')
+  const [opprice, setPrice] = useState(items[0].price)
+  const [name, setName] = useState(items[0].label)
 
   /* const {name, price} = opprice
 
@@ -67,16 +98,28 @@ export default function DetailIcecream(props) {
     if(checked){
     }
   }
+
+  //클릭시색변경
+  let [Active, setActive] = useState(items[0].label);
+
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
   // let total=opprice;
 
-
+ /*  inp.forEach((item,idx)=>{
+    item.addEventListener('click',()=>{
+      if(inp[idx].checked){
+        la[idx].style.borderColor='violet'
+      }else{
+        la.style.borderColor='#fff'
+      }
+    })
+  }) */
 
   return (
     <>
     
-    <div className='detail_box'>
+    <DetailContent className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
       </div>
@@ -88,11 +131,11 @@ export default function DetailIcecream(props) {
       </div>
 
       <div className='cart'>
-        <button onClick={()=>{dispatch(addItem({
+        <Button onClick={()=>{dispatch(optionItem({
           id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
-        }))}}>장바구니</button>
+        }))}}>장바구니 담기</Button>
       </div>
-    </div>
+    </DetailContent>
 
     <div className='option_box'>
       <div className='option1 option'>
@@ -103,8 +146,8 @@ export default function DetailIcecream(props) {
     {
     items.map((item, i) => {
       return(
-          <Label key={i}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item.price===3500} checked={onCheckOp(item.checked)}/>
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -126,9 +169,11 @@ export default function DetailIcecream(props) {
   {
     items1.map((item,idx) => {
       return (
-          <Label key={idx}>
+        //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={idx}>
           <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} checked={onCheckOp(item.checked)}/>
             <img src={item.image} alt='icon'/>
+
           <div>
             <h3 className='option_tit'>{item.label}</h3>
             <p className='option_desc'>{item.sub}</p>
@@ -175,8 +220,9 @@ export default function DetailIcecream(props) {
     </div>
 
     <div className='total'>
-      선택한 옵션 : <span>{name}</span> <br/>
+      <h3>선택한 옵션 : <span>{name}</span> <br/>
       총금액 : <span>{opprice.toLocaleString()}</span>원
+      </h3>
     </div>
    </>
   )

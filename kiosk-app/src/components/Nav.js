@@ -1,16 +1,32 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import {NavLink, Link, useMatch} from 'react-router-dom';
+import styled from 'styled-components';
+
+const Ul = styled.ul`
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+`
+
+const Li = styled.li`
+  width: 20%;
+`
 
 export default function Nav() {
+
+    const active = useMatch('/subpage/icecream');
+    
+
   return (
     <nav>
-        <ul>
-          <li><Link to='/subpage/icecream'>아이스크림</Link></li>
-          <li><Link to='/subpage/drink'>음료</Link></li>
-          <li><Link to='/subpage/coffee'>커피</Link></li>
-          <li><Link to='/subpage/cake'>케이크</Link></li>
-          <li><Link to='/subpage/dessert'>디저트</Link></li>
-        </ul>
+        <Ul>
+          <Li ><NavLink to='/subpage/icecream' style={({active}) ? active :{}}>아이스크림</NavLink>
+          </Li>
+          <Li><NavLink to='/subpage/drink'>음료</NavLink></Li>
+          <Li><NavLink to='/subpage/coffee'>커피</NavLink></Li>
+          <Li><NavLink to='/subpage/cake'>케이크</NavLink></Li>
+          <Li><NavLink to='/subpage/dessert'>디저트</NavLink></Li>
+        </Ul>
       </nav>
   )
 }

@@ -1,11 +1,3 @@
-.detail_box {
-  position: relative;
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid violet;
-}
-
 .detail_box img {
   margin: 0 auto;
 }
@@ -31,19 +23,13 @@
   bottom: -23px;
 }
 
-.detail_box .cart button {
-  color: #fff;
-  background-color: violet;
-  display: inline-block;
-  line-height: 50px;
-  width: 178px;
-  height: 50px;
-  border-radius: 30px;
-}
-
 .option_box h2 {
   margin-top: 50px;
   text-align: center;
+}
+
+.option_box .option label.active {
+  border: 3px solid violet;
 }
 
 .option_box .option label input {
@@ -54,8 +40,6 @@
   width: 50px;
   padding-right: 15px;
 }
-
-
 
 .option_box .option1 .select label .option_desc,
 .option_box .option1 .select label .option_price {}

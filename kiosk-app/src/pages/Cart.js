@@ -33,8 +33,6 @@ export default function Cart() {
   })
 
 
-
-
   return (
     <>
       <Header/>

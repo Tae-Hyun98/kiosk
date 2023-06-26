@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import './common.css'
 
 
-const Button = styled.button`
+/* const Button = styled.button`
   width: 50%;
   height: 50px;
   background-color: #eee;
@@ -20,31 +20,36 @@ const Button = styled.button`
     background-color:violet;
     color: #fff;
   }
+` */
+
+const ProductList = styled.div`
+  width: calc(25% - 11.3px);
+  margin: 0 15px 20px 0px;
+  border: 1px solid #ccc;
 `
-
-
 
 export default function Drink() {
   const [drinks] = useState(drink);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <>
 
 {
   drinks.map((drink, index)=> {
     return(
-        <div key={index} className='product_box'>
+        <ProductList key={index} className='product_box'>
           <Link to={`/detailpage/detaildrink/${index}`}>
             <div>
               <img className={drink.id} src={drink.image} alt='product_img'/>
             </div>
             <h3 className='tit'>{drink.title}</h3>
             <p className='tag'>{drink.tag}</p>
+            <p className='price'>{drink.price}</p>
           </Link>
 
-          <Button onClick={()=>{dispatch(addItem({id:drink.id, image:drink.image, title:drink.title, count:1, price:drink.price}))}}>찜하기</Button>
-          <Button>구매하기</Button>
-        </div>
+          {/* <Button onClick={()=>{dispatch(addItem({id:drink.id, image:drink.image, title:drink.title, count:1, price:drink.price}))}}>찜하기</Button>
+          <Button>구매하기</Button> */}
+        </ProductList>
     )
   })
 }

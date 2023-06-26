@@ -61,16 +61,6 @@ img {
   width: 100%;
 }
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-}
-
-nav ul li {
-  width: 20%;
-}
-
 nav ul li a {
   display: block;
   text-align: center;
@@ -78,6 +68,12 @@ nav ul li a {
   border: 1px solid #777;
   font-size: 20px;
   border-radius: 20px 20px 0 0;
+  transition: .1s;
+}
+
+nav ul li a.active {
+  background-color: violet;
+  color: white;
 }
 
 .category_list {
