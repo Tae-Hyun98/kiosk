@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import sytled, { styled } from 'styled-components';
 import './Detail.css';
+
+const Option = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Label = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-top: 15px;
+`
 
 
 
@@ -24,18 +41,18 @@ export default function DetailIcecream(props) {
   ]
 
   const [opprice, setPrice] = useState(3500)
-  const [sum, setSum] = useState(5500)
+  // const [sum, setSum] = useState(8900)
 
   //선택된 value값 받는거
   const onChangeOp = (e) =>{setPrice(parseInt(e.target.value))}
   const onCheckOp = (checked,value) => {
     if(checked){
-      
+      setPrice(value)
     }
   }
-  const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
+  // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
-  let total=opprice+sum;
+  let total=opprice;
 
   return (
     <>
@@ -60,14 +77,13 @@ export default function DetailIcecream(props) {
       <div className='option1 option'>
         <h2>CONE & CUP</h2>
 
-        <div className='select'>
+        <Option className='select'>
 
     {
     items.map((item, i) => {
       return(
-        <>
-          <label  key={i}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={onChangeOp} checked={onCheckOp(item.checked,setPrice)}/>
+          <Label  key={i}>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={onChangeOp} defaultChecked={item.price===3500} checked={onCheckOp(item.checked,setPrice)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -75,9 +91,31 @@ export default function DetailIcecream(props) {
             <p className='option_price'>{item.price.toLocaleString()}원</p>
           </div>
 
-          </label>
+          </Label>
 
-         {/*  <input type='radio' id='select2' name='sele' value='3800'/>
+        
+    )})
+  }
+    </Option>
+  </div>
+
+  <div className='option2 option'>
+    <h2>HAND PACK</h2>
+
+  <Option className='select2'>
+  {
+    items1.map((item,idx) => {
+      return (
+          <Label key={idx}>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={onChangeOp}  checked={onCheckOp(item.checked, setPrice)}/>
+            <img src={item.image} alt='icon'/>
+          <div>
+            <h3 className='option_tit'>{item.label}</h3>
+            <p className='option_desc'>{item.sub}</p>
+            <p className='option_price'>{item.price.toLocaleString()}원</p>
+          </div>
+
+ {/*  <input type='radio' id='select2' name='sele' value='3800'/>
           <label htmlFor='select2'>
             <img src={process.env.PUBLIC_URL + '/assets/images/singleking.gif'} alt='icon'/>
 
@@ -108,35 +146,14 @@ export default function DetailIcecream(props) {
             </div>
           </label>
  */}
-        </>
-    )})
-  }
-    </div>
-  </div>
-
-  <div className='option2 option'>
-    <h2>HAND PACK</h2>
-
-  <div className='select2'>
-  {
-    items1.map((item,i) => {
-      return (
-          <label key={i}>
-          <input type='radio' id={item.id} name='seleop' value={item.price} onChange={onChangeSum} checked={onCheckOp(item.checked, setSum)}/>
-            <img src={item.image} alt='icon'/>
-          <div>
-            <h3 className='option_tit'>{item.label}</h3>
-            <p className='option_desc'>{item.sub}</p>
-            <p className='option_price'>{item.price.toLocaleString()}원</p>
-          </div>
-
-          </label>
+          </Label>
       )
     })
   }
-        </div>
+        </Option>
         </div>
     </div>
+
     <div className='total'>
       총금액 : <span>{total.toLocaleString()}</span>원
     </div>
