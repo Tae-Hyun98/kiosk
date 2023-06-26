@@ -34,7 +34,7 @@ export default function Drink() {
   drinks.map((drink, index)=> {
     return(
         <div key={index} className='product_box'>
-          <Link to={`/detaildrink/${index}`}>
+          <Link to={`/detailpage/detaildrink/${index}`}>
             <div>
               <img className={drink.id} src={drink.image} alt='product_img'/>
             </div>

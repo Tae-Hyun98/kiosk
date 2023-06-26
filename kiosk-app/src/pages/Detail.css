@@ -41,20 +41,21 @@
   border-radius: 30px;
 }
 
-.option_box  h2{
+.option_box h2 {
   margin-top: 50px;
   text-align: center;
 }
 
-.option_box .option1>div {display: flex;}
-
-.option_box .option1 .select {
+.option_box .option>div {
+  display: flex;
+  justify-content: center;
 }
 
-.option_box .option1 .select input {
-}
 
-.option_box .option1 .select label {
+.option_box>div .select input {}
+
+.option_box .option .select label,
+.option_box .option .select2 label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,10 +65,11 @@
   padding: 10px 0;
   margin-top: 15px;
 }
-.option_box .option1 .select label img{
+
+.option_box .option1 .select label img {
   width: 50px;
   padding-right: 15px;
 }
+
 .option_box .option1 .select label .option_desc,
-.option_box .option1 .select label .option_price{
-}
+.option_box .option1 .select label .option_price {}
