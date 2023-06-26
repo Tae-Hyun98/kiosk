@@ -19,7 +19,7 @@
 
 .cart_pro .cart_product li {
   display: flex;
-  line-height: 100px;
+  align-items: center;
   border-bottom: 1px solid #ccc;
 }
 
@@ -27,6 +27,7 @@
   width: 20%;
   text-align: center;
 }
+
 .cart_pro .cart_product li p:last-child{
   border-right: 0;
 }

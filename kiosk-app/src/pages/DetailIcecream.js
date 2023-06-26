@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import sytled, { styled } from 'styled-components';
+import styled  from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { addItem } from './store';
 import './Detail.css';
 
 const Option = styled.div`
@@ -22,9 +24,9 @@ const Label = styled.label`
 
 
 export default function DetailIcecream(props) {
-
   const {icecreams} = props;
   const {id} = useParams();
+  const dispatch = useDispatch();
 
   const items =[
     {id:'1', label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
@@ -61,14 +63,15 @@ export default function DetailIcecream(props) {
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
   const onChangeNa = (names) =>{setName(names)}
-  const onCheckOp = (checked,value) => {
+  const onCheckOp = (checked) => {
     if(checked){
-      setPrice(value)
     }
   }
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
   // let total=opprice;
+
+
 
   return (
     <>
@@ -85,7 +88,9 @@ export default function DetailIcecream(props) {
       </div>
 
       <div className='cart'>
-        <a href='#!'>장바구니</a>
+        <button onClick={()=>{dispatch(addItem({
+          id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
+        }))}}>장바구니</button>
       </div>
     </div>
 
@@ -99,7 +104,7 @@ export default function DetailIcecream(props) {
     items.map((item, i) => {
       return(
           <Label key={i}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item.price===3500} checked={onCheckOp(item.checked,setPrice)}/>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item.price===3500} checked={onCheckOp(item.checked)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -122,7 +127,7 @@ export default function DetailIcecream(props) {
     items1.map((item,idx) => {
       return (
           <Label key={idx}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} checked={onCheckOp(item.checked, setPrice)}/>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} checked={onCheckOp(item.checked)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>

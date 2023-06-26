@@ -31,7 +31,7 @@
   bottom: -23px;
 }
 
-.detail_box .cart a {
+.detail_box .cart button {
   color: #fff;
   background-color: violet;
   display: inline-block;
@@ -46,6 +46,9 @@
   text-align: center;
 }
 
+.option_box .option label input {
+  display: none;
+}
 
 .option_box .option1 .select label img {
   width: 50px;
