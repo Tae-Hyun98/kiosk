@@ -1,10 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import styled from 'styled-components';
+
+const MainCategory = styled.div`
+  margin-top: 30px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+`
 
 export default function Content() {
   return (
-    <div className='category_list'>
 
+    <MainCategory className='category_list'>
+      
       <div className='left'>
         <div className='icecream'>
           <Link to='/subpage/icecream' style={{width:500,height:280}}>
@@ -53,6 +63,6 @@ export default function Content() {
         </div>
       </div>
 
-    </div>
+    </MainCategory>
   )
 }

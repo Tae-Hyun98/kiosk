@@ -13,16 +13,16 @@ import {icecream, drink} from './pages/ProductData';
 import Cart from './pages/Cart';
 import DetailPage from './pages/DetailPage';
 import DetailIcecream from './pages/DetailIcecream';
-
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
     const [icecreams] = useState(icecream,drink);
   return (
     <div className="wrap">
-
-      <Routes>
-        <Route path='/' element={<Main/>}/>
         
+    <AnimatePresence>
+      <Routes>
+          <Route path='/' element={<Main/>}/>
         <Route path='subpage' element={<SubPage/>}>
           <Route path='icecream' element={<Icecream/>}/>
           <Route path='coffee' element={<Coffee/>}/>
@@ -39,6 +39,7 @@ function App() {
         <Route path='cart' element={<Cart/>}/>
 
       </Routes>
+    </AnimatePresence>
 
     </div>
   );

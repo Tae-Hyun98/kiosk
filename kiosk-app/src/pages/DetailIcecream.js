@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
+import {motion} from 'framer-motion';
 import { addItem, optionItem } from './store';
 import './Detail.css';
 
@@ -115,6 +116,7 @@ export default function DetailIcecream(props) {
       }
     })
   }) */
+  
 
   return (
     <>
@@ -131,9 +133,10 @@ export default function DetailIcecream(props) {
       </div>
 
       <div className='cart'>
-        <Button onClick={()=>{dispatch(optionItem({
+        <Button onClick={()=>{dispatch(addItem({
           id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
-        }))}}>장바구니 담기</Button>
+        }))
+        }}>장바구니 담기</Button>
       </div>
     </DetailContent>
 

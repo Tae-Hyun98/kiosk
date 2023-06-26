@@ -7,16 +7,20 @@ const cart = createSlice({
     addItem(state, action){
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id
-      })
-
-      if(index >-1){
+      }) //같은 id가 있을때 카운트
+      const opindex = state.findIndex((findId)=>{
+        return findId.option===action.payload.option
+      }) //같은 옵션값이있을때 카운트
+      //같은id option잇으면 카운트올림, 
+      console.log(opindex)
+      if(index >-1&&opindex>-1){
         state[index].count++
-      }else{
+      } else{
         state.push(action.payload)
       }
     },
 
-    optionItem(state, action){
+/*     optionItem(state, action){
       const index = state.findIndex((findId)=>{
         return findId.option===action.payload.option
       })
@@ -27,7 +31,7 @@ const cart = createSlice({
         state.push(action.payload)
       }
     },
-
+ */
     deleteItem(state, action){
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload

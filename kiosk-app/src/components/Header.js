@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
+import {motion} from 'framer-motion';
 
 const Inner = styled.div`
   width: 1200px;
@@ -13,7 +14,11 @@ export default function Header() {
 
   return (
     <>
-      <header className='header'>
+      <motion.header className='header'
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:0.8}}
+      >
         <Inner>
           <button className='back' onClick={() => {navigate(-1)}}>뒤로가기</button>
           <Link to='/' className='logo'>
@@ -26,7 +31,7 @@ export default function Header() {
 
           </Link>
         </Inner>
-      </header>
+      </motion.header>
     </>
   )
 }
