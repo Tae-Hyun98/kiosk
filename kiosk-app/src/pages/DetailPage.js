@@ -11,8 +11,6 @@ const Container = styled.div`
 
 export default function DetailPage() {
 
-
-
   return (
     <>
     <Header/>

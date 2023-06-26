@@ -41,10 +41,26 @@ export default function DetailIcecream(props) {
   ]
 
   const [opprice, setPrice] = useState(3500)
+  const [name, setName] = useState('싱글레귤러')
+
+  /* const {name, price} = opprice
+
+  const onChanges=(e,val)=>{
+    const {value}=e.target;
+    console.log(value)
+
+    setPrice({
+      ...opprice,
+      [price]:value
+
+    })
+  
+  } */
   // const [sum, setSum] = useState(8900)
 
   //선택된 value값 받는거
-  const onChangeOp = (e) =>{setPrice(parseInt(e.target.value))}
+  const onChangeOp = (price) =>{setPrice(parseInt(price))}
+  const onChangeNa = (names) =>{setName(names)}
   const onCheckOp = (checked,value) => {
     if(checked){
       setPrice(value)
@@ -52,7 +68,7 @@ export default function DetailIcecream(props) {
   }
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
-  let total=opprice;
+  // let total=opprice;
 
   return (
     <>
@@ -82,8 +98,8 @@ export default function DetailIcecream(props) {
     {
     items.map((item, i) => {
       return(
-          <Label  key={i}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={onChangeOp} defaultChecked={item.price===3500} checked={onCheckOp(item.checked,setPrice)}/>
+          <Label key={i}>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item.price===3500} checked={onCheckOp(item.checked,setPrice)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -92,7 +108,6 @@ export default function DetailIcecream(props) {
           </div>
 
           </Label>
-
         
     )})
   }
@@ -107,7 +122,7 @@ export default function DetailIcecream(props) {
     items1.map((item,idx) => {
       return (
           <Label key={idx}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={onChangeOp}  checked={onCheckOp(item.checked, setPrice)}/>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} checked={onCheckOp(item.checked, setPrice)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -155,7 +170,8 @@ export default function DetailIcecream(props) {
     </div>
 
     <div className='total'>
-      총금액 : <span>{total.toLocaleString()}</span>원
+      선택한 옵션 : <span>{name}</span> <br/>
+      총금액 : <span>{opprice.toLocaleString()}</span>원
     </div>
    </>
   )
