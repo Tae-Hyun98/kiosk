@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {icecream} from './ProductData';
+import icecream from './ProductData';
 import {motion} from 'framer-motion';
-import { addItem } from './store';
-import { useDispatch } from 'react-redux';
 
 /* const Button = styled.button`
   width: 50%;

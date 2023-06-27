@@ -13,7 +13,7 @@ const DetailContent = styled.div`
 
 export default function Detail(props) {
 
-  const {icecreams} = props;
+  const {drink} = props;
   const {id} = useParams();
 
   return (
@@ -22,11 +22,11 @@ export default function Detail(props) {
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
       </div>
-      <h1>{icecreams[id].title}</h1>
-      <p>{icecreams[id].desc}</p>
+      <h1>{drink[id].title}</h1>
+      <p>{drink[id].desc}</p>
       
       <div className='img'>
-        <img className='product_img' src={icecreams[id].image} alt='img'/>
+        <img className='product_img' src={drink[id].image} alt='img'/>
       </div>
 
       <div className='cart'>

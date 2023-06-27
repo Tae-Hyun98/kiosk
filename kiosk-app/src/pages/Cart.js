@@ -58,7 +58,8 @@ export default function Cart() {
                   <img src={item.image} alt='img'/>
                 </p>
                 <p style={{fontWeight:'bold'}}>{item.title}<br/>
-                <span>옵션 : {item.option}</span></p>
+                <span>옵션 : {item.option}</span><br/>
+                <span>옵션2 : {item.option1}</span></p>
                 <p>{(item.price*item.count).toLocaleString()}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
