@@ -22,19 +22,20 @@
 
 .product_box a .tit {
   font-size: 22px;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   padding: 20px 0 10px 0;
 }
 
 .product_box a .tag {
-  color: #777;
+  color: #9d9d9d;
   font-size: 14px;
   padding-bottom: 20px;
 }
 
 .product_box a .price {
   font-size: 25px;
-  color: violet;
+  color: #f56f98;
+  font-weight: 700;
   border-top: 1px solid #ccc;
   padding: 10px 0;
 }

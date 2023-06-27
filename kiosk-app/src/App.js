@@ -1,6 +1,6 @@
 import './styles/App.css';
 import {Routes, Route} from 'react-router-dom';
-import Main from './pages/Main/Main';
+import Main from './pages/Main';
 import Icecream from './components/subcomponents/Icecream';
 import Coffee from './components/subcomponents/Coffee';
 import Drink from './components/subcomponents/Drink';

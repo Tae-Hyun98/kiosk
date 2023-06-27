@@ -54,6 +54,11 @@ const Button = styled.button`
   }
 `
 
+const OptionBox = styled.div`
+  border-bottom: 3px solid violet;
+  padding-bottom: 30px;
+`
+
 
 
 export default function DetailCoffee(props) {
@@ -135,7 +140,7 @@ export default function DetailCoffee(props) {
       </div>
     </DetailContent>
 
-    <div className='option_box'>
+    <OptionBox className='option_box'>
       <div className='option1 option'>
         <h2>ICE & HOT</h2>
 
@@ -184,7 +189,7 @@ export default function DetailCoffee(props) {
   }
         </Option>
         </div>
-    </div>
+    </OptionBox>
 
     <div className='total'>
       <h3>선택한 옵션 : <span>{iceHot}</span><br/>

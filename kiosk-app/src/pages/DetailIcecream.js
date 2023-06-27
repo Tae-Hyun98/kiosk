@@ -52,6 +52,10 @@ const Button = styled.button`
   }
 `
 
+const OptionBox = styled.div`
+  border-bottom: 3px solid violet;
+  padding-bottom: 30px;
+`
 
 
 
@@ -140,7 +144,7 @@ export default function DetailIcecream(props) {
       </div>
     </DetailContent>
 
-    <div className='option_box'>
+    <OptionBox className='option_box'>
       <div className='option1 option'>
         <h2>CONE & CUP</h2>
 
@@ -220,7 +224,7 @@ export default function DetailIcecream(props) {
   }
         </Option>
         </div>
-    </div>
+    </OptionBox>
 
     <div className='total'>
       <h3>선택한 옵션 : <span>{name}</span> <br/>

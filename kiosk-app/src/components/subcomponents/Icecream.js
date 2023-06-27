@@ -12,13 +12,12 @@ const ProductList = styled(motion.div)`
 const Product = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 25px;
+  margin-top: 15px;
   overflow: hidden;
 `
 
 export default function Icecream() {
   const [icecreams] = useState(icecream);
-  // const dispatch = useDispatch();
   const list = {
     hidden: {
       opacity: 0

@@ -18,7 +18,7 @@ img {
 }
 
 .header {
-  background: url(../../assets/images/bg_header.gif);
+  background: url(../assets/images/bg_header.gif);
 }
 
 .header a.logo {
@@ -32,7 +32,7 @@ img {
 }
 
 .header .back {
-  background: url(../../assets/images/back.png) no-repeat;
+  background: url(../assets/images/back.png) no-repeat;
   background-size: 30px;
   background-position: 50% 50%;
 }
@@ -133,26 +133,26 @@ nav ul li a.active {
 }
 
 .category_list .coffee {
-  background: url(../../assets/images/coffee.png) no-repeat;
+  background: url(../assets/images/coffee.png) no-repeat;
   background-size: 350px;
   background-position: -55% 270%;
   margin-right: 15px;
 }
 
 .category_list .beverage {
-  background: url(../../assets/images/img1.png) no-repeat;
+  background: url(../assets/images/img1.png) no-repeat;
   background-position: 50% 150%;
   margin-bottom: 15px;
 }
 
 .category_list .dessert {
-  background: url(../../assets/images/dessert.png) no-repeat;
+  background: url(../assets/images/dessert.png) no-repeat;
   background-size: 170px;
   background-position: 90% 120%;
 }
 
 .category_list .drink {
-  background: url(../../assets/images/cake.png) no-repeat;
+  background: url(../assets/images/cake.png) no-repeat;
   background-position: 40px 250%;
   background-size: contain;
 }

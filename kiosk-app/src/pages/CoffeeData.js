@@ -35,6 +35,42 @@ const coffees = [
     price: 4000
   },
 
+  {
+    id: 'coffee05',
+    image: process.env.PUBLIC_URL + '/assets/images/coffee/coffee07.png',
+    title: '토피넛 캔디라떼',
+    tag: '#토피넛 #캔디라떼',
+    desc: '토피넛 라떼 위에 캔디 토핑을 올린 배스킨라빈스 시그니처 토피넛 라떼',
+    price: 3000
+  },
+
+  {
+    id: 'coffee06',
+    image: process.env.PUBLIC_URL + '/assets/images/coffee/coffee09.png',
+    title: '아이스 솔티크림 슈패너',
+    tag: '#달콤짭짤 #크림커피',
+    desc: '영국 왕실 ´말돈 소금´이 들어간 달콤짭짤한 우유크림을 듬뿍올려 부드럽게 즐기는 BR의 첫번째 크림커피!',
+    price: 3500
+  },
+
+  {
+    id: 'coffee07',
+    image: process.env.PUBLIC_URL + '/assets/images/coffee/coffee11.png',
+    title: '콜드브루 아메리카노',
+    tag: '#콜드브루 #아메리카노',
+    desc: '콜드브루로 추출하여 더욱 깔끔한 맛의 아메리카노',
+    price: 2500
+  },
+
+  {
+    id: 'coffee08',
+    image: process.env.PUBLIC_URL + '/assets/images/coffee/coffee13.png',
+    title: '카페31 아메리카노',
+    tag: '#아메리카노 #아이스크림',
+    desc: '아메리카노에 주니어 사이즈 아이스크림 1스쿱을 올린 세트 메뉴',
+    price: 3300
+  }
+
   
 ]
 
