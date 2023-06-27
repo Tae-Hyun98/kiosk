@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/kiosk/static/css/main.2273e4e5.css",
+    "main.js": "/kiosk/static/js/main.9d2bb106.js",
+    "static/js/787.0c353d6b.chunk.js": "/kiosk/static/js/787.0c353d6b.chunk.js",
+    "static/media/dessert.png": "/kiosk/static/media/dessert.73f5b38010086bed05a1.png",
+    "static/media/coffee.png": "/kiosk/static/media/coffee.ce142ec9f57c2a1476be.png",
+    "static/media/cake.png": "/kiosk/static/media/cake.13a8472e4016b2be8409.png",
+    "static/media/bg_header.gif": "/kiosk/static/media/bg_header.8a36715b0752ee6564c6.gif",
+    "static/media/img1.png": "/kiosk/static/media/img1.d7384c0362298cfddfa9.png",
+    "static/media/bg_icecream_corn_3.png": "/kiosk/static/media/bg_icecream_corn_3.7312cd2f74e9e7f1b789.png",
+    "index.html": "/kiosk/index.html",
+    "main.2273e4e5.css.map": "/kiosk/static/css/main.2273e4e5.css.map",
+    "main.9d2bb106.js.map": "/kiosk/static/js/main.9d2bb106.js.map",
+    "787.0c353d6b.chunk.js.map": "/kiosk/static/js/787.0c353d6b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2273e4e5.css",
+    "static/js/main.9d2bb106.js"
+  ]
+}
