@@ -9,14 +9,9 @@ import './common.css';
 const Container = styled.div`
   width: 1200px;
   margin: 0 auto;
-`
-/* const Product = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 25px;
   overflow: hidden;
 `
- */
+
 export default function SubPage() {
   return (
     <>

@@ -4,17 +4,20 @@ import styled from 'styled-components';
 import icecream from '../../pages/IcecreamData';
 import {motion} from 'framer-motion';
 
-const ProductList = styled(motion.div)`
-  width: calc(25% - 11.3px);
-  margin: 0 15px 20px 0px;
-  border: 1px solid #ccc;
-`
+
 const Product = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   margin-top: 15px;
+`
+
+const ProductList = styled(motion.div)`
+  width: calc(25% - 11.3px);
+  margin: 0 15px 20px 0px;
+  border: 1px solid #ccc;
   overflow: hidden;
 `
+
 
 export default function Icecream() {
   const [icecreams] = useState(icecream);
@@ -33,16 +36,17 @@ export default function Icecream() {
 
   const item = {
     hidden:{opacity:0,y:100},
-    visible:{opacity:1,y:0}
+    visible:{opacity:1,y:0},
   }
   return (
     <>
-    <Product variants={list} initial="hidden" animate="visible">
+    <Product variants={list} initial="hidden" animate="visible" exit={{opacity:0}}>
     {
       icecreams.map((icecream, index)=> {
         return(
             <ProductList key={index} className='product_box'
               variants={item}
+              exit={{opacity:0}}
             >
               <Link to={`/detailpage/detailicecream/${index}`}>
                 <div className='img_box'>

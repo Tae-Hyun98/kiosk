@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="wrap">
         
-    <AnimatePresence>
+    <AnimatePresence wait>
       <Routes>
         <Route path='/' element={<Main/>}/>
         

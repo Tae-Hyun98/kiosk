@@ -7,12 +7,16 @@ import { addItem, optionItem } from './store';
 import './Detail.css';
 
 
+const FlexBox = styled.div`
+  display: flex;
+  align-items: end;
+  border-bottom: 3px solid violet;
+`
+
 const DetailContent = styled.div`
   position: relative;
   text-align: center;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid violet;
+  padding: 50px 50px 0 30px;
 `
 
 const Option = styled.div`
@@ -26,10 +30,10 @@ const Label = styled.label`
   width: 200px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 15px 0;
   margin-top: 15px;
   margin-right:2px;
-  padding-left:30px;
+  padding-left:25px;
   &:last-child{
     margin-right:0px
     }
@@ -40,10 +44,9 @@ const Button = styled.button`
   background-color: #fff;
   font-weight: 700;
   display: inline-block;
-  font-size: 18px;
-  line-height: 50px;
-  width: 178px;
-  height: 50px;
+  font-size: 20px;
+  line-height: 60px;
+  width: 200px;
   border-radius: 30px;
   border: 2px solid violet;
   transition: all 0.3s;
@@ -55,8 +58,8 @@ const Button = styled.button`
 `
 
 const OptionBox = styled.div`
-  border-bottom: 3px solid violet;
-  padding-bottom: 30px;
+  width: 60%;
+  padding-bottom: 40px;
 `
 
 
@@ -66,21 +69,16 @@ export default function DetailCake(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'1', label:'ICE', price:0},
-    {id:'2', label:'HOT', price:0}
+    {id:'1', label:'Small', price:0},
+    {id:'2', label:'Medium', price:3000},
+    {id:'3', label:'Large', price:6000}
   ]
 
-  const items1 =[
-    {id:'1', label:'쇼트(Short)', price:0},
-    {id:'2', label:'톨(Tall)', price:1500},
-    {id:'3', label:'그란데(Grande)', price:2500},
-    {id:'4', label:'벤티(Venti)', price:3500}
-  ]
 
   let total=cakes[id].price
   const [opprice, setPrice] = useState(0)
-  const [iceHot, seticeHot] = useState(items[0].label)
-  const [size, setSize] = useState(items1[0].label)
+  const [size, setSize] = useState(items[0].label)
+ 
 
   /* const {name, price} = opprice
 
@@ -99,7 +97,6 @@ export default function DetailCake(props) {
 
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
-  const onChangeIce = (iceHot) =>{seticeHot(iceHot)}
   const onChangeSize = (size) =>{setSize(size)}
   const onCheckOp = (checked) => {
     if(checked){
@@ -109,7 +106,7 @@ export default function DetailCake(props) {
   //클릭시색변경
   let [Active, setActive] = useState(items[0].label);
 
-  let [Active1, setActive1] = useState(items1[0].label);
+
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
@@ -118,8 +115,12 @@ export default function DetailCake(props) {
 
 
   return (
-    <>
-    
+    <motion.div
+      initial={{opacity:0, x:300}} 
+      animate={{opacity:1, x:0}}
+      transition={{duration:0.5}}
+    >
+    <FlexBox>
     <DetailContent className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
@@ -131,17 +132,12 @@ export default function DetailCake(props) {
         <img className='product_img' src={cakes[id].image} alt='img'/>
       </div>
 
-      <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:cakes[id].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:iceHot, option1:size
-        }))
-        }}>장바구니 담기</Button>
-      </div>
+      
     </DetailContent>
 
     <OptionBox className='option_box'>
       <div className='option1 option'>
-        <h2>ICE & HOT</h2>
+        <h2>SIZE</h2>
 
         <Option className='select'>
 
@@ -149,7 +145,7 @@ export default function DetailCake(props) {
     items.map((item, i) => {
       return(
           <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
-          <input type='radio' id={item.id} name='sele' onChange={()=>{onChangeIce(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
+          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeSize(item.label); onChangeOp(e.target.value)}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
 
           <div>
             <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
@@ -161,42 +157,24 @@ export default function DetailCake(props) {
         
     )})
   }
-    </Option>
-  </div>
+      </Option>
+    </div>
 
-  <div className='option2 option'>
-    <h2>SIZE</h2>
-
-  <Option className='select2'>
-  {
-    items1.map((item,idx) => {
-      return (
-        //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
-          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label)}} key={idx}>
-          <input type='radio' id={item.id} name='sele1' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeSize(item.label);}} checked={onCheckOp(item.checked)}/>
-
-          <div>
-            <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
-            <p className='option_desc'>{item.sub}</p>
-            <p className='option_price'>{item.price.toLocaleString()}원</p>
-          </div>
-
-
-          </Label>
-      )
-    })
-  }
-        </Option>
-        </div>
     </OptionBox>
-
+    </FlexBox>
     <div className='total'>
-      <h3>선택한 옵션 : <span>{iceHot}</span><br/>
-       <span>{size}</span> <br/>
+      <h3>선택한 옵션 : <span>{size}</span><br/>
       총금액 : <span>{total.toLocaleString()}</span>원
       </h3>
     </div>
-   </>
+
+    <div className='cart'>
+        <Button onClick={()=>{dispatch(addItem({
+          id:cakes[id].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:'옵션 : '+size
+        }))
+        }}>장바구니 담기</Button>
+      </div>
+      </motion.div>
   )
 
   

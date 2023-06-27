@@ -134,7 +134,7 @@ export default function DetailCoffee(props) {
 
       <div className='cart'>
         <Button onClick={()=>{dispatch(addItem({
-          id:coffees[id].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:iceHot, option1:size
+          id:coffees[id].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : ' + iceHot, option1:'옵션2 : '+size
         }))
         }}>장바구니 담기</Button>
       </div>

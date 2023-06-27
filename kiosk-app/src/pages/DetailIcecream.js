@@ -3,16 +3,18 @@ import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
-import { addItem, optionItem } from './store';
+import { addItem} from './store';
 import './Detail.css';
 
-
+const FlexBox = styled.div`
+  display: flex;
+  align-items: end;
+  border-bottom: 3px solid violet;
+`
 const DetailContent = styled.div`
   position: relative;
   text-align: center;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid violet;
+  padding: 50px 50px 0 30px;
 `
 
 const Option = styled.div`
@@ -22,15 +24,17 @@ const Option = styled.div`
 
 const Label = styled.label`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 200px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 15px 0;
   margin-top: 15px;
   margin-right:2px;
-  &:last-child{margin-right:0px}
+  &:last-child{
+    margin-right:0px
+    }
 `
 
 const Button = styled.button`
@@ -38,23 +42,26 @@ const Button = styled.button`
   background-color: #fff;
   font-weight: 700;
   display: inline-block;
-  font-size: 18px;
-  line-height: 50px;
-  width: 178px;
-  height: 50px;
+  font-size: 20px;
+  line-height: 60px;
+  width: 200px;
   border-radius: 30px;
   border: 2px solid violet;
   transition: all 0.3s;
   cursor: pointer;
+  margin-right: 15px;
   &:hover{
     background-color: violet;
     color:#fff
   }
+  &:last-child{
+    margin-right: 0;
+  }
 `
 
 const OptionBox = styled.div`
-  border-bottom: 3px solid violet;
-  padding-bottom: 30px;
+  width: 60%;
+  padding-bottom: 20px;
 `
 
 
@@ -111,36 +118,22 @@ export default function DetailIcecream(props) {
   
   // let total=opprice;
 
- /*  inp.forEach((item,idx)=>{
-    item.addEventListener('click',()=>{
-      if(inp[idx].checked){
-        la[idx].style.borderColor='violet'
-      }else{
-        la.style.borderColor='#fff'
-      }
-    })
-  }) */
   
 
   return (
-    <>
-    
+    <motion.div
+      initial={{opacity:0, x:300}} 
+      animate={{opacity:1, x:0}}
+      transition={{duration:0.5}}
+    >
+    <FlexBox>
     <DetailContent className='detail_box'>
-      <div>
-        <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
-      </div>
+      <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
       <h1>{icecreams[id].title}</h1>
       <p>{icecreams[id].desc}</p>
       
       <div className='imgs'>
         <img className='product_img' src={icecreams[id].image} alt='img'/>
-      </div>
-
-      <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
-        }))
-        }}>장바구니 담기</Button>
       </div>
     </DetailContent>
 
@@ -225,13 +218,22 @@ export default function DetailIcecream(props) {
         </Option>
         </div>
     </OptionBox>
+    </FlexBox>
 
     <div className='total'>
       <h3>선택한 옵션 : <span>{name}</span> <br/>
       총금액 : <span>{opprice.toLocaleString()}</span>원
       </h3>
     </div>
-   </>
+
+    <div className='cart'>
+        <Button onClick={()=>{dispatch(addItem({
+          id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
+        }))
+        }}>장바구니 담기</Button>
+        <Button>결재하기</Button>
+      </div>
+      </motion.div>
   )
 
   

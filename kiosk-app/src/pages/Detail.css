@@ -16,13 +16,6 @@
   padding: 15px 0;
 }
 
-.detail_box .cart {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: -23px;
-}
-
 .option_box h2 {
   margin-top: 50px;
   text-align: center;
@@ -37,9 +30,16 @@
 }
 
 .option_box .option1 .select label img {
-  width: 50px;
-  padding-right: 15px;
+  width: 40px;
 }
 
 .option_box .option1 .select label .option_desc,
 .option_box .option1 .select label .option_price {}
+
+.total{
+  padding: 20px 0;
+}
+
+.cart{
+  text-align: right;
+}

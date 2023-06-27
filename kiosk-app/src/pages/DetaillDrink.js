@@ -3,16 +3,21 @@ import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
-import { addItem, optionItem } from './store';
+import { addItem} from './store';
 import './Detail.css';
 
+
+const FlexBox = styled.div`
+  display: flex;
+  align-items: end;
+  border-bottom: 3px solid violet;
+`
 
 const DetailContent = styled.div`
   position: relative;
   text-align: center;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid violet;
+  padding: 50px 50px 0 30px;
+ 
 `
 
 const Option = styled.div`
@@ -26,7 +31,7 @@ const Label = styled.label`
   width: 200px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 15px 0;
   margin-top: 15px;
   margin-right:2px;
   padding-left:30px;
@@ -40,10 +45,9 @@ const Button = styled.button`
   background-color: #fff;
   font-weight: 700;
   display: inline-block;
-  font-size: 18px;
-  line-height: 50px;
-  width: 178px;
-  height: 50px;
+  font-size: 20px;
+  line-height: 60px;
+  width: 200px;
   border-radius: 30px;
   border: 2px solid violet;
   transition: all 0.3s;
@@ -55,8 +59,8 @@ const Button = styled.button`
 `
 
 const OptionBox = styled.div`
-  border-bottom: 3px solid violet;
-  padding-bottom: 30px;
+  width: 60%;
+  padding-bottom: 20px;
 `
 
 
@@ -118,8 +122,12 @@ export default function Drink(props) {
 
 
   return (
-    <>
-    
+    <motion.div
+      initial={{opacity:0, x:300}} 
+      animate={{opacity:1, x:0}}
+      transition={{duration:0.5}}
+      >
+    <FlexBox>
     <DetailContent className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
@@ -131,12 +139,7 @@ export default function Drink(props) {
         <img className='product_img' src={drink[id].image} alt='img'/>
       </div>
 
-      <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:drink[id].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:iceHot, option1:size
-        }))
-        }}>장바구니 담기</Button>
-      </div>
+     
     </DetailContent>
 
     <OptionBox className='option_box'>
@@ -189,6 +192,7 @@ export default function Drink(props) {
         </Option>
         </div>
     </OptionBox>
+    </FlexBox>
 
     <div className='total'>
       <h3>선택한 옵션 : <span>{iceHot}</span><br/>
@@ -196,7 +200,14 @@ export default function Drink(props) {
       총금액 : <span>{total.toLocaleString()}</span>원
       </h3>
     </div>
-   </>
+
+    <div className='cart'>
+        <Button onClick={()=>{dispatch(addItem({
+          id:drink[id].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+        }))
+        }}>장바구니 담기</Button>
+      </div>
+    </motion.div>
   )
 
   

@@ -28,7 +28,16 @@
   text-align: center;
 }
 
-.cart_pro .cart_product li p:last-child{
+.cart_pro .cart_product li .option {
+  text-align: left;
+  padding-left: 30px;
+}
+
+.cart_pro .cart_product li .option span {
+  font-weight: 400;
+}
+
+.cart_pro .cart_product li p:last-child {
   border-right: 0;
 }
 
@@ -37,13 +46,15 @@
   margin: 0 auto;
 }
 
-.cart_pro .cart_product li .count_box{
+.cart_pro .cart_product li .count_box {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20%;
 }
 
-.total{
+
+
+.total {
   text-align: right;
 }

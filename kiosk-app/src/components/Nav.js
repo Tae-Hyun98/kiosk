@@ -1,11 +1,12 @@
 import React from 'react'
 import {NavLink, useMatch} from 'react-router-dom';
 import styled from 'styled-components';
+import {motion} from 'framer-motion';
 
 const Ul = styled.ul`
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 20px;
 `
 
 const Li = styled.li`
@@ -18,7 +19,11 @@ export default function Nav() {
     
 
   return (
-    <nav>
+    <motion.nav
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+    >
         <Ul>
           <Li ><NavLink to='/subpage/icecream' style={({active}) ? active :{}}>아이스크림</NavLink>
           </Li>
@@ -27,6 +32,6 @@ export default function Nav() {
           <Li><NavLink to='/subpage/cake'>케이크</NavLink></Li>
           <Li><NavLink to='/subpage/dessert'>디저트</NavLink></Li>
         </Ul>
-      </nav>
+      </motion.nav>
   )
 }
