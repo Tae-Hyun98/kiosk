@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink, Link, useMatch} from 'react-router-dom';
+import {NavLink, useMatch} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Ul = styled.ul`

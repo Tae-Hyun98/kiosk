@@ -92,7 +92,4 @@ const drink = [{
   
 }]
 
-export {
-  icecream,
-  drink
-};
+export {icecream, drink}
