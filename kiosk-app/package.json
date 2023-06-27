@@ -24,7 +24,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://tae-hyun98.github.io/kiosk/index.html",
+  "homepage": "https://tae-hyun98.github.io/kiosk/kiosk-app",
   "eslintConfig": {
     "extends": [
       "react-app",
