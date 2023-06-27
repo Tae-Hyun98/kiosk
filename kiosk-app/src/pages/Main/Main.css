@@ -32,9 +32,7 @@ img {
 }
 
 .header .back {
-  position: absolute;
-  left: 0;
-  top: 30px;
+  background: url(../../assets/images/back.png) no-repeat;
 }
 
 .header .cart {
