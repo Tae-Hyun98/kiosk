@@ -26,7 +26,7 @@ export default function Content() {
             <h2 style={{color: '#ff91bc'}}>ICECREAM</h2>
             <p>아이스크림의 기준<br/>배스킨라빈스!</p>
             <p className='go'><span>→ go</span></p>
-            <img src={process.env.PUBLIC_URL + './assets/images/ice01.png'} alt='img' style={{width:300}}/>
+            <img src={process.env.PUBLIC_URL + '/assets/images/ice01.png'} alt='img' style={{width:300}}/>
             <img className='co' src={process.env.PUBLIC_URL + '/assets/images/corn.png'} alt='img' style={{width:110}}/>
           </Link>
         </div>
