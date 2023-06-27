@@ -1,8 +1,9 @@
+import { motion } from 'framer-motion';
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components';
 
-const MainCategory = styled.div`
+const MainCategory = styled(motion.div)`
   margin-top: 30px;
   padding-bottom: 10px;
   display: flex;
@@ -13,7 +14,11 @@ const MainCategory = styled.div`
 export default function Content() {
   return (
 
-    <MainCategory className='category_list'>
+    <MainCategory className='category_list'
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+    >
       
       <div className='left'>
         <div className='icecream'>
