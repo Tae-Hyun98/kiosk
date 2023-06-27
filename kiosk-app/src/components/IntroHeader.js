@@ -5,7 +5,7 @@ export default function IntroHeader() {
   return (
     <>
       <header className='header'>
-      <Link to='/' className='logo'><img src={process.env.PUBLIC_URL + './assets/images/logo.png'} alt='img'/></Link>
+      <Link to='/' className='logo'><img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt='img'/></Link>
       </header>
     </>
   )
