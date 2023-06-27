@@ -15,11 +15,12 @@ const BackBtn = styled.button`
   width: 60px;
   height: 60px;
   cursor: pointer;
-  background-color: #fff;
-  background-size: 30px;
-  background-position: 50% 50%;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 50%;
+  transition: all 0.3s;
+  &:hover{
+    background-color: violet;
+  }
 `
 
 export default function Header() {
@@ -31,7 +32,7 @@ export default function Header() {
       <header className='header'>
         <Inner>
           <BackBtn className='back' onClick={() => {navigate(-1)}}>뒤로가기</BackBtn>
-          
+
           <Link to='/' className='logo'>
             <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt='img'/>
           </Link>

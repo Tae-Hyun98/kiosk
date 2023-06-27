@@ -23,7 +23,7 @@ export default function SubPage() {
       <Header/>
           <Container >
             <Nav/>
-                <Outlet/>
+              <Outlet/>
           </Container>
   
     </>

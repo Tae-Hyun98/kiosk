@@ -33,6 +33,8 @@ img {
 
 .header .back {
   background: url(../../assets/images/back.png) no-repeat;
+  background-size: 30px;
+  background-position: 50% 50%;
 }
 
 .header .cart {

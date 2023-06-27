@@ -22,7 +22,8 @@ function App() {
         
     <AnimatePresence>
       <Routes>
-          <Route path='/' element={<Main/>}/>
+        <Route path='/' element={<Main/>}/>
+        
         <Route path='subpage' element={<SubPage/>}>
           <Route path='icecream' element={<Icecream/>}/>
           <Route path='coffee' element={<Coffee/>}/>
