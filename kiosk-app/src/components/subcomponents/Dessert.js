@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
-import drink from './DrinkData';
+import dessert from '../../pages/DessertData';
 
 
 const ProductList = styled(motion.div)`
@@ -17,8 +17,8 @@ const Product = styled(motion.div)`
   overflow: hidden;
 `
 
-export default function Coffee() {
-  const [drinks] = useState(drink);
+export default function Dessert() {
+  const [desserts] = useState(dessert);
 
   const list = {
     hidden: {
@@ -42,16 +42,16 @@ export default function Coffee() {
     <>
       <Product variants={list} initial="hidden" animate="visible">
       {
-        drinks.map((drink, index) => {
+        desserts.map((dessert, index) => {
           return (
             <ProductList key={index} className='product_box' variants={item}>
-              <Link to={`/detailpage/detaildrink/${index}`}>
+              <Link to={`/detailpage/detaildessert/${index}`}>
               <div className='img'>
-                <img className={drink.id} src={drink.image} alt='product_img'/>
+                <img className={dessert.id} src={dessert.image} alt='product_img'/>
                 </div>
-                <h3 className='tit'>{drink.title}</h3>
-                <p className='tag'>{drink.tag}</p>
-                <p className='price'>{drink.price}원</p>
+                <h3 className='tit'>{dessert.title}</h3>
+                <p className='tag'>{dessert.tag}</p>
+                <p className='price'>{dessert.price}원</p>
               </Link>
             </ProductList>
           )

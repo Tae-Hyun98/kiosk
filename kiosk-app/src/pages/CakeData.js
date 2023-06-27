@@ -2,8 +2,8 @@ const cake = [
   {
     id: 'cake01',
     image: process.env.PUBLIC_URL + '/assets/images/cake/cake01.png',
-    title: '917 아메리카노',
-    tag: '#대용량커피 #아이스아메리카노',
+    title: '딥-한 카라멜 치즈 케이크',
+    tag: '#이달의케이크 #카라멜치즈케이크',
     desc: '917ml사이즈로 즐기는 대용량 브리즈 아이스 아메리카노',
     price: 3800
   },
@@ -29,7 +29,7 @@ const cake = [
   {
     id: 'cake04',
     image: process.env.PUBLIC_URL + '/assets/images/cake/cake04.png',
-    title: '솔티크림라떼',
+    title: '솔티크림 라떼',
     tag: '#단짠단짠 #라떼',
     desc: '달콤한 스페니쉬 라떼에 솔티크림을 올려 단짠단짠 플레이버를 극대화한 라떼',
     price: 4000

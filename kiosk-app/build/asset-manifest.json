@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/kiosk/static/css/main.a86a1b29.css",
-    "main.js": "/kiosk/static/js/main.5a08fe40.js",
+    "main.css": "/kiosk/static/css/main.0042fd0b.css",
+    "main.js": "/kiosk/static/js/main.79f40b56.js",
     "static/js/787.0c353d6b.chunk.js": "/kiosk/static/js/787.0c353d6b.chunk.js",
     "static/media/dessert.png": "/kiosk/static/media/dessert.73f5b38010086bed05a1.png",
     "static/media/coffee.png": "/kiosk/static/media/coffee.ce142ec9f57c2a1476be.png",
@@ -10,12 +10,12 @@
     "static/media/img1.png": "/kiosk/static/media/img1.d7384c0362298cfddfa9.png",
     "static/media/bg_icecream_corn_3.png": "/kiosk/static/media/bg_icecream_corn_3.7312cd2f74e9e7f1b789.png",
     "index.html": "/kiosk/index.html",
-    "main.a86a1b29.css.map": "/kiosk/static/css/main.a86a1b29.css.map",
-    "main.5a08fe40.js.map": "/kiosk/static/js/main.5a08fe40.js.map",
+    "main.0042fd0b.css.map": "/kiosk/static/css/main.0042fd0b.css.map",
+    "main.79f40b56.js.map": "/kiosk/static/js/main.79f40b56.js.map",
     "787.0c353d6b.chunk.js.map": "/kiosk/static/js/787.0c353d6b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a86a1b29.css",
-    "static/js/main.5a08fe40.js"
+    "static/css/main.0042fd0b.css",
+    "static/js/main.79f40b56.js"
   ]
 }

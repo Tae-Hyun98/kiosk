@@ -29,7 +29,7 @@ const coffees = [
   {
     id: 'coffee04',
     image: process.env.PUBLIC_URL + '/assets/images/coffee/coffee05.png',
-    title: '솔티크림라떼',
+    title: '솔티크림 라떼',
     tag: '#단짠단짠 #라떼',
     desc: '달콤한 스페니쉬 라떼에 솔티크림을 올려 단짠단짠 플레이버를 극대화한 라떼',
     price: 4000

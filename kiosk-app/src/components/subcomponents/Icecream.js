@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import icecream from './ProductData';
+import icecream from '../../pages/IcecreamData';
 import {motion} from 'framer-motion';
-
-/* const Button = styled.button`
-  width: 50%;
-  height: 50px;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  transition: all.3s;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  &:hover{
-    background-color:violet;
-    color: #fff;
-  }
-` */
 
 const ProductList = styled(motion.div)`
   width: calc(25% - 11.3px);
