@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { deleteItem, plusCount, miusCount } from './store';
+import { deleteItem, deleteAllItem, plusCount, miusCount } from './store';
 import './Cart.css';
 
 const Container = styled.div`
@@ -19,6 +19,25 @@ const Button = styled.button`
   cursor: pointer;
 `
 
+const Delete = styled.button`
+  width: 100px;
+  border: 1px solid #ccc;
+  background-color: #e6e6e6;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: all 0.3s;
+  &:hover{
+    background-color: violet;
+    color: #fff;
+  }
+`
+
+const DeleteAll = styled.button`
+  width:200px;
+  line-height: 60px;
+`
+
 export default function Cart() {
 
   const state = useSelector((state)=>state)
@@ -32,12 +51,11 @@ export default function Cart() {
     )
   })
 
-
-  return (
+  if(state.cart.length===0){
+    return(
     <>
       <Header/>
-        <Container>
-          <div className='cart_wrap'>
+      <div className='cart_wrap'>
           <h1 style={{textAlign:'center'}}>장바구니입니다.</h1>
           <div className='cart_pro'>
             <ul className='cart_tit'>
@@ -48,8 +66,34 @@ export default function Cart() {
               <li>삭제</li>
             </ul>
 
+            <h2 className='empty'>장바구니가 비어있습니다.</h2>
+          </div>
+      </div>
+    </>
+    )
+  }
+
+
+  return (
+    <>
+      <Header/>
+        <Container>
+          <div className='cart_wrap'>
+          <h1 style={{textAlign:'center'}}>장바구니입니다.</h1>
+          <DeleteAll onClick={()=>{dispatch(deleteAllItem(state.id))}}>전체삭제</DeleteAll>
+          <div className='cart_pro'>
+            <ul className='cart_tit'>
+              <li>상품</li>
+              <li>이름</li>
+              <li>가격</li>
+              <li>개수</li>
+              <li>삭제</li>
+            </ul>
+
             <ul className='cart_product'>
+              
         {
+          
           state.cart.map((item, i)=>{
             return (
               <li key={i}>
@@ -57,7 +101,7 @@ export default function Cart() {
                 <p className='image_box'>
                   <img src={item.image} alt='img'/>
                 </p>
-                <p style={{fontWeight:'bold'}} className='option'>{item.title}<br/>
+                <p className='option'>{item.title}<br/>
                 <span>{item.option}</span><br/>
                 <span>{item.option1}</span></p>
                 <p>{(item.price*item.count).toLocaleString()}원</p>
@@ -70,7 +114,7 @@ export default function Cart() {
                     dispatch(plusCount(item.id))
                   }}>+</Button>
                 </div>
-                <p><Button style={{width:100,backgroundColor:'red'}} onClick={()=>dispatch(deleteItem(item.id))}>삭제</Button></p>
+                <p><Delete onClick={()=>dispatch(deleteItem(item.id))}>삭제</Delete></p>
 
               </li>
             )

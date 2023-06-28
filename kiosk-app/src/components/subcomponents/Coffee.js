@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import coffees from '../../pages/CoffeeData';
+import coffees from '../../pages/dataset/CoffeeData';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';

@@ -8,13 +8,13 @@ import './Detail.css';
 
 const FlexBox = styled.div`
   display: flex;
-  align-items: end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-bottom: 3px solid violet;
 `
 const DetailContent = styled.div`
-  position: relative;
   text-align: center;
-  padding: 50px 50px 0 30px;
 `
 
 const Option = styled.div`
@@ -26,12 +26,12 @@ const Label = styled.label`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 200px;
+  width: 210px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 15px 0;
+  padding: 10px 0;
   margin-top: 15px;
-  margin-right:2px;
+  margin-right:10px;
   &:last-child{
     margin-right:0px
     }
@@ -60,8 +60,8 @@ const Button = styled.button`
 `
 
 const OptionBox = styled.div`
-  width: 60%;
-  padding-bottom: 20px;
+  width: 100%;
+  padding-bottom: 30px;
 `
 
 
@@ -122,9 +122,10 @@ export default function DetailIcecream(props) {
 
   return (
     <motion.div
-      initial={{opacity:0, x:300}} 
-      animate={{opacity:1, x:0}}
+      initial={{opacity:0, y:100}} 
+      animate={{opacity:1, y:0}}
       transition={{duration:0.5}}
+      style={{padding:50}}
     >
     <FlexBox>
     <DetailContent className='detail_box'>
@@ -180,37 +181,6 @@ export default function DetailIcecream(props) {
             <p className='option_price'>{item.price.toLocaleString()}원</p>
           </div>
 
- {/*  <input type='radio' id='select2' name='sele' value='3800'/>
-          <label htmlFor='select2'>
-            <img src={process.env.PUBLIC_URL + '/assets/images/singleking.gif'} alt='icon'/>
-
-            <div>
-            <h3 className='option_tit'>싱글킹</h3>
-            <p className='option_desc'>중량 145g</p>
-            <p className='option_price'>{icecreams[id].price}원</p>
-            </div>
-          </label>
-
-          <input type='radio' name='sele' id='select3' value='4800'/>
-          <label htmlFor='select3'>
-            <img src={process.env.PUBLIC_URL + '/assets/images/doubleju.gif'} alt='icon'/>
-            <div>
-            <h3 className='option_tit'>더블주니어</h3>
-            <p className='option_desc'>중량 150g</p>
-            <p className='option_price'>{icecreams[id].price}원</p>
-            </div>
-          </label>
-
-          <input type='radio' name='sele' id='select4' value='5000'></input>
-          <label htmlFor='select4'>
-            <img src={process.env.PUBLIC_URL + '/assets/images/doublere.gif'} alt='icon'/>
-            <div>
-            <h3 className='option_tit'>더블레귤러</h3>
-            <p className='option_desc'>중량 230g</p>
-            <p className='option_price'>6,700원</p>
-            </div>
-          </label>
- */}
           </Label>
       )
     })
@@ -221,9 +191,8 @@ export default function DetailIcecream(props) {
     </FlexBox>
 
     <div className='total'>
-      <h3>선택한 옵션 : <span>{name}</span> <br/>
-      총금액 : <span>{opprice.toLocaleString()}</span>원
-      </h3>
+        <p>선택한 옵션 : {name}</p>
+        <p>총금액 : {opprice.toLocaleString()}원</p>
     </div>
 
     <div className='cart'>

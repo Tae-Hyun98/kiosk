@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import icecream from '../../pages/IcecreamData';
+import icecream from '../../pages/dataset/IcecreamData';
 import {motion} from 'framer-motion';
 
 

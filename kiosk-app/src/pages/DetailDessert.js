@@ -3,16 +3,19 @@ import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
-import { addItem, optionItem } from './store';
+import { addItem } from './store';
 import './Detail.css';
 
 
+const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid violet;
+`
 const DetailContent = styled.div`
-  position: relative;
   text-align: center;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid violet;
 `
 
 const Option = styled.div`
@@ -21,15 +24,15 @@ const Option = styled.div`
 `
 
 const Label = styled.label`
-  justify-content: center;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  width: 200px;
+  width: 210px;
   border: 3px solid #ccc;
   cursor: pointer;
   padding: 10px 0;
   margin-top: 15px;
-  margin-right:2px;
-  padding-left:30px;
+  margin-right:10px;
   &:last-child{
     margin-right:0px
     }
@@ -40,22 +43,25 @@ const Button = styled.button`
   background-color: #fff;
   font-weight: 700;
   display: inline-block;
-  font-size: 18px;
-  line-height: 50px;
-  width: 178px;
-  height: 50px;
+  font-size: 20px;
+  line-height: 60px;
+  width: 200px;
   border-radius: 30px;
   border: 2px solid violet;
   transition: all 0.3s;
   cursor: pointer;
+  margin-right: 15px;
   &:hover{
     background-color: violet;
     color:#fff
   }
+  &:last-child{
+    margin-right: 0;
+  }
 `
 
 const OptionBox = styled.div`
-  border-bottom: 3px solid violet;
+  width: 100%;
   padding-bottom: 30px;
 `
 
@@ -65,21 +71,15 @@ export default function DetailCake(props) {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  const items =[
-    {id:'1', label:'ICE', price:0},
-    {id:'2', label:'HOT', price:0}
-  ]
 
   const items1 =[
-    {id:'1', label:'쇼트(Short)', price:0},
-    {id:'2', label:'톨(Tall)', price:1500},
-    {id:'3', label:'그란데(Grande)', price:2500},
-    {id:'4', label:'벤티(Venti)', price:3500}
+    {id:'1', label:'Small', price:0},
+    {id:'2', label:'Medium', price:0},
+    {id:'3', label:'Large', price:0}
   ]
 
   let total=desserts[id].price
   const [opprice, setPrice] = useState(0)
-  const [iceHot, seticeHot] = useState(items[0].label)
   const [size, setSize] = useState(items1[0].label)
 
   /* const {name, price} = opprice
@@ -99,7 +99,6 @@ export default function DetailCake(props) {
 
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
-  const onChangeIce = (iceHot) =>{seticeHot(iceHot)}
   const onChangeSize = (size) =>{setSize(size)}
   const onCheckOp = (checked) => {
     if(checked){
@@ -107,7 +106,6 @@ export default function DetailCake(props) {
   }
 
   //클릭시색변경
-  let [Active, setActive] = useState(items[0].label);
 
   let [Active1, setActive1] = useState(items1[0].label);
 
@@ -118,8 +116,13 @@ export default function DetailCake(props) {
 
 
   return (
-    <>
-    
+    <motion.div
+      initial={{opacity:0, y:100}} 
+      animate={{opacity:1, y:0}}
+      transition={{duration:0.5}}
+      style={{padding:50}}
+    >
+    <FlexBox>
     <DetailContent className='detail_box'>
       <div>
         <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
@@ -131,38 +134,10 @@ export default function DetailCake(props) {
         <img className='product_img' src={desserts[id].image} alt='img'/>
       </div>
 
-      <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:desserts[id].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-        }))
-        }}>장바구니 담기</Button>
-      </div>
     </DetailContent>
 
     <OptionBox className='option_box'>
-      <div className='option1 option'>
-        <h2>ICE & HOT</h2>
 
-        <Option className='select'>
-
-    {
-    items.map((item, i) => {
-      return(
-          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
-          <input type='radio' id={item.id} name='sele' onChange={()=>{onChangeIce(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
-
-          <div>
-            <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
-            <p className='option_desc'>{item.sub}</p>
-            <p className='option_price'>+{item.price.toLocaleString()}원</p>
-          </div>
-
-          </Label>
-        
-    )})
-  }
-    </Option>
-  </div>
 
   <div className='option2 option'>
     <h2>SIZE</h2>
@@ -181,22 +156,29 @@ export default function DetailCake(props) {
             <p className='option_price'>{item.price.toLocaleString()}원</p>
           </div>
 
-
           </Label>
       )
     })
   }
-        </Option>
-        </div>
+    </Option>
+    </div>
     </OptionBox>
+    </FlexBox>
 
     <div className='total'>
-      <h3>선택한 옵션 : <span>{iceHot}</span><br/>
-       <span>{size}</span> <br/>
-      총금액 : <span>{total.toLocaleString()}</span>원
-      </h3>
+        <p>옵션 : {size}</p>
+        <p>총금액 : {total.toLocaleString()}원</p>
     </div>
-   </>
+
+    <div className='cart'>
+        <Button onClick={()=>{dispatch(addItem({
+          id:desserts[id].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션 : '+size
+        }))
+        }}>장바구니 담기</Button>
+
+        <Button>결재하기</Button>
+      </div>
+   </motion.div>
   )
 
   

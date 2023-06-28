@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
-import dessert from '../../pages/DessertData';
+import dessert from '../../pages/dataset/DessertData';
 
 
 const ProductList = styled(motion.div)`

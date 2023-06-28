@@ -9,15 +9,14 @@ import './Detail.css';
 
 const FlexBox = styled.div`
   display: flex;
-  align-items: end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-bottom: 3px solid violet;
 `
 
 const DetailContent = styled.div`
-  position: relative;
   text-align: center;
-  padding: 50px 50px 0 30px;
- 
 `
 
 const Option = styled.div`
@@ -26,15 +25,15 @@ const Option = styled.div`
 `
 
 const Label = styled.label`
-  justify-content: center;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  width: 200px;
+  width: 210px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 15px 0;
+  padding: 10px 0;
   margin-top: 15px;
-  margin-right:2px;
-  padding-left:30px;
+  margin-right:10px;
   &:last-child{
     margin-right:0px
     }
@@ -52,15 +51,19 @@ const Button = styled.button`
   border: 2px solid violet;
   transition: all 0.3s;
   cursor: pointer;
+  margin-right: 15px;
   &:hover{
     background-color: violet;
     color:#fff
   }
+  &:last-child{
+    margin-right: 0;
+  }
 `
 
 const OptionBox = styled.div`
-  width: 60%;
-  padding-bottom: 20px;
+  width: 100%;
+  padding-bottom: 30px;
 `
 
 
@@ -123,9 +126,10 @@ export default function Drink(props) {
 
   return (
     <motion.div
-      initial={{opacity:0, x:300}} 
-      animate={{opacity:1, x:0}}
+      initial={{opacity:0, y:300}} 
+      animate={{opacity:1, y:0}}
       transition={{duration:0.5}}
+      style={{padding:50}}
       >
     <FlexBox>
     <DetailContent className='detail_box'>
@@ -181,7 +185,7 @@ export default function Drink(props) {
           <div>
             <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
             <p className='option_desc'>{item.sub}</p>
-            <p className='option_price'>{item.price.toLocaleString()}원</p>
+            <p className='option_price'>+{item.price.toLocaleString()}원</p>
           </div>
 
 
@@ -195,9 +199,10 @@ export default function Drink(props) {
     </FlexBox>
 
     <div className='total'>
-      <h3>선택한 옵션 : <span>{iceHot}</span><br/>
-       <span>{size}</span> <br/>
-      총금액 : <span>{total.toLocaleString()}</span>원
+      <h3>
+        <span>옵션1 : {iceHot}</span><br/>
+        <span>옵션2 : {size}</span> <br/>
+        <span>총금액 : {total.toLocaleString()}원</span>
       </h3>
     </div>
 
@@ -206,6 +211,8 @@ export default function Drink(props) {
           id:drink[id].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
         }))
         }}>장바구니 담기</Button>
+
+        <Button>결재하기</Button>
       </div>
     </motion.div>
   )

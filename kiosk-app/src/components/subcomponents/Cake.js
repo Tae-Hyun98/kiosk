@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
-import cake from '../../pages/CakeData';
+import cake from '../../pages/dataset/CakeData';
 
 
 const ProductList = styled(motion.div)`

@@ -8,19 +8,18 @@ const cart = createSlice({
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id
       }) //같은 id가 있을때 카운트
-      const opindex = state.findIndex((findId)=>{
+      const opindex = state.find((findId)=>{
         return findId.option===action.payload.option
       }) //같은 옵션값이있을때 카운트
-      const opindex1 = state.findIndex((findId)=>{
+      console.log(index)
+      console.log(opindex)
+      /* const opindex1 = state.findIndex((findId)=>{
         return findId.option1===action.payload.option1
-      })
+      }) */
       //같은id option잇으면 카운트올림, 
-      if(index >-1&&opindex>-1&&opindex1>-1){
+      if(index >-1&&opindex!==undefined){
         state[index].count++
-      }else if(index>-1&&opindex>-1&&opindex1<-1){
-        state.push(action.payload)
-      } 
-      else{
+      }else{
         state.push(action.payload)
       }
 
@@ -33,6 +32,10 @@ const cart = createSlice({
         return findId.id===action.payload
       })
         state.splice(index, 1)
+    },
+
+    deleteAllItem(){ //전체삭제 배열을 공백으로 초기화
+      return []
     },
 
     plusCount(state, action){
@@ -52,7 +55,7 @@ const cart = createSlice({
     }
   }
 })
-export const {addItem, deleteItem, plusCount, miusCount, optionItem} = cart.actions
+export const {addItem, deleteItem, deleteAllItem, plusCount, miusCount, optionItem} = cart.actions
 
 export default configureStore({
   reducer:{

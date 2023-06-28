@@ -9,14 +9,14 @@ import './Detail.css';
 
 const FlexBox = styled.div`
   display: flex;
-  align-items: end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-bottom: 3px solid violet;
 `
 
 const DetailContent = styled.div`
-  position: relative;
   text-align: center;
-  padding: 50px 50px 0 30px;
 `
 
 const Option = styled.div`
@@ -30,9 +30,9 @@ const Label = styled.label`
   width: 200px;
   border: 3px solid #ccc;
   cursor: pointer;
-  padding: 15px 0;
+  padding: 10px 0;
   margin-top: 15px;
-  margin-right:2px;
+  margin-right:10px;
   padding-left:25px;
   &:last-child{
     margin-right:0px
@@ -51,6 +51,7 @@ const Button = styled.button`
   border: 2px solid violet;
   transition: all 0.3s;
   cursor: pointer;
+  margin-right: 15px;
   &:hover{
     background-color: violet;
     color:#fff
@@ -58,8 +59,8 @@ const Button = styled.button`
 `
 
 const OptionBox = styled.div`
-  width: 60%;
-  padding-bottom: 40px;
+  width: 100%;
+  padding-bottom: 30px;
 `
 
 
@@ -116,9 +117,10 @@ export default function DetailCake(props) {
 
   return (
     <motion.div
-      initial={{opacity:0, x:300}} 
-      animate={{opacity:1, x:0}}
+      initial={{opacity:0, y:200}} 
+      animate={{opacity:1, y:0}}
       transition={{duration:0.5}}
+      style={{padding:50}}
     >
     <FlexBox>
     <DetailContent className='detail_box'>
@@ -137,7 +139,7 @@ export default function DetailCake(props) {
 
     <OptionBox className='option_box'>
       <div className='option1 option'>
-        <h2>SIZE</h2>
+        <h2 style={{marginTop:30}}>SIZE</h2>
 
         <Option className='select'>
 
@@ -163,9 +165,8 @@ export default function DetailCake(props) {
     </OptionBox>
     </FlexBox>
     <div className='total'>
-      <h3>선택한 옵션 : <span>{size}</span><br/>
-      총금액 : <span>{total.toLocaleString()}</span>원
-      </h3>
+        <p>옵션 : {size}</p>
+        <p>총금액 : {total.toLocaleString()}원</p>
     </div>
 
     <div className='cart'>
@@ -173,8 +174,10 @@ export default function DetailCake(props) {
           id:cakes[id].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:'옵션 : '+size
         }))
         }}>장바구니 담기</Button>
-      </div>
-      </motion.div>
+
+        <Button>결재하기</Button>
+    </div>
+    </motion.div>
   )
 
   
