@@ -72,17 +72,17 @@ export default function DetailIcecream(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'1', label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
-    {id:'2', label:'싱글킹', image: process.env.PUBLIC_URL + '/assets/images/singleking.gif', sub:'중량 145g', price:4500},
-    {id:'3', label:'더블주니어', image: process.env.PUBLIC_URL + '/assets/images/doubleju.gif', sub:'중량 150g', price:5500},
-    {id:'4', label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700}
+    {id:'op1', label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
+    {id:'op2', label:'싱글킹', image: process.env.PUBLIC_URL + '/assets/images/singleking.gif', sub:'중량 145g', price:4500},
+    {id:'op3', label:'더블주니어', image: process.env.PUBLIC_URL + '/assets/images/doubleju.gif', sub:'중량 150g', price:5500},
+    {id:'op4', label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700}
   ]
 
   const items1 =[
-    {id:'1', label:'파인트', image: process.env.PUBLIC_URL + '/assets/images/pint.gif', sub:'중량 320g', price:8900},
-    {id:'2', label:'쿼터', image: process.env.PUBLIC_URL + '/assets/images/quarter.gif', sub:'중량 620g', price:17000},
-    {id:'3', label:'패밀리', image: process.env.PUBLIC_URL + '/assets/images/family.gif', sub:'중량 960g', price:24000},
-    {id:'4', label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
+    {id:'opi1', label:'파인트', image: process.env.PUBLIC_URL + '/assets/images/pint.gif', sub:'중량 320g', price:8900},
+    {id:'opi2', label:'쿼터', image: process.env.PUBLIC_URL + '/assets/images/quarter.gif', sub:'중량 620g', price:17000},
+    {id:'opi3', label:'패밀리', image: process.env.PUBLIC_URL + '/assets/images/family.gif', sub:'중량 960g', price:24000},
+    {id:'opi4', label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
   ]
 
   const [opprice, setPrice] = useState(items[0].price)

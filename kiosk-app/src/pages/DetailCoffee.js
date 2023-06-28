@@ -73,15 +73,15 @@ export default function DetailCoffee(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'1', label:'ICE', price:0},
-    {id:'2', label:'HOT', price:0}
+    {id:'ice', label:'ICE', price:0},
+    {id:'hot', label:'HOT', price:0}
   ]
 
   const items1 =[
-    {id:'1', label:'쇼트(Short)', price:0},
-    {id:'2', label:'톨(Tall)', price:1500},
-    {id:'3', label:'그란데(Grande)', price:2500},
-    {id:'4', label:'벤티(Venti)', price:3500}
+    {id:'short', label:'쇼트(Short)', price:0},
+    {id:'tall', label:'톨(Tall)', price:1500},
+    {id:'grande', label:'그란데(Grande)', price:2500},
+    {id:'venti', label:'벤티(Venti)', price:3500}
   ]
 
   let total=coffees[id].price
