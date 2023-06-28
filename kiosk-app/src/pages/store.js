@@ -5,7 +5,7 @@ const cart = createSlice({
   initialState:[],
   reducers:{
     addItem(state, action){
-      const index = state.find((findId)=>{
+      const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id&&findId.option===action.payload.option
       }) //같은 id가 있을때 카운트
       const opindex = state.findIndex((findId)=>{
@@ -18,6 +18,10 @@ const cart = createSlice({
       console.log(index)
       //같은id option잇으면 카운트올림, 
       if(index >-1&&opindex>-1&&opindex1>-1){
+        state[index].count++
+      }else if(index>-1&&opindex>-1){
+        state[opindex].count++
+      }else if(index>-1){
         state[index].count++
       }
       else{
@@ -41,13 +45,14 @@ const cart = createSlice({
     },
 
     plusCount(state, action){
-      const index = state.findIndex((findId)=>{
+  
+      const indexid = state.findIndex((findId)=>{
         return findId.id===action.payload
       })
-      const opindex = state.findIndex((findId)=>{
+      const opindexop = state.findIndex((findId)=>{
         return findId.option===action.payload
       })
-          state[opindex].count++
+          state[indexid].count++
     },
 
     miusCount(state, action){

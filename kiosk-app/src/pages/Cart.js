@@ -123,7 +123,7 @@ export default function Cart() {
                   }}>-</Button>
                   <p>{item.count}</p>
                   <Button onClick={()=>{
-                    dispatch(plusCount(item.option))
+                    dispatch(plusCount(item.id))
                   }}>+</Button>
                 </div>
                 <p><Delete onClick={()=>dispatch(deleteItem(item.id))}>삭제</Delete></p>
