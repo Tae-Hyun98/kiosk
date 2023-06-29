@@ -20,9 +20,9 @@ const cart = createSlice({
 
     deleteItem(state, action){
       const index = state.findIndex((findId)=>{
-        return findId.key===action.payload
+        return findId.key===action.payload.key&&findId.id===action.payload.id
       })
- 
+      
         state.splice(index, 1)
     },
 
@@ -33,22 +33,19 @@ const cart = createSlice({
     plusCount(state, action){
   
       const index = state.findIndex((findId)=>{
-        return findId.key===action.payload
+        return findId.key===action.payload.key&&findId.id===action.payload.id
       })
-      const opindexop = state.findIndex((findId)=>{
-        return findId.option===action.payload
-      })
-          state[index].count++
+      if(index>-1){
+        state[index].count++
+      }
     },
 
     miusCount(state, action){
       const index = state.findIndex((findId)=>{
-        return findId.key===action.payload
+        return findId.key===action.payload.key&&findId.id===action.payload.id
       })
-      const opindex = state.findIndex((findId)=>{
-        return findId.option===action.payload
-      })
-      if(state[index].count > 1){
+  
+      if(state[index].count > 1&&index>-1){
       state[index].count--
       }
     }

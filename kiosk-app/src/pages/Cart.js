@@ -50,7 +50,6 @@ export default function Cart() {
 
   const state = useSelector((state)=>state)
   const dispatch = useDispatch();
-  console.log(state)
   let total=0;
   let counter=0;
   state.cart.map((item)=>{
@@ -121,11 +120,11 @@ export default function Cart() {
                 <p>{(item.price*item.count).toLocaleString()}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
-                    dispatch(miusCount(item.key))
+                    dispatch(miusCount({key:item.key, id:item.id}))
                   }}>-</Button>
                   <p>{item.count}</p>
                   <Button onClick={()=>{
-                    dispatch(plusCount(item.key))
+                    dispatch(plusCount({key:item.key, id:item.id}))
                   }}>+</Button>
                 </div>
                 <p><Delete onClick={()=>dispatch(deleteItem(item.key))}>삭제</Delete></p>
