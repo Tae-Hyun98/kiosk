@@ -50,6 +50,7 @@ export default function Cart() {
 
   const state = useSelector((state)=>state)
   const dispatch = useDispatch();
+  console.log(state)
   let total=0;
   let counter=0;
   state.cart.map((item)=>{
@@ -58,6 +59,7 @@ export default function Cart() {
       counter+=item.count
     )
   })
+
 
   if(state.cart.length===0){
     return(
@@ -90,6 +92,7 @@ export default function Cart() {
         <Container>
           <div className='cart_wrap'>
           <h1 style={{textAlign:'center', paddingTop:20}}>장바구니입니다.</h1>
+
           <div style={{textAlign:'right'}}>
             <DeleteAll onClick={()=>{dispatch(deleteAllItem(state.id))}}>전체삭제</DeleteAll>
           </div>
@@ -126,7 +129,7 @@ export default function Cart() {
                     dispatch(plusCount(item.id))
                   }}>+</Button>
                 </div>
-                <p><Delete onClick={()=>dispatch(deleteItem(item.id))}>삭제</Delete></p>
+                <p><Delete onClick={()=>dispatch(deleteItem(item.option))}>삭제</Delete></p>
 
               </li>
             )

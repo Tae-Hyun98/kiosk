@@ -72,22 +72,20 @@ export default function DetailIcecream(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'op1', label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
-    {id:'op2', label:'싱글킹', image: process.env.PUBLIC_URL + '/assets/images/singleking.gif', sub:'중량 145g', price:4500},
-    {id:'op3', label:'더블주니어', image: process.env.PUBLIC_URL + '/assets/images/doubleju.gif', sub:'중량 150g', price:5500},
-    {id:'op4', label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700}
+    {id:0, label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
+    {id:1, label:'싱글킹', image: process.env.PUBLIC_URL + '/assets/images/singleking.gif', sub:'중량 145g', price:4500},
+    {id:2, label:'더블주니어', image: process.env.PUBLIC_URL + '/assets/images/doubleju.gif', sub:'중량 150g', price:5500},
+    {id:4, label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700}
   ]
 
-  const items1 =[
+  /* const items1 =[
     {id:'opi1', label:'파인트', image: process.env.PUBLIC_URL + '/assets/images/pint.gif', sub:'중량 320g', price:8900},
     {id:'opi2', label:'쿼터', image: process.env.PUBLIC_URL + '/assets/images/quarter.gif', sub:'중량 620g', price:17000},
     {id:'opi3', label:'패밀리', image: process.env.PUBLIC_URL + '/assets/images/family.gif', sub:'중량 960g', price:24000},
     {id:'opi4', label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
-  ]
-
+  ] */
   const [opprice, setPrice] = useState(items[0].price)
   const [name, setName] = useState(items[0].label)
-
   /* const {name, price} = opprice
 
   const onChanges=(e,val)=>{
@@ -101,10 +99,11 @@ export default function DetailIcecream(props) {
     })
   
   } */
+  const [key1, setKey1 ] = useState(0) //초기 키값
   // const [sum, setSum] = useState(8900)
-
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
+  const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   const onChangeNa = (names) =>{setName(names)}
   const onCheckOp = (checked) => {
     if(checked){
@@ -120,12 +119,13 @@ export default function DetailIcecream(props) {
 
   
 
+
   return (
     <motion.div
       initial={{opacity:0, y:100}} 
       animate={{opacity:1, y:0}}
       transition={{duration:0.5}}
-      style={{padding:50}}
+      style={{padding:50, position:'relative'}}
     >
     <FlexBox>
     <DetailContent className='detail_box'>
@@ -147,8 +147,9 @@ export default function DetailIcecream(props) {
     {
     items.map((item, i) => {
       return(
-          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
-          <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
+        <>
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label); onChangeKey(i)}} key={i}>
+          <input type='radio' id={i} name='sele' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeNa(item.label);}}  checked={onCheckOp(item.checked)}/>
             <img src={item.image} alt='icon'/>
           <div>
             <h3 className='option_tit'>{item.label}</h3>
@@ -157,13 +158,16 @@ export default function DetailIcecream(props) {
           </div>
 
           </Label>
-        
+
+          
+      </>
+
     )})
   }
     </Option>
   </div>
 
-  <div className='option2 option'>
+  {/* <div className='option2 option'>
     <h2>HAND PACK</h2>
 
   <Option className='select2'>
@@ -186,7 +190,7 @@ export default function DetailIcecream(props) {
     })
   }
         </Option>
-        </div>
+        </div> */}
     </OptionBox>
     </FlexBox>
 
@@ -196,12 +200,14 @@ export default function DetailIcecream(props) {
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:icecreams[id].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
-        }))
-        }}>장바구니 담기</Button>
-        <Button>결재하기</Button>
-      </div>
+          <Button onClick={()=>{dispatch(addItem({
+              key:icecreams[id].id ,id:items[key1].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
+          }))
+          }}>장바구니 담기</Button>
+
+         <Button>결재하기</Button>
+     </div>
+   
       </motion.div>
   )
 
