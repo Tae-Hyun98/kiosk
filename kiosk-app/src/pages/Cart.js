@@ -117,7 +117,7 @@ export default function Cart() {
                 <p className='option'>{item.title}<br/>
                 <span>옵션 : {item.option}</span><br/>
                 <span>{item.option1}</span></p>
-                <p>{(item.price*item.count).toLocaleString()}원</p>
+                <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
                     dispatch(miusCount({key:item.key, id:item.id}))
@@ -127,7 +127,7 @@ export default function Cart() {
                     dispatch(plusCount({key:item.key, id:item.id}))
                   }}>+</Button>
                 </div>
-                <p><Delete onClick={()=>dispatch(deleteItem(item.key))}>삭제</Delete></p>
+                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id}))}>삭제</Delete></p>
 
               </li>
             )

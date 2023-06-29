@@ -174,7 +174,7 @@ export default function DetailCake(props) {
     <div className='cart'>
         <Button onClick={()=>{dispatch(addItem({
           key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:size
-        }))
+        })) //key를 현재상품의 id를 넘기고, id값에 선택한 옵션의 id값을 넘김
         }}>장바구니 담기</Button>
 
         <Button>결재하기</Button>

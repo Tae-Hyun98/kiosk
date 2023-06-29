@@ -8,12 +8,10 @@ const cart = createSlice({
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id&&findId.key===action.payload.key
       }) //같은 id가 있을때 카운트
-     
       //같은id option잇으면 카운트올림, 
       if(index>-1){
         state[index].count++
-      }
-      else{
+      }else{
         state.push(action.payload)
       }
     },
@@ -22,8 +20,9 @@ const cart = createSlice({
       const index = state.findIndex((findId)=>{
         return findId.key===action.payload.key&&findId.id===action.payload.id
       })
-      
+      if(index>-1){
         state.splice(index, 1)
+      }
     },
 
     deleteAllItem(){ //전체삭제 배열을 공백으로 초기화
@@ -31,10 +30,10 @@ const cart = createSlice({
     },
 
     plusCount(state, action){
-  
       const index = state.findIndex((findId)=>{
         return findId.key===action.payload.key&&findId.id===action.payload.id
       })
+      
       if(index>-1){
         state[index].count++
       }
