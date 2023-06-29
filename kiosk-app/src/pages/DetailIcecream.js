@@ -75,15 +75,14 @@ export default function DetailIcecream(props) {
     {id:0, label:'싱글레귤러', image: process.env.PUBLIC_URL + '/assets/images/single.gif', sub:'중량 115g', price:3500},
     {id:1, label:'싱글킹', image: process.env.PUBLIC_URL + '/assets/images/singleking.gif', sub:'중량 145g', price:4500},
     {id:2, label:'더블주니어', image: process.env.PUBLIC_URL + '/assets/images/doubleju.gif', sub:'중량 150g', price:5500},
-    {id:4, label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700}
+    {id:4, label:'더블레귤러', image: process.env.PUBLIC_URL + '/assets/images/doublere.gif', sub:'중량 230g', price:6700},
+    {id:5, label:'파인트', image: process.env.PUBLIC_URL + '/assets/images/pint.gif', sub:'중량 320g', price:8900},
+    {id:6, label:'쿼터', image: process.env.PUBLIC_URL + '/assets/images/quarter.gif', sub:'중량 620g', price:17000},
+    {id:7, label:'패밀리', image: process.env.PUBLIC_URL + '/assets/images/family.gif', sub:'중량 960g', price:24000},
+    {id:8, label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
   ]
 
-  /* const items1 =[
-    {id:'opi1', label:'파인트', image: process.env.PUBLIC_URL + '/assets/images/pint.gif', sub:'중량 320g', price:8900},
-    {id:'opi2', label:'쿼터', image: process.env.PUBLIC_URL + '/assets/images/quarter.gif', sub:'중량 620g', price:17000},
-    {id:'opi3', label:'패밀리', image: process.env.PUBLIC_URL + '/assets/images/family.gif', sub:'중량 960g', price:24000},
-    {id:'opi4', label:'하프갤런', image: process.env.PUBLIC_URL + '/assets/images/half.gif', sub:'중량 1200g', price:29000}
-  ] */
+
   const [opprice, setPrice] = useState(items[0].price)
   const [name, setName] = useState(items[0].label)
   /* const {name, price} = opprice
@@ -140,7 +139,7 @@ export default function DetailIcecream(props) {
 
     <OptionBox className='option_box'>
       <div className='option1 option'>
-        <h2>CONE & CUP</h2>
+        <h2>--- 옵션선택 ---</h2>
 
         <Option className='select'>
 
