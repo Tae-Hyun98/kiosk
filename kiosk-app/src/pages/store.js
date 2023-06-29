@@ -4,7 +4,7 @@ const cart = createSlice({
   name: 'cart',
   initialState:[],
   reducers:{
-    addItem(state, action){
+    addItem(state, action){ //상품추가 완료
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id&&findId.key===action.payload.key
       }) //같은 id가 있을때 카운트
@@ -20,11 +20,9 @@ const cart = createSlice({
 
     deleteItem(state, action){
       const index = state.findIndex((findId)=>{
-        return findId.item===action.payload
+        return findId.key===action.payload
       })
-      const opindex = state.findIndex((findId)=>{
-        return findId.option===action.payload
-      })
+ 
         state.splice(index, 1)
     },
 
@@ -35,7 +33,7 @@ const cart = createSlice({
     plusCount(state, action){
   
       const index = state.findIndex((findId)=>{
-        return findId.id===action.payload
+        return findId.key===action.payload
       })
       const opindexop = state.findIndex((findId)=>{
         return findId.option===action.payload
@@ -45,13 +43,13 @@ const cart = createSlice({
 
     miusCount(state, action){
       const index = state.findIndex((findId)=>{
-        return findId.id===action.payload
+        return findId.key===action.payload
       })
       const opindex = state.findIndex((findId)=>{
         return findId.option===action.payload
       })
-      if(state[opindex].count > 1){
-      state[opindex].count--
+      if(state[index].count > 1){
+      state[index].count--
       }
     }
   }

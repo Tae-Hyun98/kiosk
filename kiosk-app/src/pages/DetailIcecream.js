@@ -201,7 +201,7 @@ export default function DetailIcecream(props) {
 
     <div className='cart'>
           <Button onClick={()=>{dispatch(addItem({
-              key:icecreams[id].id ,id:items[key1].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
+              key:icecreams[id].id ,id:items[key1].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
           }))
           }}>장바구니 담기</Button>
 

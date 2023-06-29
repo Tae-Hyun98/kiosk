@@ -112,24 +112,23 @@ export default function Cart() {
           state.cart.map((item, i)=>{
             return (
               <li key={i}>
-
                 <p className='image_box'>
                   <img src={item.image} alt='img'/>
                 </p>
                 <p className='option'>{item.title}<br/>
-                <span>{item.option}</span><br/>
+                <span>옵션 : {item.option}</span><br/>
                 <span>{item.option1}</span></p>
                 <p>{(item.price*item.count).toLocaleString()}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
-                    dispatch(miusCount(item.option))
+                    dispatch(miusCount(item.key))
                   }}>-</Button>
                   <p>{item.count}</p>
                   <Button onClick={()=>{
-                    dispatch(plusCount(item.id))
+                    dispatch(plusCount(item.key))
                   }}>+</Button>
                 </div>
-                <p><Delete onClick={()=>dispatch(deleteItem(item.option))}>삭제</Delete></p>
+                <p><Delete onClick={()=>dispatch(deleteItem(item.key))}>삭제</Delete></p>
 
               </li>
             )

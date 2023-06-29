@@ -70,9 +70,9 @@ export default function DetailCake(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'1', label:'Small', price:0},
-    {id:'2', label:'Medium', price:3000},
-    {id:'3', label:'Large', price:6000}
+    {id:1, label:'Small', price:0},
+    {id:2, label:'Medium', price:3000},
+    {id:3, label:'Large', price:6000}
   ]
 
 
@@ -95,7 +95,8 @@ export default function DetailCake(props) {
   
   } */
   // const [sum, setSum] = useState(8900)
-
+  const [key1, setKey1 ] = useState(0) //초기 키값
+  const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
   const onChangeSize = (size) =>{setSize(size)}
@@ -146,7 +147,7 @@ export default function DetailCake(props) {
     {
     items.map((item, i) => {
       return(
-          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label); onChangeKey(i)}} key={i}>
           <input type='radio' id={item.id} name='sele' value={item.price} onChange={(e)=>{onChangeSize(item.label); onChangeOp(e.target.value)}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
 
           <div>
@@ -171,7 +172,7 @@ export default function DetailCake(props) {
 
     <div className='cart'>
         <Button onClick={()=>{dispatch(addItem({
-          id:cakes[id].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:'옵션 : '+size
+          key:cakes[id].id, id:cakes[key1].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:size
         }))
         }}>장바구니 담기</Button>
 

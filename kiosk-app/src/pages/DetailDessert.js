@@ -73,9 +73,9 @@ export default function DetailCake(props) {
 
 
   const items1 =[
-    {id:'1', label:'Small', price:0},
-    {id:'2', label:'Medium', price:0},
-    {id:'3', label:'Large', price:0}
+    {id:1, label:'Small', price:0},
+    {id:2, label:'Medium', price:1500},
+    {id:3, label:'Large', price:2500}
   ]
 
   let total=desserts[id].price
@@ -96,7 +96,8 @@ export default function DetailCake(props) {
   
   } */
   // const [sum, setSum] = useState(8900)
-
+  const [key1, setKey1 ] = useState(0) //초기 키값
+  const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
   const onChangeSize = (size) =>{setSize(size)}
@@ -144,16 +145,16 @@ export default function DetailCake(props) {
 
   <Option className='select2'>
   {
-    items1.map((item,idx) => {
+    items1.map((item,i) => {
       return (
         //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
-          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label)}} key={idx}>
+          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label); onChangeKey(i)}} key={i}>
           <input type='radio' id={item.id} name='sele1' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeSize(item.label);}} checked={onCheckOp(item.checked)}/>
 
           <div>
             <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
             <p className='option_desc'>{item.sub}</p>
-            <p className='option_price'>{item.price.toLocaleString()}원</p>
+            <p className='option_price'>+{item.price.toLocaleString()}원</p>
           </div>
 
           </Label>
@@ -172,7 +173,7 @@ export default function DetailCake(props) {
 
     <div className='cart'>
         <Button onClick={()=>{dispatch(addItem({
-          id:desserts[id].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션 : '+size
+          key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:size
         }))
         }}>장바구니 담기</Button>
 
