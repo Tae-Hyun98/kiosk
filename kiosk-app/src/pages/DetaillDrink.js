@@ -73,15 +73,15 @@ export default function Drink(props) {
   const dispatch = useDispatch();
 
   const items =[
-    {id:'1', label:'ICE', price:0},
-    {id:'2', label:'HOT', price:0}
+    {id:1, label:'ICE', price:0},
+    {id:2, label:'HOT', price:0}
   ]
 
   const items1 =[
-    {id:'1', label:'쇼트(Short)', price:0},
-    {id:'2', label:'톨(Tall)', price:1500},
-    {id:'3', label:'그란데(Grande)', price:2500},
-    {id:'4', label:'벤티(Venti)', price:3500}
+    {id:3, label:'쇼트(Short)', price:0},
+    {id:4, label:'톨(Tall)', price:1500},
+    {id:5, label:'그란데(Grande)', price:2500},
+    {id:6, label:'벤티(Venti)', price:3500}
   ]
 
   let total=drink[id].price
@@ -89,22 +89,14 @@ export default function Drink(props) {
   const [iceHot, seticeHot] = useState(items[0].label)
   const [size, setSize] = useState(items1[0].label)
 
-  /* const {name, price} = opprice
 
-  const onChanges=(e,val)=>{
-    const {value}=e.target;
-    console.log(value)
-
-    setPrice({
-      ...opprice,
-      [price]:value
-
-    })
-  
-  } */
   // const [sum, setSum] = useState(8900)
-
+  const [key1, setKey1 ] = useState(0) //초기 키값
+  const [key2, setKey2 ] = useState(0) //초기 키값
   //선택된 value값 받는거
+  const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
+  const onChangeKey1 = (key) =>{setKey2(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
+
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
   const onChangeIce = (iceHot) =>{seticeHot(iceHot)}
   const onChangeSize = (size) =>{setSize(size)}
@@ -122,7 +114,11 @@ export default function Drink(props) {
   
   total=total+opprice;
 
-
+  const addCart = ()=>{
+      dispatch(addItem({
+      key:drink[id].id, id:items[key1].id, id1:items1[key2].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+    }))
+  }
 
   return (
     <motion.div
@@ -155,7 +151,7 @@ export default function Drink(props) {
     {
     items.map((item, i) => {
       return(
-          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label); onChangeKey(i)}} key={i}>
           <input type='radio' id={item.id} name='sele' onChange={()=>{onChangeIce(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
 
           <div>
@@ -179,7 +175,7 @@ export default function Drink(props) {
     items1.map((item,idx) => {
       return (
         //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
-          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label)}} key={idx}>
+          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label); onChangeKey1(idx)}} key={idx}>
           <input type='radio' id={item.id} name='sele1' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeSize(item.label);}} checked={onCheckOp(item.checked)}/>
 
           <div>
@@ -207,10 +203,7 @@ export default function Drink(props) {
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          id:drink[id].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-        }))
-        }}>장바구니 담기</Button>
+        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
       </div>

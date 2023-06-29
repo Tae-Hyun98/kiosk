@@ -99,6 +99,7 @@ export default function Cart() {
       <motion.div
         initial={{opacity:0}}
         animate={{opacity:1}}
+        transition={{duration:1}}
         exit={{opacity:0}}
       >
 
@@ -124,6 +125,7 @@ export default function Cart() {
           
           state.cart.map((item, i)=>{
             return (
+
               <li key={i}>
                 <p className='image_box'>
                   <img src={item.image} alt='img'/>
@@ -134,16 +136,16 @@ export default function Cart() {
                 <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
-                    dispatch(miusCount({key:item.key, id:item.id}))
+                    dispatch(miusCount({key:item.key, id:item.id, id1:item.id1}))
                   }}>-</Button>
                   <p>{item.count}</p>
                   <Button onClick={()=>{
-                    dispatch(plusCount({key:item.key, id:item.id}))
+                    dispatch(plusCount({key:item.key, id:item.id, id1:item.id1}))
                   }}>+</Button>
                 </div>
-                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id}))}>삭제</Delete></p>
-
+                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}))}>삭제</Delete></p>
               </li>
+
             )
           })
         }
