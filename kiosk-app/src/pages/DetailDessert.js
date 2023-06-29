@@ -72,7 +72,7 @@ export default function DetailCake(props) {
   const dispatch = useDispatch();
 
 
-  const items1 =[
+  const option =[
     {id:1, label:'Small', price:0},
     {id:2, label:'Medium', price:1500},
     {id:3, label:'Large', price:2500}
@@ -80,22 +80,9 @@ export default function DetailCake(props) {
 
   let total=desserts[id].price
   const [opprice, setPrice] = useState(0)
-  const [size, setSize] = useState(items1[0].label)
+  const [size, setSize] = useState(option[0].label)
 
-  /* const {name, price} = opprice
 
-  const onChanges=(e,val)=>{
-    const {value}=e.target;
-    console.log(value)
-
-    setPrice({
-      ...opprice,
-      [price]:value
-
-    })
-  
-  } */
-  // const [sum, setSum] = useState(8900)
   const [key1, setKey1 ] = useState(0) //초기 키값
   const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   //선택된 value값 받는거
@@ -108,10 +95,15 @@ export default function DetailCake(props) {
 
   //클릭시색변경
 
-  let [Active1, setActive1] = useState(items1[0].label);
+  let [Active1, setActive1] = useState(option[0].label);
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
-  
+  const addCart = () => {
+      dispatch(addItem({
+      key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션 : '+size
+    })) //key를 현재상품의 id를 넘기고, id값에 선택한 옵션의 id값을 넘김
+  }
+
   total=total+opprice;
 
 
@@ -145,7 +137,7 @@ export default function DetailCake(props) {
 
   <Option className='select2'>
   {
-    items1.map((item,i) => {
+    option.map((item,i) => {
       return (
         //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
           <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label); onChangeKey(i)}} key={i}>
@@ -172,10 +164,7 @@ export default function DetailCake(props) {
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:size
-        })) //key를 현재상품의 id를 넘기고, id값에 선택한 옵션의 id값을 넘김
-        }}>장바구니 담기</Button>
+        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
       </div>

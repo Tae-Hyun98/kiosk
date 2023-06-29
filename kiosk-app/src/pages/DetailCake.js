@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
-import { addItem, optionItem } from './store';
+import { addItem } from './store';
 import './Detail.css';
 
 
@@ -81,20 +81,6 @@ export default function DetailCake(props) {
   const [size, setSize] = useState(items[0].label)
  
 
-  /* const {name, price} = opprice
-
-  const onChanges=(e,val)=>{
-    const {value}=e.target;
-    console.log(value)
-
-    setPrice({
-      ...opprice,
-      [price]:value
-
-    })
-  
-  } */
-  // const [sum, setSum] = useState(8900)
   const [key1, setKey1 ] = useState(0) //초기 키값
   const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   //선택된 value값 받는거
@@ -109,8 +95,12 @@ export default function DetailCake(props) {
   let [Active, setActive] = useState(items[0].label);
 
 
-
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
+  const addCart = () => {
+      dispatch(addItem({
+      key:cakes[id].id, id:cakes[key1].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:'옵션 : '+size
+    }))
+  }
   
   total=total+opprice;
 
@@ -165,16 +155,14 @@ export default function DetailCake(props) {
 
     </OptionBox>
     </FlexBox>
+    
     <div className='total'>
         <p>옵션 : {size}</p>
         <p>총금액 : {total.toLocaleString()}원</p>
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          key:cakes[id].id, id:cakes[key1].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:size
-        }))
-        }}>장바구니 담기</Button>
+        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
     </div>

@@ -22,7 +22,7 @@ const Button = styled.button`
 
 const Delete = styled.button`
   width: 100px;
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   background-color: #e6e6e6;
   font-size: 20px;
   cursor: pointer;
@@ -131,18 +131,21 @@ export default function Cart() {
                   <img src={item.image} alt='img'/>
                 </p>
                 <p className='option'>{item.title}<br/>
-                <span>옵션 : {item.option}</span><br/>
+                <span>{item.option}</span><br/>
                 <span>{item.option1}</span></p>
                 <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
                 <div className='count_box'>
                   <Button onClick={()=>{
                     dispatch(miusCount({key:item.key, id:item.id, id1:item.id1}))
                   }}>-</Button>
+
                   <p>{item.count}</p>
+
                   <Button onClick={()=>{
                     dispatch(plusCount({key:item.key, id:item.id, id1:item.id1}))
                   }}>+</Button>
                 </div>
+                
                 <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}))}>삭제</Delete></p>
               </li>
 

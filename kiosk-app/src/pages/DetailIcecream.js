@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 import { addItem} from './store';
+import Modal from '../components/Modal';
+
 import './Detail.css';
 
 const FlexBox = styled.div`
@@ -107,14 +109,28 @@ export default function DetailIcecream(props) {
   let [Active, setActive] = useState(options1[0].label);
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
-  
- 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ok,setOk]=useState(false)
+const openModal = ()=> setIsModalOpen(true)
+const closeModal = ()=> setIsModalOpen(false)
+const addCarts = ()=> setOk(true)
+
+
+
   const addCart = () => {
     dispatch(addItem({
-      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
+      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
   }))
   }
 
+  useEffect(()=>{
+  if(ok===true){
+    dispatch(addItem({
+      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
+  }))
+  }
+
+})
   return (
     <motion.div
       initial={{opacity:0, y:100}} 
@@ -191,11 +207,11 @@ export default function DetailIcecream(props) {
     </div>
 
     <div className='cart'>
-          <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
-
+          <Button onClick={openModal}>장바구니 담기</Button>
+          
          <Button>결재하기</Button>
      </div>
-   
+     <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
       </motion.div>
   )
 

@@ -1,24 +1,24 @@
 import {configureStore, createSlice} from '@reduxjs/toolkit';
 
+
+
 const cart = createSlice({
   name: 'cart',
   initialState:[],
   reducers:{
     addItem(state, action){ //상품추가 완료
+      
       const index = state.findIndex((findId)=>{
         return findId.id===action.payload.id&&findId.key===action.payload.key&&findId.id1===action.payload.id1
       }) //같은 id가 있을때 카운트
       //같은id option잇으면 카운트올림, 
-      if(window.confirm('상품을 추가하시겠습니까?')===true){
-        alert('상품이 추가되었습니다.')
+      
       if(index>-1){
         state[index].count++
       }else{
         state.push(action.payload)
       }
-    }else{
-      alert('취소하였습니다.')
-    }
+   
     },
 
     deleteItem(state, action){

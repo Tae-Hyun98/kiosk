@@ -72,12 +72,12 @@ export default function DetailCoffee(props) {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  /* const items =[
-    {id:'ice', label:'ICE', price:0},
-    {id:'hot', label:'HOT', price:0}
-  ] */
+  const option1 =[
+    {id:1, label:'ICE', price:0},
+    {id:2, label:'HOT', price:0}
+  ]
 
-  const items1 =[
+  const option2 =[
     {id:1, label:'쇼트(Short)', price:0},
     {id:2, label:'톨(Tall)', price:1500},
     {id:3, label:'그란데(Grande)', price:2500},
@@ -86,28 +86,18 @@ export default function DetailCoffee(props) {
 
   let total=coffees[id].price
   const [opprice, setPrice] = useState(0)
-  // const [iceHot, seticeHot] = useState(items[0].label)
-  const [size, setSize] = useState(items1[0].label)
+  const [iceHot, seticeHot] = useState(option1[0].label)
+  const [size, setSize] = useState(option2[0].label)
 
-  /* const {name, price} = opprice
-
-  const onChanges=(e,val)=>{
-    const {value}=e.target;
-    console.log(value)
-
-    setPrice({
-      ...opprice,
-      [price]:value
-
-    })
   
-  } */
-  // const [sum, setSum] = useState(8900)
   const [key1, setKey1 ] = useState(0) //초기 키값
+  const [key2, setKey2 ] = useState(0) //초기 키값
   const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
+  const onChangeKey2 = (key) =>{setKey2(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
+
   //선택된 value값 받는거
   const onChangeOp = (price) =>{setPrice(parseInt(price))}
-  // const onChangeIce = (iceHot) =>{seticeHot(iceHot)}
+  const onChangeIce = (iceHot) =>{seticeHot(iceHot)}
   const onChangeSize = (size) =>{setSize(size)}
   const onCheckOp = (checked) => {
     if(checked){
@@ -115,12 +105,17 @@ export default function DetailCoffee(props) {
   }
 
   //클릭시색변경
-  // let [Active, setActive] = useState(items[0].label);
+  let [Active, setActive] = useState(option1[0].label);
 
-  let [Active1, setActive1] = useState(items1[0].label);
+  let [Active1, setActive1] = useState(option2[0].label);
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
+  const addCart = () => {
+    dispatch(addItem({
+      key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+    }))
+  }
   total=total+opprice;
 
 
@@ -153,22 +148,22 @@ export default function DetailCoffee(props) {
 
         <Option className='select'>
 
-    {/* {
-    items.map((item, i) => {
+    {
+      option1.map((item, i) => {
       return(
-          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label)}} key={i}>
-          <input type='radio' id={item.id} name='sele' onChange={()=>{onChangeIce(item.label);}} defaultChecked={item[0]} checked={onCheckOp(item.checked)}/>
+
+          <Label className={Active===item.label ? 'active' : ''} onClick={()=>{setActive(item.label); onChangeKey(i)}} key={i}>
+          <input type='radio' id={item.id} name='sele' onChange={()=>{onChangeIce(item.label);}} checked={onCheckOp(item.checked)}/>
 
           <div>
             <h3 className='option_tit' style={{paddingBottom:10}}>{item.label}</h3>
             <p className='option_desc'>{item.sub}</p>
             <p className='option_price'>+{item.price.toLocaleString()}원</p>
           </div>
-
           </Label>
         
     )})
-  } */}
+  }
     </Option>
   </div>
 
@@ -177,10 +172,10 @@ export default function DetailCoffee(props) {
 
   <Option className='select2'>
   {
-    items1.map((item,i) => {
+    option2.map((item,i) => {
       return (
         //Acitve가 클릭한 item.label값이랑 같다면 active를 클래스추가
-          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label); onChangeKey(i)}} key={i}>
+          <Label className={Active1===item.label ? 'active' : ''} onClick={()=>{setActive1(item.label); onChangeKey2(i)}} key={i}>
           <input type='radio' id={item.id} name='sele1' value={item.price} onChange={(e)=>{onChangeOp(e.target.value); onChangeSize(item.label);}} checked={onCheckOp(item.checked)}/>
 
           <div>
@@ -188,8 +183,8 @@ export default function DetailCoffee(props) {
             <p className='option_desc'>{item.sub}</p>
             <p className='option_price'>+{item.price.toLocaleString()}원</p>
           </div>
-
           </Label>
+
       )
     })
   }
@@ -199,16 +194,13 @@ export default function DetailCoffee(props) {
     </FlexBox>
 
     <div className='total'>
-        {/* <p>옵션1 : {iceHot}</p> */}
-        <p>옵션 : {size}</p>
+        <p>옵션1 : {iceHot}</p>
+        <p>옵션2 : {size}</p>
         <p>총금액 : {total.toLocaleString()}원</p>
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{dispatch(addItem({
-          key:coffees[id].id, id:coffees[key1].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:size
-        }))
-        }}>장바구니 담기</Button>
+        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
     </div>
