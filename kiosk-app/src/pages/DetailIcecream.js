@@ -83,6 +83,7 @@ export default function DetailIcecream(props) {
   ]
 
 
+
   const [opprice, setPrice] = useState(items[0].price)
   const [name, setName] = useState(items[0].label)
   /* const {name, price} = opprice
@@ -115,7 +116,16 @@ export default function DetailIcecream(props) {
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
   // let total=opprice;
-
+  const onConfirm= ()=>{
+    if(window.confirm('장바구니에 담으시겠습니까?')===true){
+      alert('장바구니에 담겼습니다.')
+      dispatch(addItem({
+        key:icecreams[id].id ,id:items[key1].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
+    }))
+    }else{
+      alert('취소되었습니다.')
+    }
+  }
   
 
 
@@ -199,10 +209,8 @@ export default function DetailIcecream(props) {
     </div>
 
     <div className='cart'>
-          <Button onClick={()=>{dispatch(addItem({
-              key:icecreams[id].id ,id:items[key1].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:name
-          }))
-          }}>장바구니 담기</Button>
+          <Button onClick={()=>{
+          onConfirm()}}>장바구니 담기</Button>
 
          <Button>결재하기</Button>
      </div>

@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { deleteItem, deleteAllItem, plusCount, miusCount } from './store';
+import {motion} from 'framer-motion';
 import './Cart.css';
 
 const Container = styled.div`
@@ -64,6 +65,12 @@ export default function Cart() {
     return(
     <>
       <Header/>
+      <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1}}
+        exit={{opacity:0}}
+      >
       <Container>
       <div className='cart_wrap'>
           <h1 style={{textAlign:'center',paddingTop:20}}>장바구니입니다.</h1>
@@ -80,6 +87,7 @@ export default function Cart() {
           </div>
       </div>
       </Container>
+      </motion.div>
     </>
     )
   }
@@ -88,6 +96,12 @@ export default function Cart() {
   return (
     <>
       <Header/>
+      <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
+      >
+
         <Container>
           <div className='cart_wrap'>
           <h1 style={{textAlign:'center', paddingTop:20}}>장바구니입니다.</h1>
@@ -143,7 +157,7 @@ export default function Cart() {
           </div>
 
         </Container>
-        
+        </motion.div>
       
     </>
   )
