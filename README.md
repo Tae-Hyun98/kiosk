@@ -1,7 +1,7 @@
 # 키오스크 프로젝트 (개인프로젝트)
 >  베스킨라빈스를 참고하여 키오스크로 제작한 React 프로젝트입니다.
 
-<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/cafe6dea-3cff-4a8b-bf9f-390723f88462" width=90% margin:0 auto/>
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/cafe6dea-3cff-4a8b-bf9f-390723f88462" width=90% text-align='center'/>
 
 ## 목차
   ### 1. [프로젝트 소개](#1-프로젝트-소개)
@@ -20,7 +20,9 @@
 
 - 퍼블리싱 및 기능구현은 **개인 100%** 작업입니다.
 
-- 애니메이션 라이브러리는 framer motion을 사용하였고, 대부분 코드는 Vanilla JS로 구현되었습니다.  
+- 프로젝트는 리액트 18.2v으로 제작하였습니다.
+
+- 애니메이션 라이브러리는 framer motion을 사용하였고, 스타일은 CSS3와 Styled-Components를 사용하였습니다.  
 
 - 주요기능으로는 **라우터를 이용한 페이지전환, redux toolkit 전역관리, useState를 이용한 상태관리** 등이 있습니다.
   
