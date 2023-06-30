@@ -113,7 +113,7 @@ export default function DetailIcecream(props) {
   const [ok,setOk]=useState(false)
 const openModal = ()=> setIsModalOpen(true)
 const closeModal = ()=> setIsModalOpen(false)
-const addCarts = ()=> setOk(true)
+const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
 
 
 
