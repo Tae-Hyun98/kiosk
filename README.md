@@ -28,11 +28,13 @@
     <details>
      <summary>🔎 DataSet 보기</summary>
       
-      #### 객체 데이터의 구조는 category, name, price, src, review, color로 구성이 되어있습니다.  
-      
+      #### 객체 데이터의 구조는 category, name, price, src, review, color로 구성이 되어있습니다.
       <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width:488px/>  
       <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/bcff7a30-3568-477f-998b-01e65c0c07f7"/>
       
     </details>
-    
-6월 21일~ 6월 30일(9일)
+
+## 2. 제작 기간 : 2023.06.21 ~ 2023.06.30
+
+<br/>
+
