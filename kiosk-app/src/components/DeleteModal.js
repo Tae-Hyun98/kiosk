@@ -38,21 +38,21 @@ const Button = styled.button`
   font-weight: bold;
   font-size: 20px;
   &:hover{
-    background-color: blue;
+    background-color: red;
     color: #fff;
   }
 `
 
-export default function Modal({isOpen,closeModal,addCarts}) {
+export default function DeleteModal({isOpen, closeModal, deleteCarts}) {
 
   return (
     <ModalContainer style={{display:isOpen ? 'block':'none'}}>
       <ModalBox>
         <TextBox>
-          <h2>장바구니에 추가하시겠습니까?</h2>
+          <h2>전체상품을 삭제하시겠습니까?</h2>
 
           <ButtonBox className='btn_box'>
-            <Button onClick={addCarts}>확인</Button>
+            <Button onClick={deleteCarts}>확인</Button>
             <Button onClick={closeModal}>취소</Button>
           </ButtonBox>
         </TextBox>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { deleteItem, deleteAllItem, plusCount, miusCount } from './store';
 import {motion} from 'framer-motion';
+import DeleteModal from '../components/DeleteModal';
 import './Cart.css';
 
 const Container = styled.div`
@@ -60,6 +61,15 @@ export default function Cart() {
     )
   })
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = ()=> setIsModalOpen(true)
+  const closeModal = ()=> setIsModalOpen(false)
+  const deleteCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(deleteAllItem(state.id))
+    alert('전체 상품이 삭제되었습니다.')
+  }
+
 
   if(state.cart.length===0){
     return(
@@ -108,8 +118,10 @@ export default function Cart() {
           <h1 style={{textAlign:'center', paddingTop:20}}>장바구니입니다.</h1>
 
           <div style={{textAlign:'right'}}>
-            <DeleteAll onClick={()=>{dispatch(deleteAllItem(state.id))}}>전체삭제</DeleteAll>
+            <DeleteAll onClick={openModal}>전체삭제</DeleteAll>
+            <DeleteModal isOpen={isModalOpen} context={'전체상품을 삭제하시겠습니까?'} deleteCarts={deleteCarts} closeModal={closeModal} />
           </div>
+
           <div className='cart_pro'>
             <ul className='cart_tit'>
               <li>상품</li>
@@ -119,7 +131,7 @@ export default function Cart() {
               <li>삭제</li>
             </ul>
 
-            <ul className='cart_product'>
+          <ul className='cart_product'>
               
         {
           
@@ -146,7 +158,7 @@ export default function Cart() {
                   }}>+</Button>
                 </div>
                 
-                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}))}>삭제</Delete></p>
+                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}),alert('선택하신상품이 삭제되었습니다.'))}>삭제</Delete></p>
               </li>
 
             )
@@ -163,7 +175,7 @@ export default function Cart() {
 
         </Container>
         </motion.div>
-      
+        
     </>
   )
 }

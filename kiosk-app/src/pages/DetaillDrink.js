@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -113,24 +113,17 @@ export default function Drink(props) {
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ok,setOk]=useState(false)
   const openModal = ()=> setIsModalOpen(true)
   const closeModal = ()=> setIsModalOpen(false)
-  const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
+  const addCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(addItem({
+      key:drink[id].id, id:items[key1].id, id1:items1[key2].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+  }))
+  }
 
-  useEffect(()=>{
-    if(ok===true){
-      dispatch(addItem({
-        key:drink[id].id, id:items[key1].id, id1:items1[key2].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-    }))
-    }})
   total=total+opprice;
 
-  const addCart = ()=>{
-      dispatch(addItem({
-      key:drink[id].id, id:items[key1].id, id1:items1[key2].id, image:drink[id].image, title:drink[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-    }))
-  }
 
   return (
     <motion.div

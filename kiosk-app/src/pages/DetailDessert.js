@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -102,24 +102,16 @@ export default function DetailCake(props) {
 
   //modal true false체크
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ok,setOk]=useState(false)
   const openModal = ()=> setIsModalOpen(true)
   const closeModal = ()=> setIsModalOpen(false)
-  const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
-
-  const addCart = () => {
-      dispatch(addItem({
+  const addCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(addItem({
       key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션 : '+size
-    })) //key를 현재상품의 id를 넘기고, id값에 선택한 옵션의 id값을 넘김
+      }))
   }
 
-  useEffect(()=>{
-    if(ok===true){
-        dispatch(addItem({
-          key:desserts[id].id, id:desserts[key1].id, image:desserts[id].image, title:desserts[id].title, count:1, price:total, option:'옵션 : '+size
-      }))
-    }
-  })
+    
   total=total+opprice;
 
 

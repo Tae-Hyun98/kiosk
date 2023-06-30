@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -114,24 +114,16 @@ export default function DetailCoffee(props) {
   
    //modal true false체크
    const [isModalOpen, setIsModalOpen] = useState(false);
-   const [ok,setOk]=useState(false)
    const openModal = ()=> setIsModalOpen(true)
    const closeModal = ()=> setIsModalOpen(false)
-   const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
+   const addCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(addItem({
+      key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+    }))
+  }
 
-    const addCart = () => {
-      dispatch(addItem({
-        key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-      }))
-    }
-
-  useEffect(()=>{
-    if(ok===true){
-      dispatch(addItem({
-        key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-      }))
-    }
-  })
+  
   total=total+opprice;
 
 

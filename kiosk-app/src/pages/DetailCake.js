@@ -4,6 +4,7 @@ import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 import { addItem } from './store';
+import Modal from '../components/Modal';
 import './Detail.css';
 
 
@@ -96,12 +97,19 @@ export default function DetailCake(props) {
 
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
-  const addCart = () => {
-      dispatch(addItem({
+
+  //modal true false체크
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = ()=> setIsModalOpen(true)
+  const closeModal = ()=> setIsModalOpen(false)
+  const addCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(addItem({
       key:cakes[id].id, id:cakes[key1].id, image:cakes[id].image, title:cakes[id].title, count:1, price:total, option:'옵션 : '+size
     }))
   }
   
+
   total=total+opprice;
 
 
@@ -162,10 +170,12 @@ export default function DetailCake(props) {
     </div>
 
     <div className='cart'>
-        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
+        <Button onClick={openModal}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
     </div>
+
+    <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
     </motion.div>
   )
 

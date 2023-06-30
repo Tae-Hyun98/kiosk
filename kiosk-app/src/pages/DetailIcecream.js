@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -110,26 +110,15 @@ export default function DetailIcecream(props) {
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   //modal true false체크
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ok,setOk]=useState(false)
   const openModal = ()=> setIsModalOpen(true)
   const closeModal = ()=> setIsModalOpen(false)
-  const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
-
-
-
-  const addCart = () => {
+  const addCarts = ()=> {
+    setIsModalOpen(false)
     dispatch(addItem({
       key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
   }))
   }
 
-  useEffect(()=>{
-    if(ok===true){
-      dispatch(addItem({
-        key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
-      }))
-    }
-  })
   
   return (
     <motion.div
