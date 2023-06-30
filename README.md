@@ -27,7 +27,9 @@
 - 프로젝트에 사용한 데이터들은 직접 DataSet을 구축하여 사용하였습니다.  
     <details>
      <summary>🔎 DataSet 보기</summary>  
-      <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width=35%/>
+      <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width:488px/>    
+      <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/bcff7a30-3568-477f-998b-01e65c0c07f7"/>
+      
     </details>
     
 6월 21일~ 6월 30일(9일)
