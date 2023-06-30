@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 import { addItem} from './store';
+import Modal from '../components/Modal';
 import './Detail.css';
 
 
@@ -111,11 +112,26 @@ export default function DetailCoffee(props) {
 
   // const onChangeSum=(e)=>{setSum(parseInt((e.target.value)))}
   
-  const addCart = () => {
-    dispatch(addItem({
-      key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
-    }))
-  }
+   //modal true false체크
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [ok,setOk]=useState(false)
+   const openModal = ()=> setIsModalOpen(true)
+   const closeModal = ()=> setIsModalOpen(false)
+   const addCarts = ()=> {setOk(true); setIsModalOpen(false)}
+
+    const addCart = () => {
+      dispatch(addItem({
+        key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+      }))
+    }
+
+  useEffect(()=>{
+    if(ok===true){
+      dispatch(addItem({
+        key:coffees[id].id, id:option1[key1].id, id1:option2[key2].id, image:coffees[id].image, title:coffees[id].title, count:1, price:total, option:'옵션1 : '+iceHot, option1:'옵션2 : '+size
+      }))
+    }
+  })
   total=total+opprice;
 
 
@@ -193,17 +209,19 @@ export default function DetailCoffee(props) {
     </OptionBox>
     </FlexBox>
 
-    <div className='total'>
+      <div className='total'>
         <p>옵션1 : {iceHot}</p>
         <p>옵션2 : {size}</p>
         <p>총금액 : {total.toLocaleString()}원</p>
-    </div>
+      </div>
 
-    <div className='cart'>
-        <Button onClick={()=>{addCart()}}>장바구니 담기</Button>
+      <div className='cart'>
+        <Button onClick={openModal}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
-    </div>
+      </div>
+
+    <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
    </motion.div>
   )
 
