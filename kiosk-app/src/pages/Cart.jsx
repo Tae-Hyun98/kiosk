@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { deleteItem, deleteAllItem, plusCount, miusCount } from './store';
 import {motion} from 'framer-motion';
 import DeleteModal from '../components/DeleteModal';
-import './Cart.css';
+import '../styles/Cart.css';
 
 const Container = styled.div`
   width: 1200px;

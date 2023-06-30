@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 import { addItem} from './store';
 import Modal from '../components/Modal';
-import './Detail.css';
 
 const FlexBox = styled.div`
   display: flex;

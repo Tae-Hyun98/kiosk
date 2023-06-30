@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet} from 'react-router-dom';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import './Detail.css';
+import '../styles/Detail.css';
 
 const Container = styled.div`
   width: 1200px;
@@ -18,7 +18,7 @@ export default function DetailPage() {
       <Container>
         <Outlet/>
       </Container>
-   </>
+    </>
   )
 
   

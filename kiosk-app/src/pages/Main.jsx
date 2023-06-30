@@ -1,7 +1,8 @@
 import React from 'react';
-import './Main.css';
 import { Link } from 'react-router-dom';
 import Content from './Content';
+import '../styles/Main.css';
+
 
 export default function Main() {
   return (
