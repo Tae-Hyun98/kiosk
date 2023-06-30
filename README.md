@@ -1,7 +1,7 @@
 # 키오스크 프로젝트 (개인프로젝트)
 >  베스킨라빈스를 참고하여 키오스크로 제작한 React 프로젝트입니다.
 
-<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/cafe6dea-3cff-4a8b-bf9f-390723f88462" width=90% text-align='center'/>
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/94af1254-a81c-46e2-8364-7eea4a765c82"/>
 
 ## 목차
   ### 1. [프로젝트 소개](#1-프로젝트-소개)
