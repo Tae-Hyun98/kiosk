@@ -16,7 +16,7 @@ const ModalBox = styled.div`
   left: 50%;
   top: 50%;
   width: 40%;
-  padding: 50px 0;
+  padding: 60px 0;
   background-color: #fff;
   border: 2px solid #ccc;
 `
