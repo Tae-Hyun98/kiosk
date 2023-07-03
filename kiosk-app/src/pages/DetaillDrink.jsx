@@ -39,6 +39,11 @@ const Label = styled.label`
     }
 `
 
+const OptionBox = styled.div`
+  width: 100%;
+  padding-bottom: 30px;
+`
+
 const Button = styled.button`
   color: black;
   background-color: #fff;
@@ -59,11 +64,6 @@ const Button = styled.button`
   &:last-child{
     margin-right: 0;
   }
-`
-
-const OptionBox = styled.div`
-  width: 100%;
-  padding-bottom: 30px;
 `
 
 
@@ -90,9 +90,9 @@ export default function Drink(props) {
   const [size, setSize] = useState(items1[0].label)
 
 
-  // const [sum, setSum] = useState(8900)
   const [key1, setKey1 ] = useState(0) //초기 키값
   const [key2, setKey2 ] = useState(0) //초기 키값
+  
   //선택된 value값 받는거
   const onChangeKey = (key) =>{setKey1(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
   const onChangeKey1 = (key) =>{setKey2(parseInt(key))} //선택된 라벨 키값 버튼에 넘겨주는거
