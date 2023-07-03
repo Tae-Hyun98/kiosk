@@ -65,41 +65,50 @@
 
 ## 5. 주요기능  
 ### 5-1. 라우팅을 이용한 페이지전환
-![라우팅](https://github.com/Tae-Hyun98/FILA-project/assets/119056869/9e3d8707-4ff0-4f31-a822-5b18112b7896)
-
-<img src="https://github.com/Tae-Hyun98/FILA-project/assets/119056869/9e3d8707-4ff0-4f31-a822-5b18112b7896" width=90%/>
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/81459187-d27b-427b-b6dd-e933fd144789" width=90%/>
 
 #### 👇👇👇👇👇👇
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 검색창의 Input을 통해 입력된값을 DataSet에서 입력된값이 포함된 이름을 필터하고 필터된 값들을 JSON형식으로 변환을하여 setItem으로 값을 search페이지로 전달합니다.  
+ #### 루트페이지를 지정하고 subpage와 detailpage는 outlet을 이용하여 경로에맞는 하위엘리먼트를 호출하는방식으로 작성하였습니다.
 ```javascript
-searchBtn.addEventListener('click', () => {
-  let word = goInput.value.toLowerCase();
-    
-  if (word !== '') {
-    let result = subData.filter(item => item.name.includes(word));
-    goInput.innerHTML = ''
-    location.href = 'search.html'
-    localStorage.setItem('result', JSON.stringify(result))
-    localStorage.setItem('word', word)
-  } else if (word === '') {
-    console.log('error')
-  }
-})
+    <Routes>
+      <Route path='/' element={<Main/>}/>
+
+      <Route path='subpage' element={<SubPage/>}>
+        <Route path='icecream' element={<Icecream/>}/>
+        <Route path='coffee' element={<Coffee/>}/>
+        <Route path='drink' element={<Drink/>}/>
+        <Route path='cake' element={<Cake/>}/>
+        <Route path='dessert' element={<Dessert/>}/>
+      </Route>
+        
+      <Route path='detailpage' element={<DetailPage/>}>
+        <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
+        <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
+        <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
+        <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
+        <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
+      </Route>
+
+      <Route path='cart' element={<Cart/>}/>
+
+    </Routes>
 ```
 
-#### getItem으로 전달된 값을 받으면서 JSON형태의 데이터를 객체형태로 변환하여 저장합니다. 전달된 값이 없거나 length가 0이면 검색결과가 없다고 표시하며, 있다면 상품들을 출력하는 함수인 paginationFunc()함수로 상품들을 출력합니다.  
+#### Link를 이용하여 클릭시 해당 경로로 이동하도록 구성하였습니다.
 ```javascript
-const localData = JSON.parse(localStorage.getItem('result'));
-let words = localStorage.getItem('word')
+    <Link to='/subpage/icecream' />
+    <Link to='/subpage/drink' />
+    <Link to='/subpage/coffee' />
+    <Link to='/subpage/beverage' />
+    <Link to='/subpage/cake' />
+```
 
-if (localData === '' || localData.length === 0) {
-  productList.innerHTML = `<h1>검색결과 해당하는 상품이 없습니다.</h1>`
-} else {
-  paginationFunc(localData)
-}
+#### 뒤로가기 버튼의 경우 useNavigate를 사용하여 버튼클릭시 히스토리를 지우지않고 전 페이지로 이동하도록 구현하였습니다.
+```javascript
+    <BackBtn className='back' onClick={() => {navigate(-1)} }>뒤로가기</BackBtn>
 ```
 
 </details>
@@ -107,3 +116,8 @@ if (localData === '' || localData.length === 0) {
 <br/>
 
 ------------
+
+
+## 6. 느낀점  
+- React에서 중요한기능인 page라우팅의 기능의 경로를 확실히 알게되었으며,  
+
