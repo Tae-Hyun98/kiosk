@@ -26,7 +26,7 @@
 
 - 애니메이션 라이브러리는 framer motion을 사용하였고, 스타일은 CSS3와 Styled-Components를 사용하였습니다.
 
-- 주요기능으로는 **라우터를 이용한 페이지전환, redux-toolkit 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
+- 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅 ,redux-toolkit 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
   
 - 프로젝트에 사용한 데이터들은 직접 DataSet을 임의로 구축하여 사용하였습니다.
   <details>
@@ -71,30 +71,33 @@
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 루트페이지를 지정하고 subpage와 detailpage는 outlet을 이용하여 경로에맞는 하위엘리먼트를 호출하는방식으로 작성하였습니다.
+ #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet으로 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
 ```javascript
-    <Routes>
-      <Route path='/' element={<Main/>}/>
+<Routes>
+  {/* 접근경로오류 */}
+  <Route path="*" element={<NotFound404 />}/> 
+          
+  <Route path='/' element={<Main/>}/>
 
-      <Route path='subpage' element={<SubPage/>}>
-        <Route path='icecream' element={<Icecream/>}/>
-        <Route path='coffee' element={<Coffee/>}/>
-        <Route path='drink' element={<Drink/>}/>
-        <Route path='cake' element={<Cake/>}/>
-        <Route path='dessert' element={<Dessert/>}/>
-      </Route>
+  <Route path='subpage' element={<SubPage/>}>
+    <Route path='icecream' element={<Icecream/>}/>
+    <Route path='coffee' element={<Coffee/>}/>
+    <Route path='drink' element={<Drink/>}/>
+    <Route path='cake' element={<Cake/>}/>
+    <Route path='dessert' element={<Dessert/>}/>
+  </Route>
         
-      <Route path='detailpage' element={<DetailPage/>}>
-        <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
-        <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
-        <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
-        <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
-        <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
-      </Route>
+  <Route path='detailpage' element={<DetailPage/>}>
+    <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
+    <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
+    <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
+    <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
+    <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
+  </Route>
 
-      <Route path='cart' element={<Cart/>}/>
+  <Route path='cart' element={<CartPage/>}/>
 
-    </Routes>
+</Routes>
 ```
 
 #### Link를 이용하여 클릭시 해당 경로로 이동하도록 구성하였습니다.
