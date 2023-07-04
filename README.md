@@ -71,10 +71,10 @@
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet으로 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
+ #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
 ```javascript
 <Routes>
-  {/* 접근경로오류 */}
+  {/* 접근경로오류페이지 */}
   <Route path="*" element={<NotFound404 />}/> 
           
   <Route path='/' element={<Main/>}/>
