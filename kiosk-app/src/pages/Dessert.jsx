@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
-import cake from '../../pages/dataset/CakeData';
+import dessert from './dataset/DessertData';
 
 
 const ProductList = styled(motion.div)`
   width: calc(25% - 11.3px);
   margin: 0 15px 20px 0px;
   border: 1px solid #ccc;
+  &:nth-child(4n){
+    margin-right: 0;
+  }
 `
 const Product = styled(motion.div)`
   display: flex;
@@ -17,8 +20,31 @@ const Product = styled(motion.div)`
   overflow: hidden;
 `
 
-export default function Cake() {
-  const [cakes] = useState(cake);
+const ProductTitle = styled.h3`
+  font-size: 22px;
+  letter-spacing: -1.5px;
+  padding: 20px 0 10px 0;
+  text-align: center;
+`
+
+const ProductTag = styled.p`
+  color: #9d9d9d;
+  font-size: 14px;
+  padding-bottom: 20px;
+  text-align: center;
+`
+
+const ProductPrice = styled.p`
+  font-size: 25px;
+  color: violet;
+  font-weight: 700;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  text-align: center;
+`
+
+export default function Dessert() {
+  const [desserts] = useState(dessert);
 
   const list = {
     hidden: {
@@ -42,16 +68,16 @@ export default function Cake() {
     <>
       <Product variants={list} initial="hidden" animate="visible">
       {
-        cakes.map((cake, index) => {
+        desserts.map((dessert, index) => {
           return (
             <ProductList key={index} className='product_box' variants={item}>
-              <Link to={`/detailpage/detailcake/${index}`}>
-              <div className='img'>
-                <img className={cake.id} src={cake.image} alt='product_img'/>
+              <Link to={`/detailpage/detaildessert/${index}`}>
+                <div className='img'>
+                  <img className={dessert.id} src={dessert.image} alt='product_img'/>
                 </div>
-                <h3 className='tit'>{cake.title}</h3>
-                <p className='tag'>{cake.tag}</p>
-                <p className='price'>{cake.price}원</p>
+                <ProductTitle>{dessert.title}</ProductTitle>
+                <ProductTag>{dessert.tag}</ProductTag>
+                <ProductPrice>{dessert.price}원</ProductPrice>
               </Link>
             </ProductList>
           )

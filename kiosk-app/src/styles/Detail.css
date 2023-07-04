@@ -13,15 +13,6 @@
   margin-top: -20px;
 }
 
-.detail_box .img .product_img {
-  width: 350px;
-  margin-top: -10px;
-}
-
-.detail_box h1 {
-  padding: 15px 0;
-}
-
 .option_box h2 {
   margin-top: 50px;
   text-align: center;
@@ -37,23 +28,6 @@
 
 .option_box .option1 .select label img {
   width: 40px;
-}
-
-.option_box .option1 .select label .option_desc,
-.option_box .option1 .select label .option_price {}
-
-.total {
-  padding: 20px 20px 20px 0;
-}
-
-.total p {
-  font-weight: 700;
-  font-size: 22px;
-  padding-bottom: 5px;
-}
-
-.total p:last-child {
-  padding-bottom: 0;
 }
 
 .cart {

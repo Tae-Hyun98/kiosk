@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import styled  from 'styled-components';
 import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
-import { addItem} from './store';
+import {addItem} from './store';
 import Modal from '../components/Modal';
+import DetailDesc from '../components/DetailDesc';
 
 
 const FlexBox = styled.div`
@@ -13,10 +14,6 @@ const FlexBox = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 3px solid violet;
-`
-
-const DetailContent = styled.div`
-  text-align: center;
 `
 
 const Option = styled.div`
@@ -63,6 +60,18 @@ const Button = styled.button`
 const OptionBox = styled.div`
   width: 100%;
   padding-bottom: 30px;
+`
+
+const TotalBox = styled.div`
+  padding: 20px 20px 20px 0;
+  p{
+    font-weight: 700;
+    font-size: 22px;
+    padding-bottom: 5px;
+    &:last-child{
+      padding-bottom: 0;
+    }
+  }
 `
 
 
@@ -135,19 +144,8 @@ export default function DetailCoffee(props) {
       style={{padding:50}}
     >
     <FlexBox>
-    <DetailContent className='detail_box'>
-      <div>
-        <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
-      </div>
-      <h1>{coffees[id].title}</h1>
-      <p>{coffees[id].desc}</p>
-      
-      <div className='img'>
-        <img className='product_img' src={coffees[id].image} alt='img'/>
-      </div>
 
-      
-    </DetailContent>
+    <DetailDesc title={coffees[id].title} desc={coffees[id].desc} image={coffees[id].image}/>
 
     <OptionBox className='option_box'>
       <div className='option1 option'>
@@ -200,11 +198,11 @@ export default function DetailCoffee(props) {
     </OptionBox>
     </FlexBox>
 
-      <div className='total'>
+      <TotalBox className='total'>
         <p>옵션1 : {iceHot}</p>
         <p>옵션2 : {size}</p>
         <p>총금액 : {total.toLocaleString()}원</p>
-      </div>
+      </TotalBox>
 
       <div className='cart'>
         <Button onClick={openModal}>장바구니 담기</Button>

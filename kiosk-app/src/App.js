@@ -1,14 +1,15 @@
 import './styles/App.css';
 import {Routes, Route} from 'react-router-dom';
+import NotFound404 from './pages/NotFound404';
 import Main from './pages/Main';
-import Icecream from './components/subcomponents/Icecream';
-import Coffee from './components/subcomponents/Coffee';
-import Drink from './components/subcomponents/Drink';
-import Dessert from './components/subcomponents/Dessert';
-import Cake from './components/subcomponents/Cake';
+import Icecream from './pages/Icecream';
+import Coffee from './pages/Coffee';
+import Drink from './pages/Drink';
+import Dessert from './pages/Dessert';
+import Cake from './pages/Cake';
 import SubPage from './pages/SubPage';
 import icecreams from './pages/dataset/IcecreamData';
-import Cart from './pages/Cart';
+import CartPage from './pages/CartPage';
 import DetailPage from './pages/DetailPage';
 import DetailDrink from './pages/DetaillDrink'
 import DetailIcecream from './pages/DetailIcecream';
@@ -28,6 +29,9 @@ function App() {
         
     <AnimatePresence wait>
       <Routes>
+        {/* 접근경로오류 */}
+        <Route path="*" element={<NotFound404 />}/> 
+          
         <Route path='/' element={<Main/>}/>
         
         <Route path='subpage' element={<SubPage/>}>
@@ -46,7 +50,7 @@ function App() {
           <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
         </Route>
 
-        <Route path='cart' element={<Cart/>}/>
+        <Route path='cart' element={<CartPage/>}/>
 
       </Routes>
     </AnimatePresence>

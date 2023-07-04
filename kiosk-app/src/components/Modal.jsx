@@ -37,9 +37,13 @@ const Button = styled.button`
   border: 1px solid #ccc;
   font-weight: bold;
   font-size: 20px;
+  margin-right: 20px;
   &:hover{
     background-color: blue;
     color: #fff;
+  }
+  &:last-child{
+    margin-right: 0;
   }
 `
 

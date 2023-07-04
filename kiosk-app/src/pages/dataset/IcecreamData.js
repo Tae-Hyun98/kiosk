@@ -70,15 +70,6 @@ const icecream = [{
     price: 3500
   },
 
-  {
-    id: 'ice09',
-    image: process.env.PUBLIC_URL + '/assets/images/ice/ice09.png',
-    title: '오레오 쿠키 앤 카라멜',
-    tag: '#단짠단짠 #솔티카라멜아이스크림',
-    desc: '솔티 카라멜 아이스크림에 달콤한 오레오 쿠키가 쏘옥!',
-    price: 3500
-  },
-
 ]
 
 export default icecream

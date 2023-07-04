@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 import { addItem} from './store';
 import Modal from '../components/Modal';
+import DetailDesc from '../components/DetailDesc';
 
 
 const FlexBox = styled.div`
@@ -13,10 +14,6 @@ const FlexBox = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 3px solid violet;
-`
-
-const DetailContent = styled.div`
-  text-align: center;
 `
 
 const Option = styled.div`
@@ -63,6 +60,18 @@ const Button = styled.button`
   }
   &:last-child{
     margin-right: 0;
+  }
+`
+
+const TotalBox = styled.div`
+  padding: 20px 20px 20px 0;
+  p{
+    font-weight: 700;
+    font-size: 22px;
+    padding-bottom: 5px;
+    &:last-child{
+      padding-bottom: 0;
+    }
   }
 `
 
@@ -132,19 +141,8 @@ export default function Drink(props) {
       style={{padding:50}}
       >
     <FlexBox>
-    <DetailContent className='detail_box'>
-      <div>
-        <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
-      </div>
-      <h1>{drink[id].title}</h1>
-      <p>{drink[id].desc}</p>
-      
-      <div className='img'>
-        <img className='product_img' src={drink[id].image} alt='img'/>
-      </div>
-
-     
-    </DetailContent>
+    
+    <DetailDesc title={drink[id].title} desc={drink[id].desc} image={drink[id].image}/>
 
     <OptionBox className='option_box'>
       <div className='option1 option'>
@@ -195,24 +193,23 @@ export default function Drink(props) {
   }
         </Option>
         </div>
-    </OptionBox>
+      </OptionBox>
     </FlexBox>
 
-    <div className='total'>
-      <h3>
-        <span>옵션1 : {iceHot}</span><br/>
-        <span>옵션2 : {size}</span> <br/>
-        <span>총금액 : {total.toLocaleString()}원</span>
-      </h3>
-    </div>
+      <TotalBox className='total'>
+        <p>옵션1 : {iceHot}</p>
+        <p>옵션2 : {size}</p>
+        <p>총금액 : {total.toLocaleString()}원</p>
+      </TotalBox>
 
-    <div className='cart'>
+      <div className='cart'>
         <Button onClick={openModal}>장바구니 담기</Button>
 
         <Button>결재하기</Button>
       </div>
 
       <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
+
     </motion.div>
   )
 

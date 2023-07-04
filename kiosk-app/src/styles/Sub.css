@@ -1,7 +1,3 @@
-.product_box:nth-child(4n) {
-  margin-right: 0;
-}
-
 .product_box a {
   display: block;
 }
@@ -13,29 +9,4 @@
 
 .product_box a img {
   width: 100%;
-}
-
-.product_box a h3,
-.product_box a p {
-  text-align: center;
-}
-
-.product_box a .tit {
-  font-size: 22px;
-  letter-spacing: -1.5px;
-  padding: 20px 0 10px 0;
-}
-
-.product_box a .tag {
-  color: #9d9d9d;
-  font-size: 14px;
-  padding-bottom: 20px;
-}
-
-.product_box a .price {
-  font-size: 25px;
-  color: violet;
-  font-weight: 700;
-  border-top: 1px solid #ccc;
-  padding: 10px 0;
 }

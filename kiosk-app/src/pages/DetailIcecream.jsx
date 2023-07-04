@@ -64,6 +64,18 @@ const OptionBox = styled.div`
   padding-bottom: 30px;
 `
 
+const TotalBox = styled.div`
+  padding: 20px 20px 20px 0;
+  p{
+    font-weight: 700;
+    font-size: 22px;
+    padding-bottom: 5px;
+    &:last-child{
+      padding-bottom: 0;
+    }
+  }
+`
+
 
 
 export default function DetailIcecream(props) {
@@ -137,6 +149,7 @@ export default function DetailIcecream(props) {
       </div>
     </DetailContent>
 
+
     <OptionBox className='option_box'>
       <div className='option1 option'>
         <h2>CONE & CUP</h2>
@@ -189,18 +202,19 @@ export default function DetailIcecream(props) {
     </OptionBox>
     </FlexBox>
 
-      <div className='total'>
+      <TotalBox className='total'>
         <p>선택한 옵션 : {name}</p>
         <p>총금액 : {opprice.toLocaleString()}원</p>
-      </div>
+      </TotalBox>
 
       <div className='cart'>
         <Button onClick={openModal}>장바구니 담기</Button>
           
         <Button>결재하기</Button>
-     </div>
+      </div>
 
      <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
+
       </motion.div>
   )
 
