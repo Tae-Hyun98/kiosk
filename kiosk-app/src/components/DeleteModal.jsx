@@ -59,6 +59,7 @@ export default function DeleteModal({isOpen, closeModal, deleteCarts}) {
             <Button onClick={deleteCarts}>확인</Button>
             <Button onClick={closeModal}>취소</Button>
           </ButtonBox>
+          
         </TextBox>
       </ModalBox>
     </ModalContainer>

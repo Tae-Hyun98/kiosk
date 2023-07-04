@@ -59,6 +59,7 @@ export default function Modal({isOpen,closeModal,addCarts}) {
             <Button onClick={addCarts}>확인</Button>
             <Button onClick={closeModal}>취소</Button>
           </ButtonBox>
+          
         </TextBox>
       </ModalBox>
     </ModalContainer>
