@@ -10,7 +10,8 @@
   ### 4. [페이지 구성](#4-페이지-구성-1)
   ### 5. [주요기능(코드)](#5-주요기능)   
    - #### [라우팅 페이지전환](#5-1-라우팅-페이지전환)  
-   - #### [리뷰등록기능](#5-2-상품-리뷰문의기능)  
+   - #### [동적라우팅](#5-2-상품-리뷰문의기능)
+   - #### [장바구니추가 Modal](#5-2-상품-리뷰문의기능)  
   ### 6. [느낀점](#6-느낀점-1)
 
 <br/> 
@@ -27,7 +28,18 @@
 - 애니메이션 라이브러리는 framer motion을 사용하였고, 스타일은 CSS3와 Styled-Components를 사용하였습니다.
 
 - 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅 ,redux-toolkit 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
+
+- 재사용이 필요한 코드는 따로 컴포넌트로 분리하여 사용을 하였습니다.
+  <details>
+    <summary>🔎 컴포넌트 보기</summary>
   
+    #### 컴포넌트는 header, navigation, modal, detail정보가 있습니다.
+    <p><img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width:300px/></p>
+    <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/bcff7a30-3568-477f-998b-01e65c0c07f7"/>
+    
+    </details>
+
+<br/>
 - 프로젝트에 사용한 데이터들은 직접 DataSet을 임의로 구축하여 사용하였습니다.
   <details>
     <summary>🔎 DataSet 보기</summary>
@@ -158,9 +170,21 @@
 
 
 
-#### 뒤로가기 버튼의 경우 useNavigate를 사용하여 버튼클릭시 히스토리를 지우지않고 전 페이지로 이동하도록 구현하였습니다.
+#### 디테일페이지에서는 상품의 데이터셋을 props로 받고, 서브페이지에서 클릭한 상품의 id를 useParams를 이용해 넘겨받아 구현하였습니다.
 ```javascript
-    <BackBtn className='back' onClick={() => {navigate(-1)} }>뒤로가기</BackBtn>
+  const {icecreams} = props;
+  const {id} = useParams();
+
+  <DetailContent className='detail_box'>
+    <img src={process.env.PUBLIC_URL + '/assets/images/spoon.png'} alt='spoon'/>
+    <h1>{icecreams[id].title}</h1>
+    <p>{icecreams[id].desc}</p>
+      
+    <div className='imgs'>
+      <img className='product_img' src={icecreams[id].image} alt='img'/>
+    </div>
+  </DetailContent>
+
 ```
 
 </details>
