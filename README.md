@@ -25,21 +25,12 @@
 
 - 프로젝트는 리액트 18.2v으로 제작 및 전역 상태관리는 redux-toolkit을 사용하였습니다.
 
-- 애니메이션 라이브러리는 framer motion을 사용하였고, 스타일은 CSS3와 Styled-Components를 사용하였습니다.
+- 애니메이션 라이브러리는 framer motion을 사용하였고, CSS3와 Styled-Components를 사용하여 스타일을 입혔습니다.
 
-- 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅 ,redux-toolkit 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
+- 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅, redux-toolkit을 사용한 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
 
 - 재사용이 필요한 코드는 따로 컴포넌트로 분리하여 사용을 하였습니다.
-  <details>
-    <summary>🔎 컴포넌트 보기</summary>
-  
-    #### 컴포넌트는 header, navigation, modal, detail정보가 있습니다.
-    <p><img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width:300px/></p>
-    <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/bcff7a30-3568-477f-998b-01e65c0c07f7"/>
-    
-    </details>
 
-<br/>
 - 프로젝트에 사용한 데이터들은 직접 DataSet을 임의로 구축하여 사용하였습니다.
   <details>
     <summary>🔎 DataSet 보기</summary>
@@ -48,7 +39,7 @@
     <p><img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/3434675b-3b3b-4fa1-a9e0-034b54edf384" width:300px/></p>
     <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/bcff7a30-3568-477f-998b-01e65c0c07f7"/>
     
-    </details>
+  </details>  
 
 <br/>
 
@@ -83,7 +74,7 @@
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
+ #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 렌더링하는 방식으로 구현하였습니다.
 ```javascript
 <Routes>
   {/* 접근경로오류페이지 */}
@@ -112,13 +103,19 @@
 </Routes>
 ```
 
-#### Link를 이용하여 클릭시 해당 경로로 이동하도록 구성하였습니다.
+#### Link를 이용하여 클릭시 해당 경로로 이동하도록 구현하였습니다.
 ```javascript
     <Link to='/subpage/icecream' />
     <Link to='/subpage/drink' />
     <Link to='/subpage/coffee' />
     <Link to='/subpage/beverage' />
     <Link to='/subpage/cake' />
+
+    <Link to={`/detailpage/detailicecream/${index}`}>
+    <Link to={`/detailpage/detaildrink/${index}`}>
+    <Link to={`/detailpage/detailcoffee/${index}`}>
+    <Link to={`/detailpage/detailbeverage/${index}`}>
+    <Link to={`/detailpage/detailcake/${index}`}>
 ```
 
 #### 뒤로가기 버튼의 경우 useNavigate를 사용하여 버튼클릭시 히스토리를 지우지않고 전 페이지로 이동하도록 구현하였습니다.
@@ -139,7 +136,7 @@
 <details>
  <summary>🔎 코드보기</summary>
 
-#### 동적 라우팅을 구성하기 위해 디테일페이지의 경로에 id값을 추가하였습니다. 
+#### 동적 라우팅을 구성하기 위해 디테일페이지의 경로에 id를 추가하였습니다. 
 ```javascript
     <Route path='detailpage' element={<DetailPage/>}>
       <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
@@ -150,7 +147,7 @@
     </Route>
 ```
 
- #### 서브페이지에서 나오는상품들은 map함수를 사용하여 화면에 랜더링시켰습니다. 각 상품박스에 key값을 부여하였고, 클릭시 디테일페이지로 넘어가는 링크경로의 id값을 상품의 index값으로 지정하여 클릭시 해당상품의 정보를 보여줄 수 있도록 구성하였습니다.
+ #### 서브페이지에서 나오는상품들은 map함수를 사용하여 화면에 렌더링시켰습니다. 각 상품박스에 key값을 부여하였고, 클릭시 디테일페이지로 넘어가는 링크경로의 id값을 상품의 index값으로 지정하여 클릭시 해당상품의 정보를 보여줄 수 있도록 구성하였습니다.
 ```javascript
   icecreams.map((icecream, index)=> {
         return(
