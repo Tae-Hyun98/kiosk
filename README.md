@@ -121,7 +121,7 @@
 ------------
 
 ### 5-1. 동적라우팅
-<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/81459187-d27b-427b-b6dd-e933fd144789" width=90%/>
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/5881e71f-854e-493f-9704-d3d48750061a" width=90%/>
 
 #### 👇👇👇👇👇👇
 <details>
