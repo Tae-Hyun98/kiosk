@@ -120,50 +120,43 @@
 
 ------------
 
-### 5-1. 동적라우팅
+### 5-2. 동적라우팅
 <img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/5881e71f-854e-493f-9704-d3d48750061a" width=90%/>
 
 #### 👇👇👇👇👇👇
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
+#### 동적 라우팅을 구성하기 위해 디테일페이지의 경로에 id값을 추가하였습니다. 
 ```javascript
-<Routes>
-  {/* 접근경로오류페이지 */}
-  <Route path="*" element={<NotFound404 />}/> 
-          
-  <Route path='/' element={<Main/>}/>
-
-  <Route path='subpage' element={<SubPage/>}>
-    <Route path='icecream' element={<Icecream/>}/>
-    <Route path='coffee' element={<Coffee/>}/>
-    <Route path='drink' element={<Drink/>}/>
-    <Route path='cake' element={<Cake/>}/>
-    <Route path='dessert' element={<Dessert/>}/>
-  </Route>
-        
-  <Route path='detailpage' element={<DetailPage/>}>
-    <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
-    <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
-    <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
-    <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
-    <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
-  </Route>
-
-  <Route path='cart' element={<CartPage/>}/>
-
-</Routes>
+    <Route path='detailpage' element={<DetailPage/>}>
+      <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
+      <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
+      <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
+      <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
+      <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
+    </Route>
 ```
 
-#### Link를 이용하여 클릭시 해당 경로로 이동하도록 구성하였습니다.
+ #### 서브페이지에서 나오는상품들은 map함수를 사용하여 화면에 랜더링시켰습니다. 각 상품박스에 key값을 부여하였고, 클릭시 디테일페이지로 넘어가는 링크경로의 id값을 상품의 index값으로 지정하여 클릭시 해당상품의 정보를 보여줄 수 있도록 구성하였습니다.
 ```javascript
-    <Link to='/subpage/icecream' />
-    <Link to='/subpage/drink' />
-    <Link to='/subpage/coffee' />
-    <Link to='/subpage/beverage' />
-    <Link to='/subpage/cake' />
+  icecreams.map((icecream, index)=> {
+        return(
+          <ProductList key={index} className='product_box' variants={item}>
+          <Link to={`/detailpage/detailicecream/${index}`}>
+            <div className='img_box'>
+              <img className={icecream.id} src={icecream.image} alt='product_img'/>
+            </div>
+            <ProductTitle>{icecream.title}</ProductTitle>
+            <ProductTag>{icecream.tag}</ProductTag>
+            <ProductPrice>{icecream.price}원</ProductPrice>
+          </Link>
+        </ProductList>
+        )
+      })
 ```
+
+
 
 #### 뒤로가기 버튼의 경우 useNavigate를 사용하여 버튼클릭시 히스토리를 지우지않고 전 페이지로 이동하도록 구현하였습니다.
 ```javascript
