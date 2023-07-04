@@ -191,7 +191,7 @@
 ------------
 
 ### 5-3. 장바구니 전역상태관리
-<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/5881e71f-854e-493f-9704-d3d48750061a" width=90%/>
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/8f08b8a7-cd2b-4c1f-bd5e-3096d0774487" width=90%/>
 
 #### 👇👇👇👇👇👇
 <details>
