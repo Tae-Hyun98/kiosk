@@ -120,6 +120,61 @@
 
 ------------
 
+### 5-1. 동적라우팅
+<img src="https://github.com/Tae-Hyun98/kiosk/assets/119056869/81459187-d27b-427b-b6dd-e933fd144789" width=90%/>
+
+#### 👇👇👇👇👇👇
+<details>
+ <summary>🔎 코드보기</summary>
+
+ #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 랜더링하는 방식으로 구성하였습니다.
+```javascript
+<Routes>
+  {/* 접근경로오류페이지 */}
+  <Route path="*" element={<NotFound404 />}/> 
+          
+  <Route path='/' element={<Main/>}/>
+
+  <Route path='subpage' element={<SubPage/>}>
+    <Route path='icecream' element={<Icecream/>}/>
+    <Route path='coffee' element={<Coffee/>}/>
+    <Route path='drink' element={<Drink/>}/>
+    <Route path='cake' element={<Cake/>}/>
+    <Route path='dessert' element={<Dessert/>}/>
+  </Route>
+        
+  <Route path='detailpage' element={<DetailPage/>}>
+    <Route path='detailicecream/:id' element={<DetailIcecream icecreams={icecreams}/>}/>
+    <Route path='detaildrink/:id' element={<DetailDrink drink={drink}/>}/>
+    <Route path='detailcoffee/:id' element={<DetailCoffee coffees={coffees}/>}/>
+    <Route path='detailcake/:id' element={<DetailCake cakes={cakes}/>}/>
+    <Route path='detaildessert/:id' element={<DetailDessert desserts={desserts}/>}/>
+  </Route>
+
+  <Route path='cart' element={<CartPage/>}/>
+
+</Routes>
+```
+
+#### Link를 이용하여 클릭시 해당 경로로 이동하도록 구성하였습니다.
+```javascript
+    <Link to='/subpage/icecream' />
+    <Link to='/subpage/drink' />
+    <Link to='/subpage/coffee' />
+    <Link to='/subpage/beverage' />
+    <Link to='/subpage/cake' />
+```
+
+#### 뒤로가기 버튼의 경우 useNavigate를 사용하여 버튼클릭시 히스토리를 지우지않고 전 페이지로 이동하도록 구현하였습니다.
+```javascript
+    <BackBtn className='back' onClick={() => {navigate(-1)} }>뒤로가기</BackBtn>
+```
+
+</details>
+
+<br/>
+
+------------
 
 ## 6. 느낀점  
 - React에서 중요한기능인 page라우팅의 기능의 경로를 확실히 알게되었으며,  
