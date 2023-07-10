@@ -197,21 +197,227 @@
 <details>
  <summary>🔎 코드보기</summary>
 
-#### 동적 라우팅을 구성하기 위해 디테일페이지의 경로에 id를 추가하였습니다. 
+#### 전역상태관리를 위해 먼저 cart컴포넌트를 만들어주었습니다. 해당 cart컴포넌트에서는 UI레이아웃을 잡고, 
 ```javascript
-    
+export default function Cart() {
+  const state = useSelector((state)=>state)
+  const dispatch = useDispatch();
+  let total=0;
+  let counter=0;
+  state.cart.map((item)=>{
+    return (
+      total+=(item.price*item.count),
+      counter+=item.count
+    )
+  })
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = ()=> setIsModalOpen(true)
+  const closeModal = ()=> setIsModalOpen(false)
+  const deleteCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(deleteAllItem(state.id))
+    alert('전체 상품이 삭제되었습니다.')
+  }
+
+  if(state.cart.length===0){
+    return(
+    <>
+      <Header/>
+      <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1}}
+        exit={{opacity:0}}
+      >
+      <Container>
+      <div className='cart_wrap'>
+          <h1 style={{textAlign:'center',paddingTop:20}}>장바구니입니다.</h1>
+          <div className='cart_pro'>
+            <ul className='cart_tit'>
+              <li>상품</li>
+              <li>이름</li>
+              <li>가격</li>
+              <li>개수</li>
+              <li>삭제</li>
+            </ul>
+
+            <h2 className='empty'>장바구니가 비어있습니다.</h2>
+          </div>
+      </div>
+      </Container>
+      </motion.div>
+    </>
+    )
+  }
+
+
+  return (
+    <>
+      <Header/>
+      <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1}}
+        exit={{opacity:0}}
+      >
+
+        <Container>
+          <div className='cart_wrap'>
+          <h1 style={{textAlign:'center', paddingTop:20}}>장바구니입니다.</h1>
+
+          <div style={{textAlign:'right'}}>
+            <DeleteAll onClick={openModal}>전체삭제</DeleteAll>
+            <DeleteModal isOpen={isModalOpen} context={'전체상품을 삭제하시겠습니까?'} deleteCarts={deleteCarts} closeModal={closeModal} />
+          </div>
+
+          <div className='cart_pro'>
+            <ul className='cart_tit'>
+              <li>상품</li>
+              <li>이름</li>
+              <li>가격</li>
+              <li>개수</li>
+              <li>삭제</li>
+            </ul>
+
+          <ul className='cart_product'>
+              
+        {
+          
+          state.cart.map((item, i)=>{
+            return (
+
+              <li key={i}>
+                <p className='image_box'>
+                  <img src={item.image} alt='img'/>
+                </p>
+                <p className='option'>{item.title}<br/>
+                <span>{item.option}</span><br/>
+                <span>{item.option1}</span></p>
+                <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
+                <div className='count_box'>
+                  <Button onClick={()=>{
+                    dispatch(miusCount({key:item.key, id:item.id, id1:item.id1}))
+                  }}>-</Button>
+
+                  <p>{item.count}</p>
+
+                  <Button onClick={()=>{
+                    dispatch(plusCount({key:item.key, id:item.id, id1:item.id1}))
+                  }}>+</Button>
+                </div>
+                
+                <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}),alert('선택하신상품이 삭제되었습니다.'))}>삭제</Delete></p>
+              </li>
+
+            )
+          })
+        }
+            </ul>
+            </div>
+
+            <div className='total'>
+              <h3>총 수량 : {counter}개</h3>
+              <h1>총 금액 : {total.toLocaleString()+'원'}</h1>
+            </div>
+          </div>
+
+        </Container>
+        </motion.div>
+        
+    </>
+  )
+}
+
 ```
 
- #### 서브페이지에서 나오는상품들은 map함수를 사용하여 화면에 렌더링시켰습니다. 각 상품박스에 key값을 부여하였고, 클릭시 디테일페이지로 넘어가는 링크경로의 id값을 상품의 index값으로 지정하여 클릭시 해당상품의 정보를 보여줄 수 있도록 구성하였습니다.
+ #### 디테일페이지에서 장바구니를 클릭하면 나오는 모달창입니다. 모달창은 삼항연산자를 사용하여 display가 true이면 block을 false면 none을 반환하도록 구성하였으며,<br/> 파라미터를 비구조화할당 문법을 사용하여 값들을 디테일페이지에서 값을 받아 작동하도록 구현하였습니다.
 ```javascript
-  
+  import React from 'react';
+import styled from 'styled-components';
+
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+`
+const ModalBox = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  padding: 60px 0;
+  background-color: #fff;
+  border: 2px solid #ccc;
+`
+const TextBox = styled.div`
+  width: 100%;
+  height: 100%;
+  text-align: center;
+`
+
+const ButtonBox = styled.div`
+  padding-top: 30px;
+`
+
+const Button = styled.button`
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 20px;
+  &:hover{
+    background-color: blue;
+    color: #fff;
+  }
+`
+
+export default function Modal({isOpen,closeModal,addCarts}) {
+
+  return (
+    <ModalContainer style={{display:isOpen ? 'block':'none'}}>
+      <ModalBox>
+        <TextBox>
+          <h2>장바구니에 추가하시겠습니까?</h2>
+
+          <ButtonBox className='btn_box'>
+            <Button onClick={addCarts}>확인</Button>
+            <Button onClick={closeModal}>취소</Button>
+          </ButtonBox>
+        </TextBox>
+      </ModalBox>
+    </ModalContainer>
+  )
+}
 ```
 
 
 
-#### 디테일페이지에서는 상품의 데이터셋을 props로 받고, 서브페이지에서 클릭한 상품의 id를 useParams를 이용해 넘겨받아 구현하였습니다.
+#### 모달창은 처음에는 보이지않게 모달의 useState를 false로 상태를 정해놓고, 장바구니담기를 클릭시 모달의 state가 true로 변경되어 모달이 나타나며, 모달에서 확인클릭시 장바구니에 상품을 추가하는 addCars가 호출되며, 닫기클릭시 state가 false로되어 모달창이 닫히도록 구현하였습니다. 
 ```javascript
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = ()=> setIsModalOpen(true);
+  const closeModal = ()=> setIsModalOpen(false);
+  const addCarts = ()=> {
+    setIsModalOpen(false)
+    dispatch(addItem({
+      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title,
+      count:1, price:opprice, option:'옵션 : '+ name
+  }))
+  }
+
+ <div className='cart'>
+    <Button onClick={openModal}>장바구니 담기</Button>
+    <Button>결재하기</Button>
+ </div>
+
+     <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
 
 ```
 
