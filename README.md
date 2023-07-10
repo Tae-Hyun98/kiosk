@@ -54,8 +54,8 @@
   <a href="#!"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white"/></a>
 
   <a href="#!"><img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat&logo=styledcomponents&logoColor=white"/></a>
-  <a href="#!"><img src="https://img.shields.io/badge/gsap.js-88CE02?style=flat&logo=greensock&logoColor=white"/></a>
-    
+  <a href="#!"><img src="https://img.shields.io/badge/FramerMotion-0055FF?style=flat&logo=framer&logoColor=white"/></a>
+  
   <a href="#!"><img src="https://img.shields.io/badge/visual studio code-007ACC?style=flat&logo=visualstudiocode&logoColor=white"/></a>
   <a href="#!"><img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white"/></a>
 
@@ -74,7 +74,7 @@
 <details>
  <summary>🔎 코드보기</summary>
 
- #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 렌더링하는 방식으로 구현하였습니다.
+ #### 초기위치를 Main페이지로 지정하고 subpage와 detailpage는 중첩라우터를 구성하여 outlet을 이용해 경로에맞는 페이지를 렌더링하는 방식으로 구현하였으며, 잘못된 경로로 접속시 접근경로 오류페이지를 나타내도록 하였습니다.
 ```javascript
 <Routes>
   {/* 접근경로오류페이지 */}
@@ -222,5 +222,5 @@
 ------------
 
 ## 6. 느낀점  
-- React에서 중요한기능인 page라우팅의 기능의 경로를 확실히 알게되었으며,  
+- 첫 리액트 프로젝트라 라우팅하는것과 재사용 컴포넌트를 추출하는것이 미흡하였지만, 이번 프로젝트를 통해 라우팅과 재사용 컴포넌트를 추출하는 기초를 다졌습니다.
 
