@@ -286,7 +286,8 @@ export default function DetailIcecream(props) {
   const addCarts = ()=> {
     setIsModalOpen(false)
     dispatch(addItem({
-      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image, title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
+      key:icecreams[id].id ,id:options1[key1].id, id1:options2[key2].id, image:icecreams[id].image,
+      title:icecreams[id].title, count:1, price:opprice, option:'옵션 : '+name
   }))
   }
 
@@ -300,6 +301,18 @@ export default function DetailIcecream(props) {
 }
 
 ```
+
+</details>
+
+<br/>
+
+------------
+
+### 5-4. Modal 팝업창
+
+#### 👇👇👇👇👇👇
+<details>
+ <summary>🔎 코드보기</summary>
 
  #### 디테일페이지에서 장바구니를 클릭하면 나오는 모달창입니다. 모달창은 삼항연산자를 사용하여 display가 true이면 block을 false면 none을 반환하도록 구성하였으며, 파라미터를 비구조화할당 문법을 사용하여 값들을 디테일페이지에서 값을 받아 작동하도록 구현하였습니다.
 ```javascript
@@ -368,7 +381,6 @@ export default function Modal({isOpen,closeModal,addCarts}) {
 ```
 
 
-
 #### 모달창은 처음에는 보이지않게 모달의 useState를 false로 상태를 정해놓고, 장바구니담기를 클릭시 모달의 state가 true로 변경되어 모달이 나타나며, 모달에서 확인클릭시 장바구니에 상품을 추가하는 addCars가 호출되며, 닫기클릭시 state가 false로되어 모달창이 닫히도록 구현하였습니다. 
 ```javascript
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -391,12 +403,7 @@ export default function Modal({isOpen,closeModal,addCarts}) {
 
 ```
 
-</details>
-
-<br/>
-
-------------
-
 ## 6. 느낀점  
 - 첫 리액트 프로젝트라 라우팅하는것과 재사용 컴포넌트를 추출하는것이 미흡하였지만, 이번 프로젝트를 통해 라우팅 경로설정과 재사용 컴포넌트를 추출하는 기초를 다졌습니다.
+- 상태관리를 
 
