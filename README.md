@@ -357,7 +357,7 @@ export default function DetailIcecream(props) {
 
  #### 디테일페이지에서 장바구니를 클릭하면 나오는 모달창입니다. 모달창은 삼항연산자를 사용하여 isOpen이 true이면 block을 false면 none을 반환하도록 구성하였으며, 파라미터를 비구조화할당 문법을 사용하여 값들을 디테일페이지에서 값을 받아 작동하도록 구현하였습니다.
 ```javascript
-  import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
