@@ -303,7 +303,7 @@ export default function DetailIcecream(props) {
 
 ```
 
-#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에서 만든 state cart를 map함수를 이용하여 랜더링시킴으로써 전역상태관리를 하였습니다.
+#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에서 만든 state cart를 받아와 map함수를 이용하여 출력시킴으로써 전역상태관리를 하였습니다.
 ```javascript
   export default function Cart() {
 
