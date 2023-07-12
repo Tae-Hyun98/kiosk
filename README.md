@@ -213,9 +213,9 @@ export default function DetailIcecream(props) {
 );
 ```
 
-#### store에 configureStore를 사용하여 cart스토어를 생성해주고, createSlice로 초기상태가 빈 배열을하나생성을 해주었고, reducers에서 추가, 삭제, 증가, 감소 액션을 정의한 뒤 export로 액션들을 내보내었습니다.<br/> 각 액션들은 장바구니에 담겨있는 id 값과 dispatch로 새로 업데이트되는 값을 논리연산자를 이용하여 값들을 비교하여 반환하는 값을 기준으로 추가 및 삭제, 증가, 감소할 수 있도록 구현하였습니다.
+#### store에 configureStore를 사용하여 cart state를 생성해주고, 전역으로사용될 state를 createSlice로 초기상태가 빈 배열을하나생성을 해주었고, reducers에서 추가, 삭제, 증가, 감소 액션을 정의한 뒤 export로 액션들을 내보내었습니다.<br/> 각 액션들은 장바구니에 담겨있는 id 값과 dispatch로 새로 업데이트되는 값을 논리연산자를 이용하여 값들을 비교하여 반환하는 값을 기준으로 추가 및 삭제, 증가, 감소할 수 있도록 구현하였습니다.
 ```javascript
-  import {configureStore, createSlice} from '@reduxjs/toolkit';
+import {configureStore, createSlice} from '@reduxjs/toolkit';
 
 const cart = createSlice({
   name: 'cart',
@@ -303,7 +303,7 @@ export default function DetailIcecream(props) {
 
 ```
 
-#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에 cart를 map함수를 이용하여 랜더링시킴으로써 전역상태관리를 하였습니다.
+#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에서 만든 state cart를 map함수를 이용하여 랜더링시킴으로써 전역상태관리를 하였습니다.
 ```javascript
   export default function Cart() {
 
