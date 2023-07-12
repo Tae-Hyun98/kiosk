@@ -226,7 +226,7 @@ const cart = createSlice({
         return findId.id===action.payload.id&&findId.key===action.payload.key&&findId.id1===action.payload.id1
       })
       
-      if(index>-1){
+      if(index>-1){ 
         state[index].count++
       }else{
         state.push(action.payload)
@@ -277,7 +277,7 @@ export default configureStore({
 });
 ```
 
-#### store를 생성하고 내보낸후 useDispatch를 사용하여 상품추가의 경우 장바구니 담기버튼을 누르면 모달창이 뜨며, 확인을 누를시 addCarts가 실행되도록 하였습니다. addItem이라는 액션에 넘기는 값을 객체로 넘겨주어 상태를 업데이트 하였습니다.
+#### store를 생성하고 상품추가의 경우 장바구니 담기버튼을 누르면 모달창이 뜨며, 확인을 누를시 addCarts가 실행되도록 하였습니다. addCarts에는 useDispatch로 store에 addItem액션을 실행하여 값들을 객체로 넘겨주어 상태값을 변경하였습니다.
 ```javascript
 export default function DetailIcecream(props) {
   const {icecreams} = props;
@@ -301,6 +301,46 @@ export default function DetailIcecream(props) {
   <Modal isOpen={isModalOpen} addCarts={addCarts} closeModal={closeModal} />
 }
 
+```
+
+#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에 cart를 map함수를 이용하여 랜더링시킴으로써 전역상태관리를 하였습니다.
+```javascript
+  export default function Cart() {
+
+  const state = useSelector((state)=>state)
+  const dispatch = useDispatch();
+
+{
+   state.cart.map((item, i)=>{
+    return (
+      <li key={i}>
+        <p className='image_box'>
+          <img src={item.image} alt='img'/>
+        </p>
+        <p className='option'>
+          {item.title}<br/>
+          <span>{item.option}</span><br/>
+          <span>{item.option1}</span>
+        </p>
+        <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
+
+        <div className='count_box'>
+          <Button onClick={()=>{ //클릭시 카운트 감소 액션
+            dispatch(miusCount({key:item.key, id:item.id, id1:item.id1}))
+          }}>-</Button>
+
+          <p>{item.count}</p>
+
+          <Button onClick={()=>{ //클릭시 카운트 증가 액션
+            dispatch(plusCount({key:item.key, id:item.id, id1:item.id1}))
+          }}>+</Button>
+        </div>
+                
+        <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}),alert('선택하신상품이 삭제되었습니다.'))}>삭제</Delete></p>
+      </li>
+    )
+  })
+}
 ```
 
 </details>
