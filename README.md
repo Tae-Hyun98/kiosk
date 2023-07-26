@@ -9,10 +9,10 @@
   ### 3. [사용한 기술스택](#3-사용한-skills)
   ### 4. [페이지 구성](#4-페이지-구성-1)
   ### 5. [주요기능(코드)](#5-주요기능)   
-   - #### [라우팅 페이지전환](#5-1-라우팅-페이지전환)  
-   - #### [동적라우팅](#5-2-상품-리뷰문의기능)
-   - #### [장바구니 전역상태관리](#5-2-상품-리뷰문의기능)  
-   - #### [Modal 팝업창](#5-2-상품-리뷰문의기능)  
+   - #### [라우팅 페이지전환](#5-1-라우팅을-이용한-페이지전환)  
+   - #### [동적라우팅](#5-2-동적라우팅)
+   - #### [장바구니 전역상태관리](#5-3-redux-toolkit라이브러리를-사용한-장바구니-전역상태관리)  
+   - #### [Modal 팝업창](#5-4-modal-팝업창)  
   ### 6. [느낀점](#6-느낀점-1)
 
 <br/> 
@@ -28,7 +28,7 @@
 
 - 애니메이션 라이브러리는 framer motion을 사용하였고, CSS3와 Styled-Components를 사용하여 스타일을 입혔습니다.
 
-- 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅, redux-toolkit을 사용한 전역 상태관리, useState를 이용한 상태관리** 등이 있습니다.
+- 주요기능으로는 **라우터를 이용한 페이지전환, 동적라우팅, redux-toolkit을 사용한 전역 상태관리, Modal 팝업창** 등이 있습니다.
 
 - 재사용이 필요하거나 자주사용되는 컴포넌트는 따로 추출하여 사용하였습니다.(Header, Nav, Modal)
 
@@ -213,9 +213,9 @@ export default function DetailIcecream(props) {
 );
 ```
 
-#### store에 configureStore를 사용하여 cart스토어를 생성해주고, createSlice로 초기상태가 빈 배열을하나생성을 해주었고, reducers에서 추가, 삭제, 증가, 감소 액션을 정의한 뒤 export로 액션들을 내보내었습니다.<br/> 각 액션들은 장바구니에 담겨있는 id 값과 dispatch로 새로 업데이트되는 값을 논리연산자를 이용하여 값들을 비교하여 반환하는 값을 기준으로 추가 및 삭제, 증가, 감소할 수 있도록 구현하였습니다.
+#### store에 configureStore를 사용하여 cart state를 생성해주고, 전역으로사용될 state를 createSlice로 초기상태가 빈 배열을하나생성을 해주었고, reducers에서 추가, 삭제, 증가, 감소 액션을 정의한 뒤 export로 액션들을 내보내었습니다.<br/> 각 액션들은 장바구니에 담겨있는 id 값과 dispatch로 새로 업데이트되는 값을 논리연산자를 이용하여 값들을 비교하여 반환하는 값을 기준으로 추가 및 삭제, 증가, 감소할 수 있도록 구현하였습니다.
 ```javascript
-  import {configureStore, createSlice} from '@reduxjs/toolkit';
+import {configureStore, createSlice} from '@reduxjs/toolkit';
 
 const cart = createSlice({
   name: 'cart',
@@ -226,7 +226,7 @@ const cart = createSlice({
         return findId.id===action.payload.id&&findId.key===action.payload.key&&findId.id1===action.payload.id1
       })
       
-      if(index>-1){
+      if(index>-1){ 
         state[index].count++
       }else{
         state.push(action.payload)
@@ -277,7 +277,7 @@ export default configureStore({
 });
 ```
 
-#### store를 생성하고 내보낸후 useDispatch를 사용하여 상품추가의 경우 장바구니 담기버튼을 누르면 모달창이 뜨며, 확인을 누를시 addCarts가 실행되도록 하였습니다. addItem이라는 액션에 넘기는 값을 객체로 넘겨주어 상태를 업데이트 하였습니다.
+#### store를 생성하고 상품추가의 경우 장바구니 담기버튼을 누르면 모달창이 뜨며, 확인을 누를시 addCarts가 실행되도록 하였습니다. addCarts에는 useDispatch로 store에 addItem액션을 실행하여 값들을 객체로 넘겨주어 상태값을 변경하였습니다.
 ```javascript
 export default function DetailIcecream(props) {
   const {icecreams} = props;
@@ -303,6 +303,46 @@ export default function DetailIcecream(props) {
 
 ```
 
+#### 장바구니담기를 실행한 후 store에서 addItem액션을 실행한뒤 장바구니페이지에서 useSelecor를 사용하여 store에서 만든 state cart를 받아와 map함수를 이용하여 출력시킴으로써 전역상태관리를 하였습니다.
+```javascript
+  export default function Cart() {
+
+  const state = useSelector((state)=>state)
+  const dispatch = useDispatch();
+
+{
+   state.cart.map((item, i)=>{
+    return (
+      <li key={i}>
+        <p className='image_box'>
+          <img src={item.image} alt='img'/>
+        </p>
+        <p className='option'>
+          {item.title}<br/>
+          <span>{item.option}</span><br/>
+          <span>{item.option1}</span>
+        </p>
+        <p>{(item.price*item.count).toLocaleString("KO-KR")}원</p>
+
+        <div className='count_box'>
+          <Button onClick={()=>{ //클릭시 카운트 감소 액션
+            dispatch(miusCount({key:item.key, id:item.id, id1:item.id1}))
+          }}>-</Button>
+
+          <p>{item.count}</p>
+
+          <Button onClick={()=>{ //클릭시 카운트 증가 액션
+            dispatch(plusCount({key:item.key, id:item.id, id1:item.id1}))
+          }}>+</Button>
+        </div>
+                
+        <p><Delete onClick={()=>dispatch(deleteItem({key:item.key, id:item.id, id1:item.id1}),alert('선택하신상품이 삭제되었습니다.'))}>삭제</Delete></p>
+      </li>
+    )
+  })
+}
+```
+
 </details>
 
 <br/>
@@ -317,7 +357,7 @@ export default function DetailIcecream(props) {
 
  #### 디테일페이지에서 장바구니를 클릭하면 나오는 모달창입니다. 모달창은 삼항연산자를 사용하여 isOpen이 true이면 block을 false면 none을 반환하도록 구성하였으며, 파라미터를 비구조화할당 문법을 사용하여 값들을 디테일페이지에서 값을 받아 작동하도록 구현하였습니다.
 ```javascript
-  import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
@@ -410,5 +450,6 @@ export default function Modal({isOpen,closeModal,addCarts}) {
 
 ## 6. 느낀점  
 - 첫 리액트 프로젝트라 라우팅하는것과 재사용 컴포넌트를 추출하는것이 미흡하였지만, 이번 프로젝트를 통해 라우팅 경로설정과 재사용 컴포넌트를 추출하는 기초를 다졌습니다.
-- 상태관리를 
+- 옵션값까지 장바구니에 전달하는과정에서 cart에 같은 상품이있으면 옵션값을 비교하지 못하는 이슈가 있었습니다.  해당 이슈는 dispatch로 값을 전달하는 객체에 옵션에 해당하는 id값까지 같이 넘겨줌으로써 store에 논리연산자를 이용하여 상품의 id값과 옵션의 id값을 비교하여 해결하였습니다.
+- 이번 프로젝트를통해 라우팅의 경로 설정 및 동적라우팅, props를 이용한 값 넘겨받기, useState상태관리, redux-toolkit을 이용한 전역상태관리에 대한 기초를 다졌으며,  if문을 많이 사용하기보다 삼항연산자 및 논리연산자를 이용하여 조건을 return시키는 것이 더 좋다고 느꼈습니다.
 
